@@ -1,0 +1,18 @@
+{
+  "Guides": {
+    "Guides": [
+      "intro",
+      "stellar",
+      "fee-faucet",
+      "kin-faucet",
+      "network-info"
+    ]
+  },
+  "Docs": {
+    "Docs": [
+      "api-reference-overview",
+      "android",
+      "ios"
+    ]
+  }
+}

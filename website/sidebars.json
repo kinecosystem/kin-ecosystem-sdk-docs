@@ -3,6 +3,10 @@
     "Guides": [
       "intro",
       "stellar",
+      "sdk-components",
+      "jwt",
+      "registration",
+      "wallet-managing",
       "fee-faucet",
       "kin-faucet",
       "network-info"

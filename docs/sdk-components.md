@@ -3,14 +3,29 @@ id: sdk-components
 title: SDK Components
 ---
 
-![](/img/sdk_components.png)
+![](/kin-ecosystem-sdk-docs/img/sdk_components.png)
 
-**Ecosystem server** - client authorisation, 2-way verifying of offers integrity and trusted origin using JWT, managing offers inventory, managing DS wallets.  
+### Ecosystem server
 
-**Application server** - Authorise DS clients, 2-way verifying of offers integrity and trusted origin using JWT.  
+* Create and activate users accounts on the Stellar blockchain.
+* Serving out of the box KIN's earn and spend offers for the SDK marketplace.
+* Manage and store user's earn and spend order history.
+* Manage digital service wallets.
+* Client authorization and secure communication between digital service and Ecosystem server, see [Authorization and JWT](jwt.md).
 
-(signs JWT request for client, validate ecosystem server JWT responses via client).  
+### Application server
 
-**Client** - communicate with ecosystem server, marketplace UI, native earn/spend, send and validate server transaction.  
+* Client authorization and secure communication between digital service and Ecosystem server, see [Authorization and JWT](jwt.md).
+* Manage client native earn and spend offers.
 
-**Kin Blockchain** - Kin coin decentralized ledger, accept transactions from Ecosystem server and Ecosystem client sdk.
+### Client
+
+* Communicate with ecosystem server.
+* Manage client wallet.
+* Provides SDK marketplace UI for both out of the box and native offers.
+* Sending and receiving transaction on Kin blockchain.
+
+### Kin Blockchain
+
+* The Kin coin decentralized ledger.
+* Accept transactions from Ecosystem server and Ecosystem client sdk.

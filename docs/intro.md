@@ -38,6 +38,15 @@ The Kin Ecosystem Server handles SDK requests from client apps. This includes th
 
 Only apps with access credentials can direct requests to the Kin Ecosystem Server.
 
+### Kin Wallets and Accounts
+
+Every user who transacts in Kin owns the following two items:
+
+* Wallet – contains the user’s authentication keys (does not contain currency, unlike a real-world
+wallet).
+* Account – an identity recognized by the Kin blockchain, which is associated with a Kin balance
+and a transaction history log.
+
 ### Earn
 Earn offer is where the user can get compensated with Kin for an effort he put to complete a task in a app, or for a digital asset that he might created.  
 

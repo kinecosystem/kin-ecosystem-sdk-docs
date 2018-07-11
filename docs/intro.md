@@ -23,9 +23,6 @@ The Kin Marketplace is a UI component that you can optionally launch in your app
 
 ![](/kin-ecosystem-sdk-docs/img/marketplace.png)
 
-Within the Kin marketplace user get exposed to the entire Kin experience in your app. User can explore both Kin out of the box offers and your tailor made app offers.  
-We like to divide this offers to *spend* and *earn* offers.  
-
 ### Earn
 Earn offer is where the user can get compensated with Kin for an effort he put to complete a task in a app, or for a digital asset that he might created.  
 

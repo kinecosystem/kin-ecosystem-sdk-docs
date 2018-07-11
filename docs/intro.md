@@ -5,13 +5,9 @@ title: Introduction
 
 ## What is Kin?
 
-Kin is a cryptocurrency with a mission to compensate everyone fairly for their contributions.
-It creates a new way for big and small businesses, apps, networks, and digital services to monetize
-by encouraging and facilitating value creation.
-By integrating Kin with your service, be it an multiplayer video game, an online community, or any other digital service,
-businesses can compensate their users for the value they’re bringing and the contributions they’re making.
+Kin is the world’s most consumer-ready cryptocurrency built with a blockchain solution that supports more than 1M daily transactions. Place Kin at the center of your user engagement strategy and use it to solve real customer problems.
 
-For more information, please visit [kinecosystem.com](https://kinecosystem.org).
+Give your users fun ways to earn and spend Kin in your app, and help us build a whole new digital world. Here is a suggested Playbook on building with Kin .To see an example of how Kik integrated Kin, check out this video
 
 ## Ecosystem SDK Overview
 

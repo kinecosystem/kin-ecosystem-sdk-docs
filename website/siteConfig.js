@@ -14,7 +14,7 @@ const users = [
     caption: 'User1',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
+    image: '/img/kin.svg',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'Kin Developer Program' /* title for your website */,
-  tagline: 'A website for testing',
+tagline: '',
   url: 'https://kinecosystem.github.io/kin-ecosystem-sdk-docs/' /* your website url */,
   baseUrl: '/kin-ecosystem-sdk-docs/' /* base url for your project */,
 
@@ -36,9 +36,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { doc: 'intro', label: 'Guides' },
-    { doc: 'api-reference-overview', label: 'Docs' },
-    { doc: 'tools', label: 'Tools' },
-    { page: 'help', label: 'Help' },
+    { page: 'help', label: 'Help' }
   ],
 
   // If you have users set above, you add it here:

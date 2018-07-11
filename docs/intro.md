@@ -7,7 +7,7 @@ title: Introduction
 
 Kin is the world’s most consumer-ready cryptocurrency built with a blockchain solution that supports more than 1M daily transactions. Place Kin at the center of your user engagement strategy and use it to solve real customer problems.
 
-Give your users fun ways to earn and spend Kin in your app, and help us build a whole new digital world. Here is a suggested Playbook on building with Kin .To see an example of how Kik integrated Kin, check out this video
+Give your users fun ways to earn and spend Kin in your app, and help us build a whole new digital world. [Here](https://www.kinecosystem.com/prdFiles/lp_dev_dlp_ft_playbook.pdf) is a suggested Playbook on building with Kin. To see an example of how Kik integrated Kin, check out [this video](https://www.youtube.com/watch?v=hzWsLFI2Fnk).
 
 ## Ecosystem SDK Overview
 

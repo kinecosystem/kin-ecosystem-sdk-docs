@@ -19,10 +19,33 @@ The Kin Ecosystem SDK allows you to quickly and easily integrate with the Kin pl
 
 ### Marketplace
 
+The Kin Marketplace is a UI component that you can optionally launch in your app. It displays Earn andv Spend offers, which can be added to it by your app or by the Kin Ecosystem Server. When a user selects one of these offers, the Kin Marketplace notifies the app that created the offer. The app can then launch the Earn or Spend activity for the user to complete. You may choose to add your custom Earn and Spend offers to the Kin Marketplace so that there is a convenient, visible place where the user can access all offers. Some offers displayed in-app might require that the user choose to navigate to a specific page, and therefore might not be so readily visible.
+
 ![](/kin-ecosystem-sdk-docs/img/marketplace.png)
 
-Within the Kin marketplace user get exposed to the entire Kin experience in your app. User can explore both Kin out of the box offers and your tailor made app offers.  
-We like to divide this offers to *spend* and *earn* offers.  
+### The Kin Ecosystem Server
+
+The Kin Ecosystem Server handles SDK requests from client apps. This includes the following tasks:
+
+The Kin Ecosystem Server
+The Kin Ecosystem Server handles SDK requests from client apps. This includes the following tasks:
+
+* Creating user accounts.
+* Funding user accounts with an initial balance.
+* Performing earn and spend actions.
+* Managing and store transaction history, including the required blockchain management tasks.
+* Retrieving user balances.
+
+Only apps with access credentials can direct requests to the Kin Ecosystem Server.
+
+### Kin Wallets and Accounts
+
+Every user who transacts in Kin owns the following two items:
+
+* Wallet – contains the user’s authentication keys (does not contain currency, unlike a real-world
+wallet).
+* Account – an identity recognized by the Kin blockchain, which is associated with a Kin balance
+and a transaction history log.
 
 ### Earn
 Earn offer is where the user can get compensated with Kin for an effort he put to complete a task in a app, or for a digital asset that he might created.  

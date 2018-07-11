@@ -1,8 +1,8 @@
----
+<!-- ---
 id: stellar
 title: KIN on Stellar
 sidebar_label: KIN on Stellar
----
+--- -->
 
 KIN is a token on the [Stellar network](https://www.stellar.org/), also called a "Stellar asset".
 Transactions involving KIN are transmitted on the Stellar network,

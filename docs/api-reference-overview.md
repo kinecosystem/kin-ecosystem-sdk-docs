@@ -1,7 +1,7 @@
----
+<!-- ---
 id: api-reference-overview
 title: Overview
----
+--- -->
 
 ### What platforms are supported for the Kin SDK?
 

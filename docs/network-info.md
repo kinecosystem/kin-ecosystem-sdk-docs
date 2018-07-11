@@ -1,7 +1,7 @@
----
+<!-- ---
 id: network-info
 title: Network Information
----
+--- -->
 ## Main Network Information
 
 ### Configuration

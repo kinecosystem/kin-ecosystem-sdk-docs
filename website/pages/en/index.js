@@ -80,10 +80,10 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
--            <Button href="#try">Try It Out</Button>
--            <Button href="https://github.com/kinecosystem/kin-ecosystem-android-sdk">Android SDK on Github</Button>
--            <Button href="https://github.com/kinecosystem/kin-ecosystem-ios-sdk">iOS SDK on Github</Button>
--          </PromoSection>
+           <Button href={docUrl('intro.html', language)}>Start here: Introduction</Button>
+           <Button href="https://github.com/kinecosystem/kin-ecosystem-android-sdk">Android SDK on Github</Button>
+           <Button href="https://github.com/kinecosystem/kin-ecosystem-ios-sdk">iOS SDK on Github</Button>
+         </PromoSection>
         </div>
       </SplashContainer>
     );

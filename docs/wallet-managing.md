@@ -1,7 +1,7 @@
----
+<!-- ---
 id: wallet-managing
 title: Wallet Managing
----
+--- -->
 
 Ecosystem server will manage DS wallets for both native earn and spend.
 

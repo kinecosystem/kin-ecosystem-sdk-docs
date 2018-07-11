@@ -2,14 +2,8 @@
   "Guides": {
     "Guides": [
       "intro",
-      "stellar",
-      "sdk-components",
-      "jwt",
-      "getting-started",
-      "wallet-managing",
-      "fee-faucet",
-      "kin-faucet",
-      "network-info"
+      "android-guide",
+      "ios-guide"
     ]
   },
   "Docs": {

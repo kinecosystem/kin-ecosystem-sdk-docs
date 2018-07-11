@@ -43,15 +43,14 @@ tagline: '',
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/kin.svg',
-  footerIcon: 'img/kin.svg',
+  headerIcon: 'img/Kin_ecosystem_logo.svg',
   favicon: 'img/favicon.png',
 
   /* colors for website */
   colors: {
     primaryColor: '#303F9F',
     secondaryColor: '#1392C9',
-    backgroundColor: '#26BEFF',
+    backgroundColor: '#373B44',
   },
 
   /* custom fonts for website */

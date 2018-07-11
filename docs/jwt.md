@@ -1,7 +1,7 @@
----
+<!-- ---
 id: jwt
 title: Authorization and JWT
----
+--- -->
 
 JWT is used for authorization with Ecosystem servers, and for transferring offers information between application and ecosystem servers in trusted way.  
 It allows both parties to verify the other party identity and offer integrity using the digitally signed JWT information.  

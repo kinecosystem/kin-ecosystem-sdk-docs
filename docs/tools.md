@@ -1,7 +1,7 @@
----
+<!-- ---
 id: tools
 title: Tools
----
+--- -->
 ### [Laboratory](http://laboratory.kininfrastructure.com/)
 
 Interactive way to access the Kin Blockchain.

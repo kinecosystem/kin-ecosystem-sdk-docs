@@ -23,6 +23,21 @@ The Kin Marketplace is a UI component that you can optionally launch in your app
 
 ![](/kin-ecosystem-sdk-docs/img/marketplace.png)
 
+### The Kin Ecosystem Server
+
+The Kin Ecosystem Server handles SDK requests from client apps. This includes the following tasks:
+
+The Kin Ecosystem Server
+The Kin Ecosystem Server handles SDK requests from client apps. This includes the following tasks:
+
+* Creating user accounts.
+* Funding user accounts with an initial balance.
+* Performing earn and spend actions.
+* Managing and store transaction history, including the required blockchain management tasks.
+* Retrieving user balances.
+
+Only apps with access credentials can direct requests to the Kin Ecosystem Server.
+
 ### Earn
 Earn offer is where the user can get compensated with Kin for an effort he put to complete a task in a app, or for a digital asset that he might created.  
 

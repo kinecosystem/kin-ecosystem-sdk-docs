@@ -35,8 +35,7 @@ tagline: '',
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { doc: 'intro', label: 'Guides' },
-    { page: 'help', label: 'Help' }
+    { doc: 'intro', label: 'Guides' }
   ],
 
   // If you have users set above, you add it here:
@@ -44,7 +43,7 @@ tagline: '',
 
   /* path to images for header/footer */
   headerIcon: 'img/Kin_ecosystem_logo.svg',
-  favicon: 'img/favicon.png',
+  favicon: 'img/Kin_ecosystem_logo.svg',
 
   /* colors for website */
   colors: {

@@ -15,9 +15,7 @@ For more information, please visit [kinecosystem.com](https://kinecosystem.org).
 
 ## Ecosystem SDK Overview
 
-The ecosystem SDK supports rich user experience and seamless blockchain integration.  
-Once the ecosystem SDK is integrated within a digital service, you’ll have the ability to provide your users with a range of new experiences as part of the Kin ecosystem including, earn and spend marketplace opportunities, and the ability to view their account balance and order history
-A stellar wallet and account will be created behind the scene for the user.
+The Kin Ecosystem SDK allows you to quickly and easily integrate with the Kin platform. This enables you to provide your users with new opportunities to earn and spend the Kin digital currency from inside your app or from the Kin Marketplace offer window. For each user, you create a Stellar account and wallet. By calling the appropriate SDK functions, your application performs users’ buy and sell transactions using their wallet objects. Your users can also view their account balance and their transaction history.
 
 ### Marketplace
 

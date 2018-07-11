@@ -16,5 +16,17 @@
 }
 
 footer.nav-footer {
-    background-color: #26BEFF
+    background-color: #373B44;
+}
+
+footer.nav-footer .sitemap {
+    padding-left: 70px;
+}
+
+footer.nav-footer .sitemap h5 {
+    margin: 20px 0px 0px 0px;
+}
+
+article p img, article iframe {
+    margin-top: 30px;
 }

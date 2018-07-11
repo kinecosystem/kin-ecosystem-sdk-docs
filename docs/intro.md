@@ -21,7 +21,7 @@ The Kin Ecosystem SDK allows you to quickly and easily integrate with the Kin pl
 
 The Kin Marketplace is a UI component that you can optionally launch in your app. It displays Earn andv Spend offers, which can be added to it by your app or by the Kin Ecosystem Server. When a user selects one of these offers, the Kin Marketplace notifies the app that created the offer. The app can then launch the Earn or Spend activity for the user to complete. You may choose to add your custom Earn and Spend offers to the Kin Marketplace so that there is a convenient, visible place where the user can access all offers. Some offers displayed in-app might require that the user choose to navigate to a specific page, and therefore might not be so readily visible.
 
-![](/kin-ecosystem-sdk-docs/img/marketplace.png)
+<img src="/kin-ecosystem-sdk-docs/img/marketplace.png" alt="marketplace" height="600px"/>
 
 ### The Kin Ecosystem Server
 

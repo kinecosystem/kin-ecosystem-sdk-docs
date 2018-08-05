@@ -1,7 +1,7 @@
-<!-- ---
+---
 id: sdk-components
 title: SDK Components
---- -->
+---
 
 ![](/kin-ecosystem-sdk-docs/img/sdk_components.png)
 

@@ -2,6 +2,11 @@
   "Guides": {
     "Guides": [
       "intro",
+      "sdk-components",
+      "jwt",
+      "jwt-service",
+      "getting-started",
+      "faq",
       "android-guide",
       "ios-guide"
     ]

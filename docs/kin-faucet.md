@@ -25,7 +25,7 @@ HTTP GET /fund?account=<account address>&amount=<kin amount to fund>
 
 ```json
 {
-  "succsseful": true/false
+  "successful": true/false
   "error": null
 }
 ```
@@ -38,7 +38,7 @@ Possible alternative `"error"` values are:
 - Amount parameter missing
 - Account parameter missing
 - Invalid amount
-- Unexcpected error: exception message
+- Unexpected error: exception message
 
 ### Health Check
 

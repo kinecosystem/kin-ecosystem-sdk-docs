@@ -42,13 +42,3 @@ Every user who transacts in Kin owns the following two items:
 wallet).
 * Account – an identity recognized by the Kin blockchain, which is associated with a Kin balance
 and a transaction history log.
-
-### Earn
-Earn offer is where the user can get compensated with Kin for an effort he put to complete a task in a app, or for a digital asset that he might created.  
-
-An example for an out of the box earn offer would be filling out "About Kin" tutorial.  
-
-### Spend 
-Spend offer is where the user gets a benefit from the Kin his own to acquire a digital asset or to unlock an opportunity your app is offer.  
-
-An example for spend offer is using Kin for customizing chat theme inside Kik messenger.

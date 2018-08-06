@@ -103,7 +103,7 @@ Registration request, authorize a user with Ecosystem SDK, required for launchin
 eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InJlZ2lzdGVyIiwidXNlcl9pZCI6ImFfaGFzaF9vbl9raWtfdXNlcl9pZCJ9.6DwojspQ46inlwYwn3NNH0bmQIzKd7mL0VX8V2ZmlH8aZqWF2UbK_Md5kcxgnXgq0P6tExVTr1vxpwhfj7_3dg
 ```
 
-### Spend payload
+### Spend payload <a name="SpendPayload"/>
 
 Custom spend request.
 
@@ -132,7 +132,7 @@ Custom spend request.
 eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InNwZW5kIiwib2ZmZXIiOnsiaWQiOiJPMTIzMTIzMTIzIiwiYW1vdW50Ijo1MDAwfSwic2VuZGVyIjp7InRpdGxlIjoiQmx1ZSBUaGVtZSIsImRlc2NyaXB0aW9uIjoiT2NlYW4gQmx1ZSIsInVzZXJfaWQiOiJzb21lX3VzZXIifX0.BRacJ37zbbaKivWD_uhC2JXozzrHDN5B9VeG7d1BXjkpPYEfpaEy_kKF6xqp7oUMjEG2ltrOQPJ-UkFcFl6H-g
 ```
 
-### Earn payload
+### Earn payload <a name="EarnPayload"/>
 
 Custom earn request. 
 ```js
@@ -161,7 +161,7 @@ Custom earn request.
 eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6ImVhcm4iLCJvZmZlciI6eyJpZCI6Ik8xMjMxMjMxMjMiLCJhbW91bnQiOjUwMDB9LCJyZWNpcGllbnQiOnsidGl0bGUiOiJCbHVlIFRoZW1lIiwiZGVzY3JpcHRpb24iOiJPY2VhbiBCbHVlIiwidXNlcl9pZCI6InNvbWVfdXNlciJ9fQ.R7OpvaZQIAzjQ0MSi5nC1c39oC9oN08NVKwricMyWnuMbK5FD9Qn6ecmol4JnMGE5IZA7j_LR-EEbVhhEYi57g
 ```
 
-#### PayToUser payload
+#### PayToUser payload <a name="PayToUserPayload"/>
 ```js
 {
     // common fields

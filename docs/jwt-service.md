@@ -28,7 +28,7 @@ $ git clone https://github.com/kinecosystem/kin-devplatform-jwt-service.git
 $ ./create_keys.sh
 ```
 
-This script will generate 10 key pairs inside keys folder, for each key 2 files will be created for the private and the public key.
+This script will generate 10 key pairs inside keys folder, for each key 2 files will be created for the private and the public key. Generating multiple key pairs is a best practice for security measures.
 
 #### Point the service to the created key pairs:
 
@@ -111,7 +111,7 @@ Result:
 }
 ```
 
-### earn
+### earn <a name="Earn"/>
 Returns a token which can be used to create an earn order:  
 `GET SERVICE_URL/earn/token?offer_id=offer1&user_id=aUserID`
 
@@ -122,7 +122,7 @@ Result:
 }
 ```
 
-### spend
+### spend <a name="Spend"/>
 Returns a token which can be used to create a spend order:  
 `GET SERVICE_URL/spend/token?offer_id=offer1`
 
@@ -135,7 +135,7 @@ Result:
 
 The `offer_id` needs to match one of the offers which returns from the `SERVICE_URL/offers` endpoint.
 
-### pay to user
+### pay to user <a name="PayToUser"/>
 Returns a token which can be used to create a pay to user order:  
 `GET SERVICE_URL/paytouser/token?offer_id=offer1&sender_id=user_id1&recipient_id=user_id2`
 
@@ -148,7 +148,7 @@ Result:
 
 The `offer_id` needs to match one of the offers which returns from the `SERVICE_URL/offers` endpoint.
 
-### register
+### register <a name="Register"/>
 Returns a token which can be used to register a user:  
 `GET SERVICE_URL/register/token?user_id=aUserID`
 

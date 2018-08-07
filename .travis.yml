@@ -8,8 +8,13 @@ cache:
   yarn: true
 
 script:
-  - test $TRAVIS_BRANCH != "master" && cd website && yarn install
+  - cd website && yarn install
 
 after_success:
   # deploy to github pages when not in master
-  - test $TRAVIS_BRANCH = "master" && git config --global user.name "${GH_NAME}" && git config --global user.email "${GH_EMAIL}" && echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc && cd website && yarn install && GIT_USER="${GH_NAME}" yarn run publish-gh-pages
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      git config --global user.name "${GH_NAME}";
+      git config --global user.email "${GH_EMAIL}";
+      echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc;
+      cd website && yarn install && GIT_USER="${GH_NAME}" yarn run publish-gh-pages;    
+  fi  

@@ -9,7 +9,7 @@ Using JWT service, a developer can:
 
 * Generate a JWT key-pairs.
 * Generate a signed JWT token for SDK [requests](jwt#JWTRequests).  
-* Validate Ecosystem server response JWT - [PaymentConfirmation](jwt#PaymentConfirmation).
+* Validate Kin server response JWT - [PaymentConfirmation](jwt#PaymentConfirmation).
 
 ## Keys
 The repo contains private/public RSA keys and private/public stellar keys.  

@@ -39,7 +39,7 @@ the service will response with the generated signed JWT token.
 try {
     Kin.purchase(offerJwt, new KinCallback<OrderConfirmation>() {
         @Override public void onResponse(OrderConfirmation orderConfirmation) {
-            // OrderConfirmation will be called once Ecosystem received the payment transaction from user.
+            // OrderConfirmation will be called once Kin received the payment transaction from user.
             // OrderConfirmation can be kept on digital service side as a receipt proving user received his Kin.
             // Send confirmation JWT back to the server in order prove that the user completed
             // the blockchain transaction and purchase can be unlocked for this user.
@@ -234,8 +234,8 @@ try {
     Kin.requestPayment(offerJwt, new KinCallback<OrderConfirmation>() {
         @Override
             public void onResponse(OrderConfirmation orderConfirmation) {
-                // OrderConfirmation will be called once payment transaction to the user completed successfully.
-                // OrderConfirmation can be kept on digital service side as a receipt proving user received his Kin.
+                // Callback will be called once payment transaction to the user completed successfully.
+                // jwtConfirmation can be kept on digital service side as a receipt proving user received his Kin.
                 System.out.println("Succeed to create native earn.\n jwtConfirmation: " + orderConfirmation.getJwtConfirmation());
             }
 
@@ -252,7 +252,19 @@ catch (ClientException exception) {
 
 <block class="ios" />
 
-TBD
+```swift
+let handler: ExternalOfferCallback = { jwtConfirmation, error in  
+    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+    if let confirm = jwtConfirmation {
+        // Callback will be called once payment transaction to the user completed successfully.
+        // jwtConfirmation can be kept on digital service side as a receipt proving user received his Kin.
+    } else if let e = error {
+        //handle error
+    }  
+}
+
+Kin.shared.requestPayment(offerJWT: encodedJWT, completion: handler)
+```
 
 <block class="android ios" />
 
@@ -280,7 +292,7 @@ the service will response with the generated signed JWT token.
 try {
     Kin.payToUser(offerJwt, new KinCallback<OrderConfirmation>() {
         @Override public void onResponse(OrderConfirmation orderConfirmation) {
-            // OrderConfirmation will be called once Ecosystem received the payment transaction from user.
+            // OrderConfirmation will be called once Kin received the payment transaction from user.
             // OrderConfirmation can be kept on digital service side as a receipt proving user received his Kin.
             // Send confirmation JWT back to the server in order prove that the user completed
             // the blockchain transaction and purchase can be unlocked for this user.

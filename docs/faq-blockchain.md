@@ -46,7 +46,7 @@ There is no centralized place where we keep any personally identifiable informat
 
 ### Do you keep a record of every transaction off of the blockchain? What API access do we have? If a user wants to see transaction history is that done through your DB or by querying the blockchain?
 
-We will provide a report of all transactions originated from each of the apps that the SDK is integrated in. The order history includes blockchain completed transactions. The details of the order history are received from the ecosystem server. The ecosystem server is open sourced and digital service can choose to provide their own offers directly (will be supported based on demand). We will provide tools for digital services to query stellar directly and filter all these transaction directly from stellar blockchain (based on demand).
+We will provide a report of all transactions originated from each of the apps that the SDK is integrated in. The order history includes blockchain completed transactions. The details of the order history are received from the Kin server. Kin server is open sourced and digital service can choose to provide their own offers directly (will be supported based on demand). We will provide tools for digital services to query stellar directly and filter all these transaction directly from stellar blockchain (based on demand).
 
 ### How does stellar works?
 

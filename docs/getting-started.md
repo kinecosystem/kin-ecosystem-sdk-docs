@@ -14,7 +14,7 @@ Receive your api key and app-id.
 ### JWT
 
 * Generate your JWT key pair.
-* Provide Ecosystem with your JWT public keys.
+* Provide Kin with your JWT public keys.
 * Receive your JWT issuer jss/app-id, that will uniquely identify your application.
   
 ## Integrate Client SDK
@@ -50,7 +50,7 @@ Add the following lines to the app module's ```build.gradle``` file.
 ```gradle
  dependencies {
      ...
-     implementation 'com.github.kinfoundation:kin-ecosystem-android-sdk:<latest_version>'
+     implementation 'com.github.kinecosystem:kin-devplatform-android:<latest_version>'
  }
 ```
 
@@ -113,7 +113,6 @@ catch (ClientException | BlockchainException e) {
 ```
 
 <block class="ios" />
-
 
 Call ```Kin.shared.start(...)```, passing the desired environment (playground/production) and your chosen authentication credentials (either whitelist or JWT credentials).
 

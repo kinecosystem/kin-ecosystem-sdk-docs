@@ -6,7 +6,7 @@ title: Kin Android SDK
 
 ## Playground and Production Environments ##
 
-The Kin Ecosystem provides two working environments:
+Kin provides two working environments:
 
 - **Playground** – a staging and testing environment using test servers and a blockchain test network.
 - **Production** – uses production servers and the main blockchain network.
@@ -20,26 +20,28 @@ When your app calls ```Kin.start(…)```, you specify which environment to work 
 
 ## Setting Up the Sample App ##
 
-The Kin Ecosystem SDK Sample App demonstrates how to perform common workflows such as creating a user account and creating Spend and Earn offers. You can build the Sample App from the ```app``` module in the Kin SDK [github repository](https://github.com/kinecosystem/kin-devplatform-android).  
-We recommend building and running the Sample App as a good way to get started with the Kin Ecosystem SDK and familiarize yourself with its functions.
+Kin SDK Sample App demonstrates how to perform common workflows such as creating a user account and creating Spend and Earn offers. You can build the Sample App from the `app` module in the Kin SDK [github repository](https://github.com/kinecosystem/kin-devplatform-android).  
+We recommend building and running the Sample App as a good way to get started with the Kin SDK and familiarize yourself with its functions.
 
 >**NOTE:** The Sample App is for demonstration only, and should not be used for any other purpose.
 
-The Sample App is pre-configured with the default whitelist credentials `appId='test'` and 
-`apiKey='AyINT44OAKagkSav2vzMz'`. These credentials can be used for integration testing in any app, but authorization will fail if you attempt to use them in a production environment.
+The Sample App is pre-configured with the default whitelist credentials `appId='test'` and
+`apiKey='AyINT44OAKagkSav2vzMz'` and with a default RSA512 JWT private key. These credentials can be used for integration testing in any app, but authorization will fail if you attempt to use them in a production environment.
 
 You can also request unique apiKey and appId values from Kin, and override the default settings, working either in whitelist or JWT authentication mode.
 
 ### Override the default credential settings
 
-Create or edit a local `credential.properties` file in the `app` module directory and add the lines below, using the `appId` and `apiKey` values you received.
+Create or edit a local `credential.properties` file in the `app` module directory and add the lines below, using the credentials values and method you received.
 
 ```gradle
-APP_ID="YOUR_APP_ID" // For whitelist registration, and also as the issuer (iss). Default = 'test'.
+APP_ID="YOUR_APP_ID" // Your unique application id, required for both whitelist and JWT. Default = 'test'.
 
 API_KEY="YOUR_API_KEY" // For whitelist registration. Default = 'AyINT44OAKagkSav2vzMz'.
 
-ES256_PRIVATE_KEY="YOUR_ES256_PRIVATE_KEY" // Optional. Only required when testing JWT on the sample app. For production, JWT is created by server side with ES256 signature.
+RS512_PRIVATE_KEY="YOUR_RS512_PRIVATE_KEY" // Optional. Only required when testing JWT on the sample app. For production, JWT is created by server side with ES256 signature.
+
+RS512_PRIVATE_KEY_ID="YOUR RS512 KEY ID" //required when using jwt, `kid` param is sent with every jwt for identify the key you signed with.
 
 IS_JWT_REGISTRATION = false // Optional. To test sample app JWT registration, set this property to true. If not specified, default=false.
 ```
@@ -62,7 +64,7 @@ Add the following lines to the app module's ```build.gradle``` file.
 ```gradle
  dependencies {
      ...
-     implementation 'com.github.kinfoundation:kin-ecosystem-android-sdk:<latest_version>'
+     implementation 'com.github.kinfoundation:kin-devplatform-android:<latest_version>'
  }
 ```
 
@@ -200,7 +202,7 @@ the service will response with the generated signed JWT token.
 try {
     Kin.purchase(offerJwt, new KinCallback<OrderConfirmation>() {
         @Override public void onResponse(OrderConfirmation orderConfirmation) {
-            // OrderConfirmation will be called once Ecosystem received the payment transaction from user.
+            // OrderConfirmation will be called once Kin received the payment transaction from user.
             // OrderConfirmation can be kept on digital service side as a receipt proving user received his Kin.
             // Send confirmation JWT back to the server in order prove that the user completed
             // the blockchain transaction and purchase can be unlocked for this user.
@@ -300,7 +302,7 @@ try {
 
 ## Displaying the Kin Marketplace Offer Wall <a name="AddingToMP"></a>
 
-Optionally, your app can launch the Kin Marketplace offer wall. It displays Earn and Spend offers, which can be added to it by your app or by the Kin Ecosystem Server. When a user selects one of these offers, the Kin Marketplace notifies the app that created the offer. The app can then launch the Earn or Spend activity for the user to complete. 
+Optionally, your app can launch the Kin Marketplace offer wall. It displays Earn and Spend offers, which can be added to it by your app or by the Kin Server. When a user selects one of these offers, the Kin Marketplace notifies the app that created the offer. The app can then launch the Earn or Spend activity for the user to complete. 
 
 You may choose to add your custom Earn and Spend offers to the Kin Marketplace so that there is a convenient, visible place where the user can access all offers. Some offers displayed in-app might require that the user choose to navigate to a specific page, and therefore might not be so readily visible.
 
@@ -404,7 +406,7 @@ the service will response with the generated signed JWT token.
 try {
     Kin.payToUser(offerJwt, new KinCallback<OrderConfirmation>() {
         @Override public void onResponse(OrderConfirmation orderConfirmation) {
-            // OrderConfirmation will be called once Ecosystem received the payment transaction from user.
+            // OrderConfirmation will be called once Kin received the payment transaction from user.
             // OrderConfirmation can be kept on digital service side as a receipt proving user received his Kin.
             // Send confirmation JWT back to the server in order prove that the user completed
             // the blockchain transaction and purchase can be unlocked for this user.

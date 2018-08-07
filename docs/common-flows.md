@@ -184,8 +184,6 @@ do {
 <block class="android ios" />
 ### Removing from Marketplace
 
-
-
 <block class="android" />
 To remove a custom Spend offer from the Kin Marketplace, call `Kin.removeNativeOffer(...)`, passing the offer you want to remove.  
 
@@ -260,11 +258,9 @@ TBD
 
 ## Custom Pay To User Offer
 
-A custom pay to user offer allows your users to unlock unique spend opportunities that you define within your app offered by other users. 
-(Custom offers are created by your app, as opposed to [built-in offers displayed in the Kin Marketplace offer wall](#AddingToMP).) 
-Your app displays the offer, request user approval, and then [requests payment using the Kin purchase API](#purcasheRequest).
-
-*To create a custom Pay To User offer:*
+A custom pay to user offer allows your users to unlock unique spend opportunities that you define within your app offered by other users.
+(Custom offers are created by your app, as opposed to built-in offers displayed in the Kin Marketplace offer wall.  
+Your app displays the offer, request user approval, and then performing the purchase using the `payToUser` API.
 
 ### Pay to user
 

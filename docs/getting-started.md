@@ -80,7 +80,7 @@ the service will response with the generated signed JWT token, your app should b
 
 <block class="android" />
 
-Call ```Kin.start(…)```, passing the android context, the desired environment (playground/production) and your chosen authentication credentials (either whitelist or JWT credentials).
+Call `Kin.start(...)`, passing the android context, the desired environment (playground/production) and your chosen authentication credentials (either whitelist or JWT credentials).
 
 #### Whitelist:
 
@@ -151,8 +151,8 @@ For launching the Kin Marketplace offer wall, use `launchMarketplace` with an `A
 
 ```java
 try {
-    Kin.launchMarketplace(activity);
-        System.out.println("Public address : " + Kin.getPublicAddress());
+  Kin.launchMarketplace(activity);
+  System.out.println("Public address : " + Kin.getPublicAddress());
 } catch (ClientException e) {
     // handle exception...
 }

@@ -35,14 +35,14 @@ Create a const earn JWT and use native earn API to request Kin for user - each J
 
 ### How do I move from production to test environment?
 When initiating the client SDK you will have to provide an environment configuration: 
-Each configuration will contain blockchain environment (horizon url, network passphrase, KIN issuer etc) configuration and ecosystem service configuration (ecosystem backend url, webview url etc.).
+Each configuration will contain blockchain environment (horizon url, network passphrase, KIN issuer etc) configuration and Kin service configuration (Kin server url, webview url etc.).
 
 ### What exactly happens when we start the SDK?
 
 Client Wallet created locally (private and public keypair is created and private key is stored securely on client device)
 Client register to server providing JWT credentials and public address
-Ecosystem backend verify credential and create account for provided public address on Blockchain
-Client receive auth token to be used with any network request to Ecosystem backend 
+Kin server verify credential and create account for provided public address on Blockchain
+Client receive auth token to be used with any network request to Kin server 
 SDK watch blockchain and get notify when client account created
 SDK create a trustline transaction (Account can’t receive Kin without establishing  trustline)
 What happens when calling purchase/ getBalance/launchMarketPlace without ever calling the `Kin.start()` ?

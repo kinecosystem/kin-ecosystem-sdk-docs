@@ -17,8 +17,8 @@ To be used for a quick first-time integration or sanity test. The authentication
 ### JWT authentication
 
 A secure authentication method to be used in production.  
-JWT is used for authorization with Ecosystem servers, and for transferring offers information between application and ecosystem servers in a trusted way.  
-By digitally sign a request to and a response from ecosystem server - each party can verify the other party identity and request content authenticity, without trusting entirely on the client.  
+JWT is used for authorization with Kin servers, and for transferring offers information between application and Kin servers in a trusted way.  
+By digitally sign a request to and a response from Kin server - each party can verify the other party identity and request content authenticity, without trusting entirely on the client.  
 The integrating application should provide Kin team with one or more public signature keys and its corresponding keyID, the application will receive a JWT issuer identifier - ISS key, also called app-id, which uniquely identified your app.  
 
 ## Building the JWT Token <a name="BuildJWT"></a>
@@ -69,12 +69,12 @@ This is the payload structure:
 
 ## JWT Service - A Helper Tool For Handling JWT Tokens <a name="JWTService"></a>
 
-JWT service is a helper tool for generating a signed ecosystem SDK JWT tokens, it can be deployed and use at application server side.  
+JWT service is a helper tool for generating a signed Kin SDK JWT tokens, it can be deployed and use at application server side.  
 Using JWT service, a developer can:
 
 * Generate a JWT key-pairs.
 * Generate a signed JWT token for SDK [requests](#JWTRequests).  
-* Validate Ecosystem server response JWT - [PaymentConfirmation](#PaymentConfirmation).
+* Validate Kin server response JWT - [PaymentConfirmation](#PaymentConfirmation).
 
 See [JWT Service](jwt-service) for more details.
 
@@ -83,13 +83,13 @@ See [JWT Service](jwt-service) for more details.
 
 ### Register payload <a name="RegisterPayload"/>
 
-Registration request, authorize a user with Ecosystem SDK, required for launching the SDK.
+Registration request, authorize a user with Kin SDK, required for launching the SDK.
 
 ```js
 {
     // common fields
     iat: number; // issued at - seconds from epoch
-    iss: string; // issuer - request origin 'app-id' provided by Ecosystem
+    iss: string; // issuer - request origin 'app-id' provided by KIn
     exp: number; // expiration
     sub: string; // subject - "register"
 
@@ -111,7 +111,7 @@ Custom spend request.
 {
     // common fields
     iat: number; // issued at - seconds from epoch
-    iss: string; // issuer - request origin 'app-id' provided by Ecosystem
+    iss: string; // issuer - request origin 'app-id' provided by Kin
     exp: number; // expiration
     sub: string; // subject - "spend"
 
@@ -139,7 +139,7 @@ Custom earn request.
 {
     // common fields
     iat: number; // issued at - seconds from epoch
-    iss: string; // issuer - request origin 'app-id' provided by Ecosystem
+    iss: string; // issuer - request origin 'app-id' provided by Kin
     exp: number; // expiration
     sub: string; // subject - "earn"
 
@@ -166,7 +166,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 {
     // common fields
     iat: number; // issued at - seconds from epoch
-    iss: string; // issuer - request origin 'app-id' provided by Ecosystem
+    iss: string; // issuer - request origin 'app-id' provided by Kin
     exp: number; // expiration
     sub: string; // subject - "pay_to_user"
 
@@ -195,13 +195,13 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 
 ### PaymentConfirmation payload <a name="PaymentConfirmation"></a>
 
-A confirmation payload received by Ecosystem servers in case of completing successfully a custom offer flow.
+A confirmation payload received by Kin server in case of completing successfully a custom offer flow.
 
 ```js
 {
     // common fields
     iat: number; // issued at - seconds from epoch
-    iss: string; // issuer - request origin 'app-id' provided by Ecosystem
+    iss: string; // issuer - request origin 'app-id' provided by Kin
     exp: number; // expiration
     sub: string; // subject - "payment_confirmation"
 
@@ -220,10 +220,10 @@ A confirmation payload received by Ecosystem servers in case of completing succe
 eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayIsImV4cCI6MTUyNjIzOTAyMiwic3ViIjoicGF5bWVudF9jb25maXJtYXRpb24iLCJvZmZlcl9pZCI6Ik8xMjMxMjMxMjMiLCJzZW5kZXJfdXNlcl9pZCI6InVzZXI6ZG9vZHkiLCJyZWNpcGllbnRfdXNlcl9pZCI6InVzZXI6bml0emFuIiwicGF5bWVudCI6eyJibG9ja2NoYWluIjoic3RlbGxhci1tYWlubmV0IiwidHJhbnNhY3Rpb25faWQiOiJ0cmFuc2FjdGlvbjoxMjM0NSJ9fQ.-AbZOfC69eY1It43RccOXluY-sjWSi4JFvQkVKO9D2UgYU3jNPbEcBERLrqBHPSpS6f26LVpIsg5A81UQNoukw
 ```
 
-## Ecosystem JWT Public keys
+## Kin JWT Public keys
 
-Public keys should be used by application server to verify Ecosystem server responses, Ecosystem server provides a list of a possible public keys, and their corresponding key id. the key id, will appear as `kid` field in JWT header (see [Building the JWT Token](#BuildJWT)), and will be used by application server to match the public key to the JWT response.  
-The public keys can be accessed on Ecosystem server under `config` request:  
+Public keys should be used by application server to verify Kin server responses, Kin server provides a list of a possible public keys, and their corresponding key id. the key id, will appear as `kid` field in JWT header (see [Building the JWT Token](#BuildJWT)), and will be used by application server to match the public key to the JWT response.  
+The public keys can be accessed on Kin server under `config` request:  
 
 * [Playground - https://api-playground.kininfrastructure.com/v1/config](https://api-playground.kininfrastructure.com/v1/config)
 

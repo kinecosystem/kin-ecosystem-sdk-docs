@@ -1,2 +1,2 @@
 # kin-ecosystem-sdk-docs
-Kin Ecosystem SDK documentation.
+Kin SDK documentation.

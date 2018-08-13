@@ -81,8 +81,8 @@ class HomeSplash extends React.Component {
           <ProjectTitle />
           <PromoSection>
            <Button href={docUrl('intro.html', language)}>Start here: Introduction</Button>
-           <Button href="https://github.com/kinecosystem/kin-ecosystem-android-sdk">Android SDK on Github</Button>
-           <Button href="https://github.com/kinecosystem/kin-ecosystem-ios-sdk">iOS SDK on Github</Button>
+           <Button href={docUrl('android-guide.html', language)}>Android Docs</Button>
+           <Button href={docUrl('ios-guide', language)}>iOS Docs</Button>
          </PromoSection>
         </div>
       </SplashContainer>

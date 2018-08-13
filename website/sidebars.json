@@ -2,8 +2,19 @@
   "Guides": {
     "Guides": [
       "intro",
+      "sdk-components",
+      "jwt",
+      "jwt-service",
+      "getting-started",
+      "common-flows"    
+    ],
+    "Docs":[
       "android-guide",
       "ios-guide"
+    ],
+    "FAQ":[
+      "faq-sdk",
+      "faq-blockchain"
     ]
   },
   "Docs": {

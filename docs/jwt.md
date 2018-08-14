@@ -17,7 +17,7 @@ To be used for a quick first-time integration or sanity test. The authentication
 ### JWT authentication
 
 A secure authentication method to be used in production.  
-JWT is used for authorization with Kin servers, and for transferring offers information between application and Kin servers in a trusted way.  
+JWT is used for authorization with Kin servers and for transferring offers information between application and Kin servers in a trusted way.  
 By digitally sign a request to and a response from Kin server - each party can verify the other party identity and request content authenticity, without trusting entirely on the client.  
 The integrating application should provide Kin team with one or more public signature keys and its corresponding keyID, the application will receive a JWT issuer identifier - ISS key, also called app-id, which uniquely identified your app.  
 

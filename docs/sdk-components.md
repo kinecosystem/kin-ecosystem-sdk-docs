@@ -5,7 +5,7 @@ title: SDK Components
 
 ![](/kin-ecosystem-sdk-docs/img/sdk_components.png)
 
-### Kin server
+### Kin Server
 
 * Create and activate users accounts on the Stellar blockchain.
 * Serving out of the box KIN's earn and spend offers for the SDK marketplace.
@@ -13,7 +13,7 @@ title: SDK Components
 * Manage digital service wallets.
 * Client authorization and secure communication between digital service and Kin server, see [Authorization and JWT](jwt.md).
 
-### Application server
+### Application Server
 
 * Client authorization and secure communication between digital service and Kin server, see [Authorization and JWT](jwt.md).
 * Manage client native earn and spend offers.

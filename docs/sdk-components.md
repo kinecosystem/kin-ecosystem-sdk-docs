@@ -24,6 +24,7 @@ title: SDK Components
 * Manage client wallet.
 * Provides SDK marketplace UI for both out of the box and native offers.
 * Sending and receiving transaction on Kin blockchain.
+* Retrieving user balances 
 
 ### Kin Blockchain
 

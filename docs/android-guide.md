@@ -64,7 +64,7 @@ Add the following lines to the app module's ```build.gradle``` file.
 ```gradle
  dependencies {
      ...
-     implementation 'com.github.kinfoundation:kin-devplatform-android:<latest_version>'
+     implementation 'com.github.kinecosystem:kin-devplatform-android:<latest_version>'
  }
 ```
 

@@ -17,9 +17,10 @@ To be used for a quick first-time integration or sanity test. The authentication
 ### JWT authentication
 
 A secure authentication method to be used in production.  
-JWT is used for authorization with Kin servers, and for transferring offers information between application and Kin servers in a trusted way.  
-By digitally sign a request to and a response from Kin server - each party can verify the other party identity and request content authenticity, without trusting entirely on the client.  
-The integrating application should provide Kin team with one or more public signature keys and its corresponding keyID, the application will receive a JWT issuer identifier - ISS key, also called app-id, which uniquely identified your app.  
+JWT is used for authorization with Kin servers and for transferring offers information between application and Kin servers in a trusted way.  
+By digitally signing a request to and a response from the Kin server– each party may verify the other parties’ identity and request content authenticity without having to trust entirely the client.
+
+The integrating application should provide the Kin team with one or more public signature keys and its corresponding keyID. The application will receive a JWT issuer identifier (ISS key) also called an app-id which uniquely identifies your app.
 
 ## Building the JWT Token <a name="BuildJWT"></a>
 
@@ -32,11 +33,12 @@ A JWT token is a string that is composed of 3 parts:
     ```ES256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)```  
     -- where the secret value is the private key of your agreed-on public/private key pair.
 
-The 3 parts are then concatenated, with the ‘.’ character between each 2 consecutive parts, as follows:
+The 3 parts are then concatenated with the character “.” between each of the consecutive parts as pictured below:
+
 
 ```<header> + “.” + <payload> + “.” + <signature>```
 
-See https://jwt.io to learn more about how to build a JWT token, and to find libraries that you can use to do this.
+See https://jwt.io to learn more about how to build a JWT token and to find libraries that you can use to do this.
 
 This is the header structure:
 
@@ -69,10 +71,11 @@ This is the payload structure:
 
 ## JWT Service - A Helper Tool For Handling JWT Tokens <a name="JWTService"></a>
 
-JWT service is a helper tool for generating a signed Kin SDK JWT tokens, it can be deployed and use at application server side.  
-Using JWT service, a developer can:
+JWT Service is a helper tool for generating signed Kin SDK JWT tokens. It can be deployed and used as an application server-side. 
 
-* Generate a JWT key-pairs.
+Using JWT service a developer can:
+
+* Generate a JWT key-pair.
 * Generate a signed JWT token for SDK [requests](#JWTRequests).  
 * Validate Kin server response JWT - [PaymentConfirmation](#PaymentConfirmation).
 
@@ -222,7 +225,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 
 ## Kin JWT Public keys
 
-Public keys should be used by application server to verify Kin server responses, Kin server provides a list of a possible public keys, and their corresponding key id. the key id, will appear as `kid` field in JWT header (see [Building the JWT Token](#BuildJWT)), and will be used by application server to match the public key to the JWT response.  
+Public keys should be used by the Application server to verify Kin server responses. Kin server provides a list of a possible public keys and their corresponding key id. The key id, will appear as `kid` field in JWT header (see [Building the JWT Token](#BuildJWT)) and it will be used by the Application server to match the public key to the JWT response.  
 The public keys can be accessed on Kin server under `config` request:  
 
 * [Playground - https://api-playground.kininfrastructure.com/v1/config](https://api-playground.kininfrastructure.com/v1/config)

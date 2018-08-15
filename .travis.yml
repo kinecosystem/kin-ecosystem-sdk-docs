@@ -12,7 +12,7 @@ script:
 
 after_success:
   # deploy to github pages when not in master
-  if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]
+  if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]];
   then
     git config --global user.name "${GH_NAME}";
     git config --global user.email "${GH_EMAIL}";

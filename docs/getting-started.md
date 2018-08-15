@@ -128,7 +128,7 @@ apiKey - your secret apiKey as provided by Kin.
 
 #### JWT:
 
-Request a registration JWT from your server. Once the client received this token, you may not start the SDK using this token
+Request a registration JWT from your server. Once the client received this token, you may now start the SDK using this token
 
 ```swift
 Kin.shared.start(userId: "myUserId", jwt: registrationJWT, environment: .playground)

@@ -35,7 +35,7 @@ Only apps with access credentials can direct requests to the Kin Server.
 
 Every user who transacts with Kin owns the following two items:
 
-* Account – contains the user’s authentication keys (does not contain currency, unlike a real-world
+* Wallet – contains the user’s authentication keys (does not contain currency, unlike a real-world
 wallet).
-* Wallet – an identity recognized by the Kin blockchain which is associated with a Kin balance
+* Account – an identity recognized by the Kin blockchain which is associated with a Kin balance
 and a transaction history log.

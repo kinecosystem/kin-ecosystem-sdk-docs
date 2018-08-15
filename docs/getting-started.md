@@ -15,7 +15,7 @@ Receive your api key and app-id.
 
 * Generate your JWT key pair.
 * Provide Kin with your JWT public keys.
-* Receive your JWT issuer jss/app-id, that will uniquely identify your application.
+* Receive your JWT issuer jss/app-id that will uniquely identify your application.
   
 ## Integrate Client SDK
 
@@ -54,7 +54,7 @@ Add the following lines to the app module's ```build.gradle``` file.
  }
 ```
 
-latest version can be found in [github releases](https://github.com/kinecosystem/kin-devplatform-android/releases).
+Latest version can be found in [github releases](https://github.com/kinecosystem/kin-devplatform-android/releases).
 
 <block class="ios" />
 
@@ -62,7 +62,7 @@ The fastest way to get started with the sdk is with cocoapods (>= 1.4.0).
 ```
 pod 'KinDevPlatform', '<latest release>'
 ```
-latest version can be found in [github releases](https://github.com/kinecosystem/kin-devplatform-ios/releases)
+Latest version can be found in [github releases](https://github.com/kinecosystem/kin-devplatform-ios/releases)
 
 > Notice for apps using swift 3.2: the pod installation will change your project's swift version target to 4.0  
 > This is because the sdk uses swift 4.0, and cocoapods force the pod's swift version on the project. For now, you can manually change your project's swift version in the build setting. A better solution will be available soon.
@@ -72,9 +72,9 @@ latest version can be found in [github releases](https://github.com/kinecosystem
 
 ### Generating Registration JWT
 
-The first step for Initializing the SDK is to build a [registration JWT token](jwt#RegisterPayload) at application server side, The fastest way for building JWT tokens is to use the [JWT Service](jwt-service).  
-Once you have the JWT Service set up, perform a [Register query](jwt-service#Register),
-the service will response with the generated signed JWT token, your app should be able to request this JWT generation on demand when SDK initialization is needed at the client side.
+The first step for Initializing the SDK is to build a [registration JWT token](jwt#RegisterPayload) at application server side. The fastest way for building JWT tokens is to use the [JWT Service](jwt-service).  
+Once you have the JWT Service set up, perform a [Register query](jwt-service#Register).
+The service will respond with the generated signed JWT token Your app should be able to request this JWT generation on demand when SDK initialization is needed at the client side.
 
 ### Initialize Client SDK
 
@@ -95,9 +95,9 @@ catch (ClientException | BlockchainException e) {
 }
 ```
 
-userID - your application unique identifier for the user  
-appID - your application unique identifier as provided by Kin.  
-apiKey - your secret apiKey as provided by Kin.
+userID - Your application’s unique unique identifier for the user  
+appID - Your application’s unique unique identifier as provided by Kin.  
+apiKey - Your secret apiKey as provided by Kin.
 
 #### JWT:
 
@@ -126,9 +126,9 @@ userID - your application unique identifier for the user
 appID - your application unique identifier as provided by Kin.  
 apiKey - your secret apiKey as provided by Kin.
 
-#### jwt:
+#### JWT:
 
-Request a registration JWT from your server, once the client received this token, you can now start the sdk using this token.
+Request a registration JWT from your server. Once the client received this token, you may now start the SDK using this token
 
 ```swift
 Kin.shared.start(userId: "myUserId", jwt: registrationJWT, environment: .playground)
@@ -137,7 +137,7 @@ Kin.shared.start(userId: "myUserId", jwt: registrationJWT, environment: .playgro
 <block class="ios android" />
 
 This will create the stack needed for running the SDK, All account creation and activation is handled for you by the sdk.  
-Because blockchain onboarding might take a few seconds, It is strongly recommended to call this function as soon as you can provide a user id.
+Because blockchain onboarding might take a few seconds, it is strongly recommended to call this function as soon as you can provide a user id.
 
 ### Launching The Marketplace
 

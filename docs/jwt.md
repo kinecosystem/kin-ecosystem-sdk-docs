@@ -228,9 +228,7 @@ eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwM
 Public keys should be used by the Application server to verify Kin server responses. Kin server provides a list of a possible public keys and their corresponding key id. The key id, will appear as `kid` field in JWT header (see [Building the JWT Token](#BuildJWT)) and it will be used by the Application server to match the public key to the JWT response.  
 The public keys can be accessed on Kin server under `config` request:  
 
-* [Playground - https://api-playground.kininfrastructure.com/v1/config](https://api-playground.kininfrastructure.com/v1/config)
-
-* [Production - https://api.kinmarketplace.com/v1/config](https://api.kinmarketplace.com/v1/config)
+* [Playground - https://api.developers.kinecosystem.com/v1/config](https://api.developers.kinecosystem.com/v1/config)
 
 Config request will return a json that contain the jwt keys inside `jwt_keys` object:
 

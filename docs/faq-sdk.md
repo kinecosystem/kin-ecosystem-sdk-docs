@@ -81,4 +81,4 @@ Opening an observer opens an SSE (Server Sent Event) connection to the blockchai
 
 ### Is the Kin Unity SDK ready to use?
 
-No, we do not have a Unity SDK. If you are using Unity you would need to create a wrapper.
+No. Currently, we do not have a Unity SDK. If you are using Unity you would need to create your own wrapper. Official Unity SDK will be provided at a later date.

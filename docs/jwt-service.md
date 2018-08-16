@@ -39,9 +39,7 @@ An example:
 `es256_EEA3AFB1-4708-44B6-A5B4-5875A4B0423A-priv.pem`
 
 <a name="KeyIdNote"></a>
-> **NOTE:** The generated unique random `key-id` is an important piece of information, JWT Service will choose randomly on each request one of the keys to sign with.
-> Each JWT request will include the `key-id` it was signed with, and will be use by the other party for determines which public key to use
-> for validating the signature.
+> **NOTE:** The generated unique random `key-id` is an important piece of information. on each JWT request generation, JWT Service will choose randomly one of the keys to sign the request with. each JWT request will include the `key-id` it was signed with, and will be use by the other party for determines which public key to use for validating the signature.
 
 #### Point the service to the created key pairs:
 

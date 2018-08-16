@@ -68,3 +68,7 @@ Yes, when using the callback method. Each call would make a request.
 Using the observable object, You would instantly get a pending balance which is indeed persisted by us, but the SDK would have to make a network call (to the blockchain layer) in order for you to have a verified balance. It is the common practice with all blockchain infrastructures to always assume any balance is pending; unless you verified it with a call.
 
 Opening an observer opens an SSE (Server Sent Event) connection to the blockchain network which should be closed when its no longer needed. Add the observer only when needed. Anywhere else, callback api or the cached balance API should be used.
+
+### Is the Kin Unity SDK ready to use?
+
+No. Currently, we do not have a Unity SDK. If you are using Unity you would need to create your own wrapper. Official Unity SDK will be provided at a later date.

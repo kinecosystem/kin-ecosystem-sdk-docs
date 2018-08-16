@@ -43,7 +43,7 @@ tagline: '',
 
   /* path to images for header/footer */
   headerIcon: 'img/Kin_ecosystem_logo.svg',
-  favicon: 'img/Kin_ecosystem_logo.svg',
+  favicon: 'img/favicon.ico',
 
   /* colors for website */
   colors: {

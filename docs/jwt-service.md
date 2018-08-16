@@ -28,13 +28,25 @@ $ git clone https://github.com/kinecosystem/kin-devplatform-jwt-service.git
 $ ./create_keys.sh
 ```
 
-This script will generate 10 key pairs inside keys folder, for each key 2 files will be created for the private and the public key. Generating multiple key pairs is a best practice for security measures.
+This script will generate 10 key pairs inside keys folder. generating multiple key pairs is a best practice for security measures.
+for each key, two files will be created, for the public key:  
+`es256_<key-id>.pem`  
+An example:  
+`es256_EEA3AFB1-4708-44B6-A5B4-5875A4B0423A.pem`  
+And for the private key:  
+`es256_<key-id>-priv.pem`  
+An example:  
+`es256_EEA3AFB1-4708-44B6-A5B4-5875A4B0423A-priv.pem`
+
+<a name="KeyIdNote"></a>
+> **NOTE:** The generated unique random `key-id` is an important piece of information. on each JWT request generation, JWT Service will choose randomly one of the keys to sign the request with. each JWT request will include the `key-id` it was signed with, and will be use by the other party for determines which public key to use for validating the signature.
 
 #### Point the service to the created key pairs:
 
-Edit `config/default.json` file, under `private_keys` and `public_keys` objects, delete the existing keys and add the generated private and public keys file accordingly.
+Edit `config/default.json` file, under `private_keys` and `public_keys` objects, delete the existing keys and add the generated private and public keys file accordingly.  
+The `key-id` is the unique random key id included in the filename, see above [note](#KeyIdNote).
 ```json
-"<keyId>": {
+"<key-id>": {
     "algorithm": "ES256",
     "file": "keys/<file name>.pem"
     },

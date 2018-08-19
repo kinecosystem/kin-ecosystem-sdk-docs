@@ -68,7 +68,7 @@ For the above generated key:
 
 ### Point the service to Kin public keys:
 
-For enabling JWT Service to verify JWT confirmations received from Kin, you should add [Kin Public Keys](jwt#PublicKeys):
+To enable JWT Service to verify JWT order confirmations received from Kin server, you should add [Kin Public Keys](jwt#PublicKeys):
 
 - Go to [https://api.developers.kinecosystem.com/v1/config](https://api.developers.kinecosystem.com/v1/config), the `jwt_keys` json object contains Kin public key list, create a pem file with each key value ("key" object content) as the file content, the json key for each public key is the `key-id`.
 - Edit `config/default.json` file, under `public_keys` object, delete the existing keys.

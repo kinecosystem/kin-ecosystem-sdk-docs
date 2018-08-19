@@ -223,7 +223,7 @@ A confirmation payload received by Kin server in case of completing successfully
 eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayIsImV4cCI6MTUyNjIzOTAyMiwic3ViIjoicGF5bWVudF9jb25maXJtYXRpb24iLCJvZmZlcl9pZCI6Ik8xMjMxMjMxMjMiLCJzZW5kZXJfdXNlcl9pZCI6InVzZXI6ZG9vZHkiLCJyZWNpcGllbnRfdXNlcl9pZCI6InVzZXI6bml0emFuIiwicGF5bWVudCI6eyJibG9ja2NoYWluIjoic3RlbGxhci1tYWlubmV0IiwidHJhbnNhY3Rpb25faWQiOiJ0cmFuc2FjdGlvbjoxMjM0NSJ9fQ.-AbZOfC69eY1It43RccOXluY-sjWSi4JFvQkVKO9D2UgYU3jNPbEcBERLrqBHPSpS6f26LVpIsg5A81UQNoukw
 ```
 
-## Kin JWT Public keys
+## Kin JWT Public keys <a name="PublicKeys"></a>
 
 Public keys should be used by the Application server to verify Kin server responses. Kin server provides a list of a possible public keys and their corresponding key id. The key id, will appear as `kid` field in JWT header (see [Building the JWT Token](#BuildJWT)) and it will be used by the Application server to match the public key to the JWT response.  
 The public keys can be accessed on Kin server under `config` request:  

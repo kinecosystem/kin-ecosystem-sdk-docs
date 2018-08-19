@@ -17,12 +17,12 @@ These keys are for testing porpuses only.
 
 ## Install
 
-#### Clone jwt-service repo:
+### Clone jwt-service repo:
 ```bash
 $ git clone https://github.com/kinecosystem/kin-devplatform-jwt-service.git
 ```
 
-#### Generate your application JWT key pairs:
+### Generate your application JWT key pairs:
 
 ```bash
 $ ./create_keys.sh
@@ -41,15 +41,44 @@ An example:
 <a name="KeyIdNote"></a>
 > **NOTE:** The generated unique random `key-id` is an important piece of information. on each JWT request generation, JWT Service will choose randomly one of the keys to sign the request with. each JWT request will include the `key-id` it was signed with, and will be use by the other party for determines which public key to use for validating the signature.
 
-#### Point the service to the created key pairs:
+### Point the service to the created private keys:
 
-Edit `config/default.json` file, under `private_keys` and `public_keys` objects, delete the existing keys and add the generated private and public keys file accordingly.  
+Edit `config/default.json` file, under `private_keys` object, delete the existing keys and add the generated private keys.  
 The `key-id` is the unique random key id included in the filename, see above [note](#KeyIdNote).
 ```json
-"<key-id>": {
-    "algorithm": "ES256",
-    "file": "keys/<file name>.pem"
+"private_keys": {
+    "es256_<key-id>": {
+        "algorithm": "ES256",
+        "file": "keys/<file name>.pem"
+        },
+        ...
+}
+```
+
+For the above generated key:  
+```json
+"private_keys": {
+    "es256_EEA3AFB1-4708-44B6-A5B4-5875A4B0423A": {
+        "algorithm": "ES256",
+        "file": "keys/es256_EEA3AFB1-4708-44B6-A5B4-5875A4B0423A-priv.pem"
+        },
+        ...
+}
+```
+
+### Point the service to Kin public keys:
+
+For enabling JWT Service to verify JWT confirmations received from Kin, you should add [Kin Public Keys](jwt#PublicKeys):
+
+- Go to [https://api.developers.kinecosystem.com/v1/config](https://api.developers.kinecosystem.com/v1/config), the `jwt_keys` json object contains Kin public key list, create a pem file with each key value ("key" object content) as the file content, the json key for each public key is the `key-id`.
+- Edit `config/default.json` file, under `public_keys` object, delete the existing keys.
+- For each Kin public key map the `key-id` to the created pem file.
+
+```json
+"public_keys": {
+		"es256_AEED81AF-4276-49A0-B725-85D96BA73557": "keys/kin_playground-es256_AEED81AF-4276-49A0-B725-85D96BA73557.pem"
     },
+    ...
 ```
 
 ### Enter your app-id

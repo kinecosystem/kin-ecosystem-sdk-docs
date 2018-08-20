@@ -68,18 +68,7 @@ For the above generated key:
 
 ### Point the service to Kin public keys:
 
-To enable JWT Service to verify JWT order confirmations received from Kin server, you should add [Kin Public Keys](jwt#PublicKeys):
-
-- Go to [https://api.developers.kinecosystem.com/v1/config](https://api.developers.kinecosystem.com/v1/config), the `jwt_keys` json object contains Kin public key list, create a pem file with each key value ("key" object content) as the file content, the json key for each public key is the `key-id`.
-- Edit `config/default.json` file, under `public_keys` object, delete the existing keys.
-- For each Kin public key map the `key-id` to the created pem file.
-
-```json
-"public_keys": {
-		"es256_AEED81AF-4276-49A0-B725-85D96BA73557": "keys/kin_playground-es256_AEED81AF-4276-49A0-B725-85D96BA73557.pem"
-    },
-    ...
-```
+To enable JWT Service to verify [JWT order confirmations](jwt#PaymentConfirmation) received from Kin server, config file should point to [Kin public keys](jwt#PublicKeys). For playground environment, no need for manual configuration, the default config in JWT Service already set to the playground public keys.
 
 ### Enter your app-id
 App-id is the unique application identifier as provided by Kin, it serves as the `iss` - issuer field for each JWT token, for identify the origin of each request.  
@@ -228,5 +217,5 @@ The most important of which are the:
 * `app_id`: the unique application identifier as provided by Kin, serves as the `iss` - issuer field for each JWT token.
 * `port`: on which port this service will be bound to
 * `offers`: the collection of offers which are returned in the `/offer` endpoint and which are signed when calling the `/spend?offer_id={ ID }` endpoint
-* `private_keys`: the keys which will be used for signing the tokens
-* `public_keys`: the public keys which will be used for validate tokens
+* `private_keys`: application private keys which will be used for signing the tokens
+* `public_keys`: kin server public keys which will be used for validate tokens (order confirmation requests)

@@ -26,7 +26,7 @@ We recommend building and running the Sample App as a good way to get started wi
 >**NOTE:** The Sample App is for demonstration only, and should not be used for any other purpose.
 
 The Sample App is pre-configured with the default whitelist credentials `appId='test'` and
-`apiKey='AyINT44OAKagkSav2vzMz'` and with a default RSA512 JWT private key. These credentials can be used for integration testing in any app, but authorization will fail if you attempt to use them in a production environment.
+`apiKey='AyINT44OAKagkSav2vzMz'` and with a default ES256 JWT private key. These credentials can be used for integration testing in any app, but authorization will fail if you attempt to use them in a production environment.
 
 You can also request unique apiKey and appId values from Kin, and override the default settings, working either in whitelist or JWT authentication mode.
 
@@ -39,9 +39,9 @@ APP_ID="YOUR_APP_ID" // Your unique application id, required for both whitelist 
 
 API_KEY="YOUR_API_KEY" // For whitelist registration. Default = 'AyINT44OAKagkSav2vzMz'.
 
-RS512_PRIVATE_KEY="YOUR_RS512_PRIVATE_KEY" // Optional. Only required when testing JWT on the sample app. For production, JWT is created by server side with ES256 signature.
+ES256_PRIVATE_KEY="YOUR_ES256_PRIVATE_KEY" // Optional. Only required when testing JWT on the sample app. For production, JWT is created by server side with ES256 signature.
 
-RS512_PRIVATE_KEY_ID="YOUR RS512 KEY ID" //required when using jwt, `kid` param is sent with every jwt for identify the key you signed with.
+ES256_PRIVATE_KEY_ID="YOUR ES256 KEY ID" //required when using jwt, `kid` param is sent with every jwt for identify the key you signed with.
 
 IS_JWT_REGISTRATION = false // Optional. To test sample app JWT registration, set this property to true. If not specified, default=false.
 ```

@@ -13,7 +13,7 @@ Receive your api key and app-id.
 
 ### JWT
 
-* Generate your JWT key pair.
+* Generate your JWT key pair. (see [JWT Service](#jwt-service))
 * Provide Kin with your JWT public keys.
 * Receive your JWT issuer jss/app-id that will uniquely identify your application.
   
@@ -75,6 +75,10 @@ Latest version can be found in [github releases](https://github.com/kinecosystem
 The first step for Initializing the SDK is to build a [registration JWT token](jwt#RegisterPayload) at application server side. The fastest way for building JWT tokens is to use the [JWT Service](jwt-service).  
 Once you have the JWT Service set up, perform a [Register query](jwt-service#Register).
 The service will respond with the generated signed JWT token Your app should be able to request this JWT generation on demand when SDK initialization is needed at the client side.
+
+> **NOTE:** It's important to generate the JWT Tokens and store the JWT private keys at your server side only.  
+> The purpose of JWT is to establish a trusted communication between Kin server and your application server without relaying solely on the client.
+> The client should not be allowed to request earn/spend without your server authorization, thus, the client should not keep the private keys and signs JWT tokens. The sample app does that only for the sake of simplification and serves as an example of client side APIs.
 
 ### Initialize Client SDK
 

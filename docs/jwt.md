@@ -22,6 +22,12 @@ By digitally signing a request to and a response from the Kin server– each par
 
 The integrating application should provide the Kin team with one or more public signature keys and its corresponding keyID. The application will receive a JWT issuer identifier (ISS key) also called an app-id which uniquely identifies your app.
 
+Go to [jwt.io](https://jwt.io) to learn more about the JWT standard.
+
+> **NOTE:** It's important to generate the JWT Tokens and store the JWT private keys at your server side only.  
+> The purpose of JWT is to establish a trusted communication between Kin server and your application server without relaying solely on the client.
+> The client should not be allowed to request earn/spend without your server authorization, thus, the client should not keep the private keys and signs JWT tokens. The sample app does that only for the sake of simplification and serves as an example of client side APIs.
+
 ## Building the JWT Token <a name="BuildJWT"></a>
 
 A JWT token is a string that is composed of 3 parts:
@@ -38,7 +44,7 @@ The 3 parts are then concatenated with the character “.” between each of the
 
 ```<header> + “.” + <payload> + “.” + <signature>```
 
-See https://jwt.io to learn more about how to build a JWT token and to find libraries that you can use to do this.
+See [jwt.io](https://jwt.io) to learn more about how to build a JWT token and to find libraries that you can use to do this.
 
 This is the header structure:
 

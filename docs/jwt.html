@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Authentication and JWT · Kin Developer Program</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Whitelist vs JWT &lt;a name=&quot;WhitelistNote&quot;&gt;&lt;/a&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Authentication and JWT · Kin Developer Program"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kinecosystem.github.io/kin-ecosystem-sdk-docs//kin-ecosystem-sdk-docs/index.html"/><meta property="og:description" content="## Whitelist vs JWT &lt;a name=&quot;WhitelistNote&quot;&gt;&lt;/a&gt;"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/kin-ecosystem-sdk-docs/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/kin-ecosystem-sdk-docs/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/kin-ecosystem-sdk-docs/"><img class="logo" src="/kin-ecosystem-sdk-docs/img/Kin_ecosystem_logo.svg" alt="Kin Developer Program"/><h2 class="headerTitleWithLogo">Kin Developer Program</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/kin-ecosystem-sdk-docs/docs/intro.html" target="_self">Guides</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guides</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/intro.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/sdk-components.html">SDK Components</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt.html">Authentication and JWT</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt-service.html">JWT Service</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/common-flows.html">Common Flows</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/android-guide.html">Android</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/ios-guide.html">iOS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/faq-sdk.html">SDK FAQ</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/kinecosystem/kin-ecosystem-sdk-docs/tree/master/docs/jwt.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Authentication and JWT</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="whitelist-vs-jwt-a-name-whitelistnote-a"></a><a href="#whitelist-vs-jwt-a-name-whitelistnote-a" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Whitelist vs JWT <a name="WhitelistNote"></a></h2>
+<h3><a class="anchor" aria-hidden="true" id="whitelist-authentication"></a><a href="#whitelist-authentication" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Whitelist authentication</h3>
+<p>To be used for a quick first-time integration or sanity test. The authentication credentials are provided as simple appID and apiKey values. (For development and testing, you can use the default values provided in the Sample App.)</p>
+<blockquote>
+<p><strong>NOTE:</strong></p>
+<ul>
+<li>You can only use whitelist authentication for the Playground environment. The Production environment requires that you use JWT authentication.</li>
+<li>Whitelist authentication has a limitation on users number.</li>
+<li>Creating your app custom offers requires JWT authentication.</li>
+</ul>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="jwt-authentication"></a><a href="#jwt-authentication" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JWT authentication</h3>
+<p>A secure authentication method to be used in production.<br>
+JWT is used for authorization with Kin servers and for transferring offers information between application and Kin servers in a trusted way.<br>
+By digitally signing a request to and a response from the Kin server– each party may verify the other parties’ identity and request content authenticity without having to trust entirely the client.</p>
+<p>The integrating application should provide the Kin team with one or more public signature keys and its corresponding keyID. The application will receive a JWT issuer identifier (ISS key) also called an app-id which uniquely identifies your app.</p>
+<p>Go to <a href="https://jwt.io">jwt.io</a> to learn more about the JWT standard.</p>
+<blockquote>
+<p><strong>NOTE:</strong> It's important to generate the JWT Tokens and store the JWT private keys at your server side only.<br>
+The purpose of JWT is to establish a trusted communication between Kin server and your application server without relaying solely on the client.
+The client should not be allowed to request earn/spend without your server authorization, thus, the client should not keep the private keys and signs JWT tokens. The sample app does that only for the sake of simplification and serves as an example of client side APIs.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="building-the-jwt-token-a-name-buildjwt-a"></a><a href="#building-the-jwt-token-a-name-buildjwt-a" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building the JWT Token <a name="BuildJWT"></a></h2>
+<p>A JWT token is a string that is composed of 3 parts:</p>
+<ul>
+<li><p><strong>Header</strong> – a JSON structure encoded in Base64Url</p></li>
+<li><p><strong>Payload</strong> – a JSON structure encoded in Base64Url</p></li>
+<li><p><strong>Signature</strong> – constructed with this formula:</p>
+<p><code>ES256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload), secret)</code>  <br>
+-- where the secret value is the private key of your agreed-on public/private key pair.</p></li>
+</ul>
+<p>The 3 parts are then concatenated with the character “.” between each of the consecutive parts as pictured below:</p>
+<p><code>&lt;header&gt; + “.” + &lt;payload&gt; + “.” + &lt;signature&gt;</code></p>
+<p>See <a href="https://jwt.io">jwt.io</a> to learn more about how to build a JWT token and to find libraries that you can use to do this.</p>
+<p>This is the header structure:</p>
+<pre><code class="hljs css language-js">{
+    "alg": "ES256",
+    "typ": "JWT",
+    "kid": string" // ID of the keypair that was used to sign the JWT. 
+    // IDs and public keys will be provided by the signing authority. 
+    // This enables using multiple private/public key pairs. 
+    // (The signing authority must provide the verifier with a list of public 
+    // keys and their IDs in advance.)
+}
+</code></pre>
+<p>This is the payload structure:</p>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-comment">// standard fields</span>
+    iat: number;  <span class="hljs-comment">// the time this token was issued, in seconds from Epoch</span>
+    iss: string;  <span class="hljs-comment">// issuer (Kin will provide this value)</span>
+    exp: number;  <span class="hljs-comment">// the time until this token expires, in seconds from Epoch </span>
+    sub: <span class="hljs-string">"register"</span>
+
+    <span class="hljs-comment">// application fields</span>
+    user_id: string; <span class="hljs-comment">// A unique ID of the end user (must only be unique among your app’s users; not globally unique)</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="jwt-service-a-helper-tool-for-handling-jwt-tokens-a-name-jwtservice-a"></a><a href="#jwt-service-a-helper-tool-for-handling-jwt-tokens-a-name-jwtservice-a" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JWT Service - A Helper Tool For Handling JWT Tokens <a name="JWTService"></a></h2>
+<p>JWT Service is a helper tool for generating signed Kin SDK JWT tokens. It can be deployed and used as an application server-side.</p>
+<p>Using JWT service a developer can:</p>
+<ul>
+<li>Generate a JWT key-pair.</li>
+<li>Generate a signed JWT token for SDK <a href="#JWTRequests">requests</a>.</li>
+<li>Validate Kin server response JWT - <a href="#PaymentConfirmation">PaymentConfirmation</a>.</li>
+</ul>
+<p>See <a href="jwt-service">JWT Service</a> for more details.</p>
+<h2><a class="anchor" aria-hidden="true" id="jwt-requests-a-name-jwtrequests"></a><a href="#jwt-requests-a-name-jwtrequests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JWT Requests <a name="JWTRequests"/></h2>
+<h3><a class="anchor" aria-hidden="true" id="register-payload-a-name-registerpayload"></a><a href="#register-payload-a-name-registerpayload" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Register payload <a name="RegisterPayload"/></h3>
+<p>Registration request, authorize a user with Kin SDK, required for launching the SDK.</p>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-comment">// common fields</span>
+    iat: number; <span class="hljs-comment">// issued at - seconds from epoch</span>
+    iss: string; <span class="hljs-comment">// issuer - request origin 'app-id' provided by KIn</span>
+    exp: number; <span class="hljs-comment">// expiration</span>
+    sub: string; <span class="hljs-comment">// subject - "register"</span>
+
+    <span class="hljs-comment">// application fields</span>
+    user_id: string; <span class="hljs-comment">// id of the user - or a deterministic unique id for the user</span>
+}
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6injlz2lzdgvyiiwidxnlcl9pzci6imffagfzaf9vbl9rawtfdxnlcl9pzcj96dwojspq46inlwywn3nnh0bmqizkd7ml0vx8v2zmlh8azqwf2ubk-md5kcxgnxgq0p6texvtr1vxpwhfj7-3dg"></a><a href="#example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6injlz2lzdgvyiiwidxnlcl9pzci6imffagfzaf9vbl9rawtfdxnlcl9pzcj96dwojspq46inlwywn3nnh0bmqizkd7ml0vx8v2zmlh8azqwf2ubk-md5kcxgnxgq0p6texvtr1vxpwhfj7-3dg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InJlZ2lzdGVyIiwidXNlcl9pZCI6ImFfaGFzaF9vbl9raWtfdXNlcl9pZCJ9.6DwojspQ46inlwYwn3NNH0bmQIzKd7mL0VX8V2ZmlH8aZqWF2UbK_Md5kcxgnXgq0P6tExVTr1vxpwhfj7_3dg">Example (viewable on jwt.io)</a></h5>
+<pre><code class="hljs"><span class="hljs-selector-tag">eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ</span><span class="hljs-selector-class">.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InJlZ2lzdGVyIiwidXNlcl9pZCI6ImFfaGFzaF9vbl9raWtfdXNlcl9pZCJ9</span><span class="hljs-selector-class">.6DwojspQ46inlwYwn3NNH0bmQIzKd7mL0VX8V2ZmlH8aZqWF2UbK_Md5kcxgnXgq0P6tExVTr1vxpwhfj7_3dg</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="spend-payload-a-name-spendpayload"></a><a href="#spend-payload-a-name-spendpayload" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spend payload <a name="SpendPayload"/></h3>
+<p>Custom spend request.</p>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-comment">// common fields</span>
+    iat: number; <span class="hljs-comment">// issued at - seconds from epoch</span>
+    iss: string; <span class="hljs-comment">// issuer - request origin 'app-id' provided by Kin</span>
+    exp: number; <span class="hljs-comment">// expiration</span>
+    sub: string; <span class="hljs-comment">// subject - "spend"</span>
+
+    offer: {
+    <span class="hljs-attr">id</span>: string; <span class="hljs-comment">// offer unique id - generated by application server</span>
+        amount: number; <span class="hljs-comment">// amount of kin for this offer</span>
+    },
+    <span class="hljs-attr">sender</span>: {
+        <span class="hljs-attr">user_id</span>: string; <span class="hljs-comment">// optional: the user_id who will perform the spend</span>
+        title: string; <span class="hljs-comment">// order title - appears in order history</span>
+        description: string; <span class="hljs-comment">// order description - appears in order history</span>
+    }
+}
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6innwzw5kiiwib2zmzxiionsiawqioijpmtizmtizmtiziiwiyw1vdw50ijo1mdawfswic2vuzgvyijp7inrpdgxlijoiqmx1zsbuagvtzsisimrlc2nyaxb0aw9uijoit2nlyw4gqmx1zsisinvzzxjfawqioijzb21lx3vzzxiifx0bracj37zbbakivwd-uhc2jxozzrhdn5b9veg7d1bxjkppyefpaey-kkf6xqp7oumjeg2ltroqpj-ukfcfl6h-g"></a><a href="#example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6innwzw5kiiwib2zmzxiionsiawqioijpmtizmtizmtiziiwiyw1vdw50ijo1mdawfswic2vuzgvyijp7inrpdgxlijoiqmx1zsbuagvtzsisimrlc2nyaxb0aw9uijoit2nlyw4gqmx1zsisinvzzxjfawqioijzb21lx3vzzxiifx0bracj37zbbakivwd-uhc2jxozzrhdn5b9veg7d1bxjkppyefpaey-kkf6xqp7oumjeg2ltroqpj-ukfcfl6h-g" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InNwZW5kIiwib2ZmZXIiOnsiaWQiOiJPMTIzMTIzMTIzIiwiYW1vdW50Ijo1MDAwfSwic2VuZGVyIjp7InRpdGxlIjoiQmx1ZSBUaGVtZSIsImRlc2NyaXB0aW9uIjoiT2NlYW4gQmx1ZSIsInVzZXJfaWQiOiJzb21lX3VzZXIifX0.BRacJ37zbbaKivWD_uhC2JXozzrHDN5B9VeG7d1BXjkpPYEfpaEy_kKF6xqp7oUMjEG2ltrOQPJ-UkFcFl6H-g">Example (viewable on jwt.io)</a></h5>
+<pre><code class="hljs">eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ<span class="hljs-selector-class">.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InNwZW5kIiwib2ZmZXIiOnsiaWQiOiJPMTIzMTIzMTIzIiwiYW1vdW50Ijo1MDAwfSwic2VuZGVyIjp7InRpdGxlIjoiQmx1ZSBUaGVtZSIsImRlc2NyaXB0aW9uIjoiT2NlYW4gQmx1ZSIsInVzZXJfaWQiOiJzb21lX3VzZXIifX0</span><span class="hljs-selector-class">.BRacJ37zbbaKivWD_uhC2JXozzrHDN5B9VeG7d1BXjkpPYEfpaEy_kKF6xqp7oUMjEG2ltrOQPJ-UkFcFl6H-g</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="earn-payload-a-name-earnpayload"></a><a href="#earn-payload-a-name-earnpayload" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Earn payload <a name="EarnPayload"/></h3>
+<p>Custom earn request.</p>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-comment">// common fields</span>
+    iat: number; <span class="hljs-comment">// issued at - seconds from epoch</span>
+    iss: string; <span class="hljs-comment">// issuer - request origin 'app-id' provided by Kin</span>
+    exp: number; <span class="hljs-comment">// expiration</span>
+    sub: string; <span class="hljs-comment">// subject - "earn"</span>
+
+    offer: {
+        <span class="hljs-attr">id</span>: string; <span class="hljs-comment">// offer unique id - generated by application server</span>
+        amount: number; <span class="hljs-comment">// amount of kin for this offer</span>
+    },
+    <span class="hljs-attr">recipient</span>: {
+        <span class="hljs-attr">user_id</span>: string; <span class="hljs-comment">// the user_id who will perform the order</span>
+        title: string; <span class="hljs-comment">// order title - appears in order history</span>
+        description: string; <span class="hljs-comment">// order description - appears in order history</span>
+    }
+}
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6imvhcm4ilcjvzmzlcii6eyjpzci6ik8xmjmxmjmxmjmilcjhbw91bnqiojuwmdb9lcjyzwnpcgllbnqionsidgl0bguioijcbhvlifrozw1liiwizgvzy3jpchrpb24ioijpy2vhbibcbhvliiwidxnlcl9pzci6innvbwvfdxnlcij9fqr7opvazqiazjq0msi5nc1c39oc9on08nvkwricmywnumbk5fd9qn6ecmol4jnmge5iza7j-lr-eebvhheyi57g"></a><a href="#example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6imvhcm4ilcjvzmzlcii6eyjpzci6ik8xmjmxmjmxmjmilcjhbw91bnqiojuwmdb9lcjyzwnpcgllbnqionsidgl0bguioijcbhvlifrozw1liiwizgvzy3jpchrpb24ioijpy2vhbibcbhvliiwidxnlcl9pzci6innvbwvfdxnlcij9fqr7opvazqiazjq0msi5nc1c39oc9on08nvkwricmywnumbk5fd9qn6ecmol4jnmge5iza7j-lr-eebvhheyi57g" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6ImVhcm4iLCJvZmZlciI6eyJpZCI6Ik8xMjMxMjMxMjMiLCJhbW91bnQiOjUwMDB9LCJyZWNpcGllbnQiOnsidGl0bGUiOiJCbHVlIFRoZW1lIiwiZGVzY3JpcHRpb24iOiJPY2VhbiBCbHVlIiwidXNlcl9pZCI6InNvbWVfdXNlciJ9fQ.R7OpvaZQIAzjQ0MSi5nC1c39oC9oN08NVKwricMyWnuMbK5FD9Qn6ecmol4JnMGE5IZA7j_LR-EEbVhhEYi57g">Example (viewable on jwt.io)</a></h5>
+<pre><code class="hljs">
+eyJhbGciOiJFUzI<span class="hljs-number">1</span>NiIsInR<span class="hljs-number">5</span>cCI<span class="hljs-number">6</span>IkpXVCIsImtpZCI<span class="hljs-number">6</span>InNvbWVfaWQifQ.eyJpYXQiOjE<span class="hljs-number">1</span>MTYyMzkwMjIsImlzcyI<span class="hljs-number">6</span>ImtpayBzZXJ<span class="hljs-number">2</span>ZXIiLCJleHAiOjE<span class="hljs-number">1</span>MjYyMzkwMjIsInN<span class="hljs-number">1</span>YiI<span class="hljs-number">6</span>ImVhcm<span class="hljs-number">4</span>iLCJvZmZlciI<span class="hljs-number">6</span>eyJpZCI<span class="hljs-number">6</span>Ik<span class="hljs-number">8</span>xMjMxMjMxMjMiLCJhbW<span class="hljs-number">91</span>bnQiOjUwMDB<span class="hljs-number">9</span>LCJyZWNpcGllbnQiOnsidGl<span class="hljs-number">0</span>bGUiOiJCbHVlIFRoZW<span class="hljs-number">1</span>lIiwiZGVzY<span class="hljs-number">3</span>JpcHRpb<span class="hljs-number">24</span>iOiJPY<span class="hljs-number">2</span>VhbiBCbHVlIiwidXNlcl<span class="hljs-number">9</span>pZCI<span class="hljs-number">6</span>InNvbWVfdXNlciJ<span class="hljs-number">9</span>fQ.R<span class="hljs-number">7</span>OpvaZQIAzjQ<span class="hljs-number">0</span>MS<span class="hljs-keyword">i5</span>nC<span class="hljs-number">1</span><span class="hljs-keyword">c</span><span class="hljs-number">39</span>oC<span class="hljs-number">9</span>oN<span class="hljs-number">08</span>NVKwricMyWnuMbK<span class="hljs-number">5</span>FD<span class="hljs-number">9</span>Qn<span class="hljs-number">6</span>ecmol<span class="hljs-number">4</span>JnMGE<span class="hljs-number">5</span>IZA<span class="hljs-number">7</span>j_LR-EEbVhhEY<span class="hljs-keyword">i57</span>g
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="paytouser-payload-a-name-paytouserpayload"></a><a href="#paytouser-payload-a-name-paytouserpayload" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>PayToUser payload <a name="PayToUserPayload"/></h4>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-comment">// common fields</span>
+    iat: number; <span class="hljs-comment">// issued at - seconds from epoch</span>
+    iss: string; <span class="hljs-comment">// issuer - request origin 'app-id' provided by Kin</span>
+    exp: number; <span class="hljs-comment">// expiration</span>
+    sub: string; <span class="hljs-comment">// subject - "pay_to_user"</span>
+
+    offer: {
+        <span class="hljs-attr">id</span>: string; <span class="hljs-comment">// offer id - id is decided by kik</span>
+        amount: number; <span class="hljs-comment">// amount of kin for this offer - price</span>
+    },
+    <span class="hljs-attr">sender</span>: {
+        <span class="hljs-attr">user_id</span>: string; <span class="hljs-comment">// optional: user_id who will perform the order</span>
+        title: string; <span class="hljs-comment">// offer title - appears in order history</span>
+        description: string; <span class="hljs-comment">// offer description - appears in order history</span>
+    },
+    <span class="hljs-attr">recipient</span>: {
+        <span class="hljs-attr">user_id</span>: string; <span class="hljs-comment">// user_id who will receive the order</span>
+        title: string; <span class="hljs-comment">// offer title - appears in order history</span>
+        description: string; <span class="hljs-comment">// offer description - appears in order history</span>
+    }
+}
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6inbhev90b191c2vyiiwib2zmzxiionsiawqioijpmtizmtizmtiziiwiyw1vdw50ijo1mdawfswic2vuzgvyijp7inrpdgxlijoivglwiezyb20grg9vzhkilcjkzxnjcmlwdglvbii6ikrvb2r5ihrpchblzcb5b3uilcj1c2vyx2lkijoidxnlcjpuaxr6yw4ifswicmvjaxbpzw50ijp7inrpdgxlijoivglwifrvie5pdhphbiisimrlc2nyaxb0aw9uijoiww91ihrpchblzcboaxr6yw4ilcj1c2vyx2lkijoidxnlcjpkb29kesj9fqgvufyai2ukpzzllsl7a-kb5jcdskgbb1pnzdl7wukigx-iuuu-pgtecelwtbzvwrcsr-gkj4led1mnxhsub-qq"></a><a href="#example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpaybzzxj2zxiilcjlehaioje1mjyymzkwmjisinn1yii6inbhev90b191c2vyiiwib2zmzxiionsiawqioijpmtizmtizmtiziiwiyw1vdw50ijo1mdawfswic2vuzgvyijp7inrpdgxlijoivglwiezyb20grg9vzhkilcjkzxnjcmlwdglvbii6ikrvb2r5ihrpchblzcb5b3uilcj1c2vyx2lkijoidxnlcjpuaxr6yw4ifswicmvjaxbpzw50ijp7inrpdgxlijoivglwifrvie5pdhphbiisimrlc2nyaxb0aw9uijoiww91ihrpchblzcboaxr6yw4ilcj1c2vyx2lkijoidxnlcjpkb29kesj9fqgvufyai2ukpzzllsl7a-kb5jcdskgbb1pnzdl7wukigx-iuuu-pgtecelwtbzvwrcsr-gkj4led1mnxhsub-qq" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InBheV90b191c2VyIiwib2ZmZXIiOnsiaWQiOiJPMTIzMTIzMTIzIiwiYW1vdW50Ijo1MDAwfSwic2VuZGVyIjp7InRpdGxlIjoiVGlwIEZyb20gRG9vZHkiLCJkZXNjcmlwdGlvbiI6IkRvb2R5IHRpcHBlZCB5b3UiLCJ1c2VyX2lkIjoidXNlcjpuaXR6YW4ifSwicmVjaXBpZW50Ijp7InRpdGxlIjoiVGlwIFRvIE5pdHphbiIsImRlc2NyaXB0aW9uIjoiWW91IHRpcHBlZCBOaXR6YW4iLCJ1c2VyX2lkIjoidXNlcjpkb29keSJ9fQ.GVufyAI2UkpzzLlSL7a_kb5JcdSkgBb1PnzdL7wUkIGx-IUUu_pgTecElwTbZvWrCSr_GkJ4leD1MnXHSUb_QQ">Example (viewable on jwt.io)</a></h5>
+<pre><code class="hljs">eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQ<span class="hljs-keyword">if</span>Q.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayBzZXJ2ZXIiLCJleHAiOjE1MjYyMzkwMjIsInN1YiI6InBheV90b191c2VyIiwib2ZmZXIiOnsiaWQiOiJPMTIzMTIzMTIzIiwiYW1vdW50Ijo1MDAwfSwic2VuZGVyIjp7InRpdGxlIjoiVGlwIEZyb20gRG9vZHkiLCJkZXNjcmlwdGlvbiI6IkRvb2R5IHRpcHBlZCB5b3UiLCJ1c2VyX2lkIjoidXNlcjpuaXR6YW4<span class="hljs-keyword">if</span>SwicmVjaXBpZW50Ijp7InRpdGxlIjoiVGlwIFRvIE5pdHphbiIsImRlc2NyaXB0aW9uIjoiWW91IHRpcHBlZCBOaXR6YW4iLCJ1c2VyX2lkIjoidXNlcjpkb29keSJ9fQ.GVufyAI2UkpzzLlSL7a_kb5J<span class="hljs-keyword">cd</span>SkgBb1PnzdL7wUkIGx-IUUu_pgTecElwTbZvWrCSr_GkJ4leD1MnXHSUb_QQ
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="paymentconfirmation-payload-a-name-paymentconfirmation-a"></a><a href="#paymentconfirmation-payload-a-name-paymentconfirmation-a" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>PaymentConfirmation payload <a name="PaymentConfirmation"></a></h3>
+<p>A confirmation payload received by Kin server in case of completing successfully a custom offer flow.</p>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-comment">// common fields</span>
+    iat: number; <span class="hljs-comment">// issued at - seconds from epoch</span>
+    iss: string; <span class="hljs-comment">// issuer - request origin 'app-id' provided by Kin</span>
+    exp: number; <span class="hljs-comment">// expiration</span>
+    sub: string; <span class="hljs-comment">// subject - "payment_confirmation"</span>
+
+    sender_user_id: string; <span class="hljs-comment">// sender user identifier - same value as given by register</span>
+    recipient_user_id: string; <span class="hljs-comment">// recipient user identifier - same value as given by register</span>
+    offer_id: string; <span class="hljs-comment">// offer unique id - generated by application server</span>
+    payment: {
+        <span class="hljs-attr">blockchain</span>: string; <span class="hljs-comment">// identifier of the blockchain network the transaction was made on</span>
+        transaction_id: string; <span class="hljs-comment">// stellar identifier of the blockchain transaction</span>
+    }
+}
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpayisimv4cci6mtuynjizotaymiwic3viijoicgf5bwvudf9jb25maxjtyxrpb24ilcjvzmzlcl9pzci6ik8xmjmxmjmxmjmilcjzzw5kzxjfdxnlcl9pzci6invzzxi6zg9vzhkilcjyzwnpcgllbnrfdxnlcl9pzci6invzzxi6bml0emfuiiwicgf5bwvudci6eyjibg9ja2noywluijoic3rlbgxhci1tywlubmv0iiwidhjhbnnhy3rpb25fawqioij0cmfuc2fjdglvbjoxmjm0nsj9fq-abzofc69ey1it43rccoxluy-sjwsi4jfvqkvko9d2ugyu3jnpbecberlrqbhpsps6f26lvpisg5a81uqnoukw"></a><a href="#example-viewable-on-jwtio-https-jwtio-token-eyjhbgcioijfuzi1niisinr5cci6ikpxvcisimtpzci6innvbwvfawqifqeyjpyxqioje1mtyymzkwmjisimlzcyi6imtpayisimv4cci6mtuynjizotaymiwic3viijoicgf5bwvudf9jb25maxjtyxrpb24ilcjvzmzlcl9pzci6ik8xmjmxmjmxmjmilcjzzw5kzxjfdxnlcl9pzci6invzzxi6zg9vzhkilcjyzwnpcgllbnrfdxnlcl9pzci6invzzxi6bml0emfuiiwicgf5bwvudci6eyjibg9ja2noywluijoic3rlbgxhci1tywlubmv0iiwidhjhbnnhy3rpb25fawqioij0cmfuc2fjdglvbjoxmjm0nsj9fq-abzofc69ey1it43rccoxluy-sjwsi4jfvqkvko9d2ugyu3jnpbecberlrqbhpsps6f26lvpisg5a81uqnoukw" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://jwt.io/?token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayIsImV4cCI6MTUyNjIzOTAyMiwic3ViIjoicGF5bWVudF9jb25maXJtYXRpb24iLCJvZmZlcl9pZCI6Ik8xMjMxMjMxMjMiLCJzZW5kZXJfdXNlcl9pZCI6InVzZXI6ZG9vZHkiLCJyZWNpcGllbnRfdXNlcl9pZCI6InVzZXI6bml0emFuIiwicGF5bWVudCI6eyJibG9ja2NoYWluIjoic3RlbGxhci1tYWlubmV0IiwidHJhbnNhY3Rpb25faWQiOiJ0cmFuc2FjdGlvbjoxMjM0NSJ9fQ.-AbZOfC69eY1It43RccOXluY-sjWSi4JFvQkVKO9D2UgYU3jNPbEcBERLrqBHPSpS6f26LVpIsg5A81UQNoukw">Example (viewable on jwt.io)</a></h5>
+<pre><code class="hljs"><span class="hljs-selector-tag">eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbWVfaWQifQ</span><span class="hljs-selector-class">.eyJpYXQiOjE1MTYyMzkwMjIsImlzcyI6ImtpayIsImV4cCI6MTUyNjIzOTAyMiwic3ViIjoicGF5bWVudF9jb25maXJtYXRpb24iLCJvZmZlcl9pZCI6Ik8xMjMxMjMxMjMiLCJzZW5kZXJfdXNlcl9pZCI6InVzZXI6ZG9vZHkiLCJyZWNpcGllbnRfdXNlcl9pZCI6InVzZXI6bml0emFuIiwicGF5bWVudCI6eyJibG9ja2NoYWluIjoic3RlbGxhci1tYWlubmV0IiwidHJhbnNhY3Rpb25faWQiOiJ0cmFuc2FjdGlvbjoxMjM0NSJ9fQ</span><span class="hljs-selector-class">.-AbZOfC69eY1It43RccOXluY-sjWSi4JFvQkVKO9D2UgYU3jNPbEcBERLrqBHPSpS6f26LVpIsg5A81UQNoukw</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="kin-jwt-public-keys-a-name-publickeys-a"></a><a href="#kin-jwt-public-keys-a-name-publickeys-a" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kin JWT Public keys <a name="PublicKeys"></a></h2>
+<p>Public keys should be used by the Application server to verify Kin server responses. Kin server provides a list of a possible public keys and their corresponding key id. The key id, will appear as <code>kid</code> field in JWT header (see <a href="#BuildJWT">Building the JWT Token</a>) and it will be used by the Application server to match the public key to the JWT response.<br>
+The public keys can be accessed on Kin server under <code>config</code> request:</p>
+<ul>
+<li><a href="https://api.developers.kinecosystem.com/v1/config">Playground - https://api.developers.kinecosystem.com/v1/config</a></li>
+</ul>
+<p>Config request will return a json that contain the jwt keys inside <code>jwt_keys</code> object:</p>
+<h5><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h5>
+<pre><code class="hljs css language-js">{  
+   <span class="hljs-string">"jwt_keys"</span>:{  
+      <span class="hljs-string">"es256_25736782-e7a3-4964-bb6c-dd5b2be9774f"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE5qZcnsSc8mzt3okkDcaYwrH5WrqGa4nm\nsL2HvggEajeLKMHQsnC1Ffh/aTc0BAJUdNjuDiDwhWEPLAlDWT5QQw==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_4b2cc4be-4227-4cad-a543-2b2cb1154a85"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE5VrjZ3t1LuZpbb+eP18yYc0DliSXMlLJ\nUM19r3r6J8cXS4qyy//qZEXZhMXT2+l0OK5eSH0iJb7jaSLDKikDcg==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_58d0a66d-3295-4eb0-a941-461e04ffd03c"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE1QDcI/dMeVvJMbjqOSL+Hob2y7+5feoH\n0R85S37hmm6nfJYA/BsxFOAzcYy81soIrEMqhJ0aIFm4rkT1ZyshvQ==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_607aeb50-5dfa-465a-a329-779f0576c59b"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAErQLvT6MybuJsqRP1Q6UT5d0uTkYrGE4a\n1LsVl6PqtUgfIHe/UN9ZiHsyJwFpiqSeczKxFmYJ7q4g7xAK+lGEnQ==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_86aad391-42f1-44b5-808e-12b7bdd37458"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEfNRr7lPPbah4rhr1/44cHUpYe9UqNGbR\nvvSK7HTJmtDHjXa2rnPpor5jogslos33yPHr0ObeZQGF+wPdSMbb2w==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_a70882db-99cf-4f82-b1b1-1197d993d0d3"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEdA9wK35fBym0dPVicj7WJW2m3HrUu9Ua\neWa0+RyYYk0MQVtTblr2dNl5B4QT6QcLmGPc/eqIQ6028uquTnhrHA==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_c24d9feb-3afd-4fe1-8b06-0c20674ab904"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEbyBVnaSwQGwfpRI43DTQDQg9hcp8j/Vc\n69rrH/WOr397oe2dDzk4WcfmlgS7SUI0DUt+qf3AECxfStYrmMaiaw==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_e78a9ea4-1e95-477c-8ab8-9e5c7c2561d2"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAELS3yPKy+/KC2kN0KgFQ9EE3YNiyviKHy\nwhlKTPuNDQatJDCstYpGXidlGzSgCXB6Vzpm5/0QVUYGCHgYHeSWBw==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_f54ac750-efd7-40b5-9cea-1a0d7ad675cc"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEiySHgDD4CKx9drgWZ1FzF/+ICFBk0U5X\nAIr6v1Dzxir8bNm6yZLMb17A7iiRXejvOJTCHkw42SS6MDSJ0ZZKyA==\n-----END PUBLIC KEY-----\n"</span>
+      },
+      <span class="hljs-string">"es256_fa844718-945a-470e-ae25-c96dbee57da6"</span>:{  
+         <span class="hljs-string">"algorithm"</span>:<span class="hljs-string">"ES256"</span>,
+         <span class="hljs-string">"key"</span>:<span class="hljs-string">"-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE7AulD8kXdYPJlYnlXjtqFeZ67GQvjM1c\nTR0EgGbZtysWbdUIWoPVMaZEf7zRrr3xU2JybHg05s++Ikq0TRntJw==\n-----END PUBLIC KEY-----\n"</span>
+      }
+   },
+   <span class="hljs-string">"blockchain"</span>:{  
+      <span class="hljs-string">"asset_code"</span>:<span class="hljs-string">"KIN"</span>,
+      <span class="hljs-string">"asset_issuer"</span>:<span class="hljs-string">"GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"</span>,
+      <span class="hljs-string">"horizon_url"</span>:<span class="hljs-string">"https://horizon-playground.kininfrastructure.com"</span>,
+      <span class="hljs-string">"network_passphrase"</span>:<span class="hljs-string">"Kin Playground Network ; June 2018"</span>
+   },
+   <span class="hljs-string">"bi_service"</span>:<span class="hljs-string">"https://kin-bi.appspot.com/eco_"</span>,
+   <span class="hljs-string">"webview"</span>:<span class="hljs-string">"https://s3.amazonaws.com/assets.kinplayground.com/web-offers/cards-based/index.html"</span>,
+   <span class="hljs-string">"environment_name"</span>:<span class="hljs-string">"playground"</span>,
+   <span class="hljs-string">"ecosystem_service"</span>:<span class="hljs-string">"https://api.kinplayground.com"</span>
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/kin-ecosystem-sdk-docs/docs/sdk-components.html">← SDK Components</a><a class="docs-next button" href="/kin-ecosystem-sdk-docs/docs/jwt-service.html">JWT Service →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#whitelist-vs-jwt-a-name-whitelistnote-a">Whitelist vs JWT</a><ul class="toc-headings"><li><a href="#whitelist-authentication">Whitelist authentication</a></li><li><a href="#jwt-authentication">JWT authentication</a></li></ul></li><li><a href="#building-the-jwt-token-a-name-buildjwt-a">Building the JWT Token</a></li><li><a href="#jwt-service-a-helper-tool-for-handling-jwt-tokens-a-name-jwtservice-a">JWT Service - A Helper Tool For Handling JWT Tokens</a></li><li><a href="#jwt-requests-a-name-jwtrequests">JWT Requests</a><ul class="toc-headings"><li><a href="#register-payload-a-name-registerpayload">Register payload</a></li><li><a href="#spend-payload-a-name-spendpayload">Spend payload</a></li><li><a href="#earn-payload-a-name-earnpayload">Earn payload</a></li><li><a href="#paymentconfirmation-payload-a-name-paymentconfirmation-a">PaymentConfirmation payload</a></li></ul></li><li><a href="#kin-jwt-public-keys-a-name-publickeys-a">Kin JWT Public keys</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Docs</h5><a href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a><a href="/kin-ecosystem-sdk-docs/docs/android.html">Android</a><a href="/kin-ecosystem-sdk-docs/docs/ios.html">IOS</a></div><div><h5>Reddit</h5><a href="https://www.reddit.com/r/KinFoundation/" target="_blank" rel="noreferrer noopener">r/KinFoundation</a><h5>Telegram</h5><a href="https://t.me/KinAnnouncements" target="_blank" rel="noreferrer noopener">Announcements</a><a href="https://t.me/kinfoundation" target="_blank" rel="noreferrer noopener">General</a><a href="https://t.me/kincurrency" target="_blank" rel="noreferrer noopener">Currency</a><a href="https://t.me/kintechnology" target="_blank" rel="noreferrer noopener">Technology</a></div><div><h5>More</h5><a href="https://medium.com/kinfoundation" target="_blank" rel="noreferrer noopener">Kin Blog</a><a href="https://medium.com/inside-kin" target="_blank" rel="noreferrer noopener">Inside Kin Blog</a><a href="https://twitter.com/kin_foundation" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.youtube.com/channel/UCZ0z9fRKhW-GEjQs-_Jxfyg" target="_blank" rel="noreferrer noopener">YouTube</a><a href="https://kinecosystem.org" target="_blank" rel="noreferrer noopener">Kin Ecosystem</a></div></section><section class="copyright">Copyright © 2018 Kin Ecosystem</section></footer></div></body></html>

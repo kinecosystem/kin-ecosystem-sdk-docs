@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Common Flows · Kin Developer Program</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The following sections details how to implement some common workflows using the SDK."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Common Flows · Kin Developer Program"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kinecosystem.github.io/kin-ecosystem-sdk-docs//kin-ecosystem-sdk-docs/index.html"/><meta property="og:description" content="The following sections details how to implement some common workflows using the SDK."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/kin-ecosystem-sdk-docs/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/kin-ecosystem-sdk-docs/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/kin-ecosystem-sdk-docs/"><img class="logo" src="/kin-ecosystem-sdk-docs/img/Kin_ecosystem_logo.svg" alt="Kin Developer Program"/><h2 class="headerTitleWithLogo">Kin Developer Program</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/kin-ecosystem-sdk-docs/docs/intro.html" target="_self">Guides</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guides</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/intro.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/sdk-components.html">SDK Components</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt.html">Authentication and JWT</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt-service.html">JWT Service</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/common-flows.html">Common Flows</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/android-guide.html">Android</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/ios-guide.html">iOS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/faq-sdk.html">SDK FAQ</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/kinecosystem/kin-ecosystem-sdk-docs/tree/master/docs/common-flows.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Common Flows</h1></header><article><div><span><p>The following sections details how to implement some common workflows using the SDK.</p>
+<div class="toggler">
+  <ul role="tablist" >
+   <li id="android" class="button-android" aria-selected="false" role="tab" tabindex="0" aria-controls="androidtab" onclick="displayTab('platform', 'android')">
+      Android
+    </li>
+    <li id="ios" class="button-ios" aria-selected="false" role="tab" tabindex="-1" aria-controls="iostab" onclick="displayTab('platform', 'ios')">
+      iOS
+    </li>
+  </ul>
+</div>
+<p><block class="android ios" /></p>
+<h2><a class="anchor" aria-hidden="true" id="custom-spend-offer"></a><a href="#custom-spend-offer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Spend Offer</h2>
+<p>A custom Spend offer allows your users to unlock unique spend opportunities that you define within your app, Custom offers are created by your app, as opposed to built-in offers displayed in the Kin Marketplace offer wall.<br>
+Your app displays the offer, request user approval, and then performing the purchase using the <code>purchase</code> API.</p>
+<h3><a class="anchor" aria-hidden="true" id="purchase-payment"></a><a href="#purchase-payment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Purchase Payment</h3>
+<ol>
+<li><p>Create a JWT that represents a <a href="jwt#SpendPayload">Spend offer JWT</a> signed by your application server. The fastest way for building JWT tokens is to use the <a href="jwt-service">JWT Service</a>.<br>
+Once you have the JWT Service set up, perform a <a href="jwt-service#Spend">Spend query</a>,
+the service will response with the generated signed JWT token.</p></li>
+<li><p>Call <code>purchase</code> method, while passing the JWT you built and a callback function that will receive purchase confirmation.</p></li>
+</ol>
+<blockquote>
+<p>The following snippet is taken from the SDK Sample App, in which the JWT is created and signed by the Android client side for presentation purposes only. Do not use this method in production! In production, the JWT must be signed by the server, with a secure private key.</p>
+</blockquote>
+<p><block class="android" /></p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+    Kin.purchase(offerJwt, <span class="hljs-keyword">new</span> KinCallback&lt;OrderConfirmation&gt;() {
+        <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(OrderConfirmation orderConfirmation)</span> </span>{
+            <span class="hljs-comment">// OrderConfirmation will be called once Kin received the payment transaction from user.</span>
+            <span class="hljs-comment">// OrderConfirmation can be kept on digital service side as a receipt proving user received his Kin.</span>
+            <span class="hljs-comment">// Send confirmation JWT back to the server in order prove that the user completed</span>
+            <span class="hljs-comment">// the blockchain transaction and purchase can be unlocked for this user.</span>
+            System.out.println(<span class="hljs-string">"Succeed to create native spend.\n jwtConfirmation: "</span> + orderConfirmation.getJwtConfirmation());                
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(KinEcosystemException exception)</span> </span>{
+            System.out.println(<span class="hljs-string">"Failed - "</span> + error.getMessage());
+        }
+    });
+} <span class="hljs-keyword">catch</span> (ClientException e) {
+    e.printStackTrace();
+}
+</code></pre>
+<p><block class="ios" /></p>
+<pre><code class="hljs css language-swift"><span class="hljs-type">Kin</span>.shared.purchase(offerJWT: encodedNativeOffer) { jwtConfirmation, error <span class="hljs-keyword">in</span>
+  <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> confirm = jwtConfirmation {
+    <span class="hljs-comment">// jwtConfirmation can be kept on digital service side as a receipt proving user received his Kin.</span>
+    <span class="hljs-comment">// Send confirmation JWT back to the server in order prove that the user completed</span>
+    <span class="hljs-comment">// the blockchain transaction and purchase can be unlocked for this user.</span>
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> e = error {
+    <span class="hljs-comment">// handle error</span>
+  }
+}
+</code></pre>
+<p><block class="android ios" /></p>
+<ol start="3">
+<li>Complete the purchase after you receive confirmation from the Kin Server that the funds were transferred successfully.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="adding-to-the-marketplace"></a><a href="#adding-to-the-marketplace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding to the Marketplace</h3>
+<p>The Kin Marketplace offer wall displays built-in offers, which are served by Kin.<br>
+Their purpose is to provide users with opportunities to earn initial Kin funding, which they can later spend on spend offers provided by hosting apps.</p>
+<p>You can also choose to display a banner for your custom offer in the Kin Marketplace offer wall. This serves as additional &quot;real estate&quot; in which to let the user know about custom offers within your app. When the user clicks on your custom Spend offer in the Kin Marketplace, your app is notified, and then it continues to manage the offer activity in its own UX flow.</p>
+<blockquote>
+<p><strong>NOTE:</strong> You will need to actively launch the Kin Marketplace offer wall so your user can see the offers you added to it.</p>
+</blockquote>
+<p><block class="android" /></p>
+<ol>
+<li>Create a <code>NativeSpendOffer</code> object as in the example below.</li>
+</ol>
+<pre><code class="hljs css language-java">NativeSpendOffer nativeOffer =
+        <span class="hljs-keyword">new</span> NativeSpendOffer(<span class="hljs-string">"The offerID"</span>) <span class="hljs-comment">// An unique offer id</span>
+            .title(<span class="hljs-string">"Offer Title"</span>) <span class="hljs-comment">// Title to display with offer</span>
+            .description(<span class="hljs-string">"Offer Description"</span>) <span class="hljs-comment">// Description to display with offer</span>
+            .amount(<span class="hljs-number">100</span>) <span class="hljs-comment">// Purchase amount in Kin</span>
+            .image(<span class="hljs-string">"Image URL"</span>); <span class="hljs-comment">// Image to display with offer</span>
+</code></pre>
+<ol start="2">
+<li>Create a <code>NativeOfferObserver</code> object to be notified when the user clicks on your offer in the Kin Marketplace.</li>
+</ol>
+<blockquote>
+<p><strong>NOTE:</strong> You can remove the Observer by calling <code>Kin.removeNativeOfferClickedObserver(...)</code>.</p>
+</blockquote>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addNativeOfferClickedObserver</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">try</span> {
+        Kin.addNativeOfferClickedObserver(getNativeOfferClickedObserver());
+    } <span class="hljs-keyword">catch</span> (TaskFailedException e) {
+        showToast(<span class="hljs-string">"Could not add native offer callback"</span>);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> Observer&lt;NativeSpendOffer&gt; <span class="hljs-title">getNativeOfferClickedObserver</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (nativeSpendOfferClickedObserver == <span class="hljs-keyword">null</span>) {
+        nativeSpendOfferClickedObserver = <span class="hljs-keyword">new</span> Observer&lt;NativeSpendOffer&gt;() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onChanged</span><span class="hljs-params">(NativeSpendOffer value)</span> </span>{
+                Intent nativeOfferIntent = NativeOfferActivity.createIntent(MainActivity.<span class="hljs-keyword">this</span>, value.getTitle());
+                startActivity(nativeOfferIntent);
+            }
+        };
+    }
+    <span class="hljs-keyword">return</span> nativeSpendOfferClickedObserver;
+}
+</code></pre>
+<ol start="3">
+<li>Call <code>Kin.addNativeOffer(...)</code>.</li>
+</ol>
+<blockquote>
+<p><strong>NOTE:</strong> Each new offer is added as the first offer in Spend Offers list the Marketplace displays.</p>
+</blockquote>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">if</span> (Kin.addNativeOffer(nativeSpendOffer)) {
+        <span class="hljs-comment">// Native offer added</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Native offer already in Kin Marketplace</span>
+    }
+} <span class="hljs-keyword">catch</span> (ClientException error) {
+    ...
+}
+</code></pre>
+<p><block class="ios" /></p>
+<ol>
+<li>Create a <code>NativeSpendOffer</code> struct as in the example below.</li>
+</ol>
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">let</span> offer = <span class="hljs-type">NativeOffer</span>(id: <span class="hljs-string">"offer id"</span>, <span class="hljs-comment">// OfferId must be a UUID</span>
+                        title: <span class="hljs-string">"offer title"</span>,
+                        description: <span class="hljs-string">"offer description"</span>,
+                        amount: <span class="hljs-number">1000</span>,
+                        image: <span class="hljs-string">"an image URL string"</span>,
+                        isModal: <span class="hljs-literal">true</span>)
+</code></pre>
+<blockquote>
+<p>Note: setting a native offer's <code>isModal</code> property to true means that when a user taps on the native offer, the marketplace will first close (dismiss) before invoking the native offer's handler, if set. The default value is false.</p>
+</blockquote>
+<ol start="2">
+<li>Set the  <code>nativeOfferHandler</code> closure on Kin.shared to receive a callback when the native offer has been tapped.<br>
+The callback is of the form <code>public var nativeOfferHandler: ((NativeOffer) -&gt; ())?</code></li>
+</ol>
+<pre><code class="hljs css language-swift"><span class="hljs-comment">// example from the sample app:</span>
+<span class="hljs-type">Kin</span>.shared.nativeOfferHandler = { offer <span class="hljs-keyword">in</span>
+            <span class="hljs-type">DispatchQueue</span>.main.async {
+                <span class="hljs-keyword">let</span> alert = <span class="hljs-type">UIAlertController</span>(title: <span class="hljs-string">"Native Offer"</span>, message: <span class="hljs-string">"You tapped a native offer and the handler was invoked."</span>, preferredStyle: .alert)
+                alert.addAction(<span class="hljs-type">UIAlertAction</span>(title: <span class="hljs-string">"Close"</span>, style: .cancel, handler: { [<span class="hljs-keyword">weak</span> alert] action <span class="hljs-keyword">in</span>
+                    alert?.dismiss(animated: <span class="hljs-literal">true</span>, completion: <span class="hljs-literal">nil</span>)
+                }))
+
+                <span class="hljs-keyword">let</span> presentor = <span class="hljs-keyword">self</span>.presentedViewController ?? <span class="hljs-keyword">self</span>
+                presentor.present(alert, animated: <span class="hljs-literal">true</span>, completion: <span class="hljs-literal">nil</span>)
+            }
+        }
+</code></pre>
+<ol start="3">
+<li>Add the native offer you created in the following way:</li>
+</ol>
+<blockquote>
+<p>Note: Each new offer is added as the first offer in Spend Offers list the Marketplace displays.</p>
+</blockquote>
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">do</span> {
+    <span class="hljs-keyword">try</span> <span class="hljs-type">Kin</span>.shared.add(nativeOffer: offer)
+} <span class="hljs-keyword">catch</span> {
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"failed to add native offer, error: <span class="hljs-subst">\(error)</span>"</span>)
+}
+</code></pre>
+<p><block class="android ios" /></p>
+<h3><a class="anchor" aria-hidden="true" id="removing-from-marketplace"></a><a href="#removing-from-marketplace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Removing from Marketplace</h3>
+<p><block class="android" />
+To remove a custom Spend offer from the Kin Marketplace, call <code>Kin.removeNativeOffer(...)</code>, passing the offer you want to remove.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">if</span> (Kin.removeNativeOffer(nativeSpendOffer)) {
+        <span class="hljs-comment">// Native offer removed</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Native offer isn't in Kin Marketplace</span>
+    }
+} <span class="hljs-keyword">catch</span> (ClientException e) {
+    ...
+}
+</code></pre>
+<p><block class="ios" /></p>
+<p>To remove a custom Spend offer from the Kin Marketplace, call <code>Kin.shared.remove(...)</code>, passing the offer you want to remove.</p>
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">do</span> {
+    <span class="hljs-keyword">try</span> <span class="hljs-type">Kin</span>.shared.remove(nativeOfferId: offer.id)
+} <span class="hljs-keyword">catch</span> {
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Failed to remove offer, error: <span class="hljs-subst">\(error)</span>"</span>)
+}
+</code></pre>
+<p><block class="android ios" /></p>
+<h2><a class="anchor" aria-hidden="true" id="custom-earn-offer"></a><a href="#custom-earn-offer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Earn Offer</h2>
+<p>A custom Earn offer allows your users to earn Kin as a reward for performing tasks you want to incentives, such as setting a profile picture or rating your app. Custom offers are created by your app, as opposed to built-in offers displayed in the Kin Marketplace offer wall.<br>
+Once the user has completed the task associated with the Earn offer, you request Kin payment for the user.</p>
+<h3><a class="anchor" aria-hidden="true" id="request-a-payment"></a><a href="#request-a-payment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Request A Payment</h3>
+<ol>
+<li><p>Create a JWT that represents a <a href="jwt#EarnPayload">Earn offer JWT</a> signed by your application server. The fastest way for building JWT tokens is to use the <a href="jwt-service">JWT Service</a>.<br>
+Once you have the JWT Service set up, perform a <a href="jwt-service#Earn">Earn query</a>,
+the service will response with the generated signed JWT token.</p></li>
+<li><p>Call <code>requestPayment</code> while passing the JWT you built and a callback function that will receive purchase confirmation.</p></li>
+</ol>
+<blockquote>
+<ul>
+<li>The following snippet is taken from the SDK Sample App, in which the JWT is created and signed by the Android client side for presentation purposes only. Do not use this method in production! In production, the JWT must be signed by the server, with a secure private key.</li>
+</ul>
+</blockquote>
+<p><block class="android" /></p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+    Kin.requestPayment(offerJwt, <span class="hljs-keyword">new</span> KinCallback&lt;OrderConfirmation&gt;() {
+        <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(OrderConfirmation orderConfirmation)</span> </span>{
+                <span class="hljs-comment">// Callback will be called once payment transaction to the user completed successfully.</span>
+                <span class="hljs-comment">// jwtConfirmation can be kept on digital service side as a receipt proving user received his Kin.</span>
+                System.out.println(<span class="hljs-string">"Succeed to create native earn.\n jwtConfirmation: "</span> + orderConfirmation.getJwtConfirmation());
+            }
+
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(KinEcosystemException exception)</span> </span>{
+                System.out.println(<span class="hljs-string">"Failed - "</span> + exception.getMessage());
+            }
+        });
+}
+<span class="hljs-keyword">catch</span> (ClientException exception) {
+    exception.printStackTrace();
+}
+</code></pre>
+<p><block class="ios" /></p>
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">let</span> handler: <span class="hljs-type">ExternalOfferCallback</span> = { jwtConfirmation, error <span class="hljs-keyword">in</span>  
+    <span class="hljs-keyword">let</span> alert = <span class="hljs-type">UIAlertController</span>(title: <span class="hljs-literal">nil</span>, message: <span class="hljs-literal">nil</span>, preferredStyle: .alert)
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> confirm = jwtConfirmation {
+        <span class="hljs-comment">// Callback will be called once payment transaction to the user completed successfully.</span>
+        <span class="hljs-comment">// jwtConfirmation can be kept on digital service side as a receipt proving user received his Kin.</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> e = error {
+        <span class="hljs-comment">//handle error</span>
+    }  
+}
+
+<span class="hljs-type">Kin</span>.shared.requestPayment(offerJWT: encodedJWT, completion: handler)
+</code></pre>
+<p><block class="android ios" /></p>
+<h2><a class="anchor" aria-hidden="true" id="custom-pay-to-user-offer"></a><a href="#custom-pay-to-user-offer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Pay To User Offer</h2>
+<p>A custom pay to user offer allows your users to unlock unique spend opportunities that you define within your app offered by other users.
+(Custom offers are created by your app, as opposed to built-in offers displayed in the Kin Marketplace offer wall.<br>
+Your app displays the offer, request user approval, and then performing the purchase using the <code>payToUser</code> API.</p>
+<h3><a class="anchor" aria-hidden="true" id="pay-to-user"></a><a href="#pay-to-user" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pay to user</h3>
+<p><em>To request payment for a custom Pay To User offer:</em></p>
+<ol>
+<li>Create a JWT that represents a <a href="jwt#PayToUserPayload">Pay to User offer JWT</a> signed by your application server. The fastest way for building JWT tokens is to use the <a href="jwt-service">JWT Service</a>.<br>
+Once you have the JWT Service set up, perform a <a href="jwt-service#PayToUser">Pay To User query</a>,
+the service will response with the generated signed JWT token.</li>
+</ol>
+<ol start="2">
+<li>Call <code>Kin.payToUser(...)</code>, while passing the JWT you built and a callback function that will receive purchase confirmation.</li>
+</ol>
+<blockquote>
+<p>The following snippet is taken from the SDK Sample App, in which the JWT is created and signed by the Android client side for presentation purposes only. Do not use this method in production! In production, the JWT must be signed by the server, with a secure private key.</p>
+</blockquote>
+<p><block class="android" /></p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+    Kin.payToUser(offerJwt, <span class="hljs-keyword">new</span> KinCallback&lt;OrderConfirmation&gt;() {
+        <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(OrderConfirmation orderConfirmation)</span> </span>{
+            <span class="hljs-comment">// OrderConfirmation will be called once Kin received the payment transaction from user.</span>
+            <span class="hljs-comment">// OrderConfirmation can be kept on digital service side as a receipt proving user received his Kin.</span>
+            <span class="hljs-comment">// Send confirmation JWT back to the server in order prove that the user completed</span>
+            <span class="hljs-comment">// the blockchain transaction and purchase can be unlocked for this user.</span>
+            System.out.println(<span class="hljs-string">"Succeed to create native spend.\n jwtConfirmation: "</span> + orderConfirmation.getJwtConfirmation());                
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(KinEcosystemException exception)</span> </span>{
+            System.out.println(<span class="hljs-string">"Failed - "</span> + error.getMessage());
+        }
+    });
+} <span class="hljs-keyword">catch</span> (ClientException e) {
+    e.printStackTrace();
+}
+</code></pre>
+<p><block class="ios" /></p>
+<pre><code class="hljs css language-swift"><span class="hljs-type">Kin</span>.shared.payToUser(offerJWT: encodedNativeOffer) { jwtConfirmation, error <span class="hljs-keyword">in</span>
+  <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> confirm = jwtConfirmation {
+    <span class="hljs-comment">// jwtConfirmation can be kept on digital service side as a receipt proving user received his Kin.</span>
+    <span class="hljs-comment">// Send confirmation JWT back to the server in order prove that the user completed</span>
+    <span class="hljs-comment">// the blockchain transaction and purchase can be unlocked for this user.</span>
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> e = error {
+    <span class="hljs-comment">// handle error</span>
+  }
+}
+</code></pre>
+<p><block class="android ios" /></p>
+<ol start="3">
+<li>Complete the pay to user offer after you receive confirmation from the Kin Server that the funds were transferred successfully.</li>
+</ol>
+<p><block class="android" /></p>
+<h2><a class="anchor" aria-hidden="true" id="requesting-an-order-confirmation"></a><a href="#requesting-an-order-confirmation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Requesting an Order Confirmation</h2>
+<p>In the normal flow of a transaction, you will receive an order confirmation from the Kin Server through the offers APIs callback function. This indicates that the transaction was completed. But if you missed this notification for any reason, for example, because the user closed the app before it arrived, or the app closed due to some error, you can request confirmation for an order according to its ID.</p>
+<p>Call <code>Kin.getOrderConfirmation(...)</code>, while passing the order’s ID and implementing the appropriate callback functions.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+    Kin.getOrderConfirmation(<span class="hljs-string">"your_offer_id"</span>, <span class="hljs-keyword">new</span> KinCallback&lt;OrderConfirmation&gt;() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(OrderConfirmation orderConfirmation)</span> </span>{
+                <span class="hljs-keyword">if</span>(orderConfirmation.getStatus() == Status.COMPLETED ){
+                    String jwtConfirmation = orderConfirmation.getJwtConfirmation()
+                }
+            }
+
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(KinEcosystemException exception)</span> </span>{
+                ...
+            }
+    });
+} <span class="hljs-keyword">catch</span> (ClientException exception) {
+    ...
+}
+</code></pre>
+<p><block class="ios" /></p>
+<script>
+  function displayTab(type, value) {
+    var container = document.getElementsByTagName('block')[0].parentNode;
+    container.className = 'display-' + type + '-' + value + ' ' +
+      container.className.replace(RegExp('display-' + type + '-[a-z]+ ?'), '');
+  }
+  function convertBlocks() {
+    // Convert <div>...<span><block /></span>...</div>
+    // Into <div>...<block />...</div>
+    var blocks = document.querySelectorAll('block');
+    for (var i = 0; i < blocks.length; ++i) {
+      var block = blocks[i];
+      var span = blocks[i].parentNode;
+      var container = span.parentNode;
+      container.insertBefore(block, span);
+      container.removeChild(span);
+    }
+    // Convert <div>...<block />content<block />...</div>
+    // Into <div>...<block>content</block><block />...</div>
+    blocks = document.querySelectorAll('block');
+    for (var i = 0; i < blocks.length; ++i) {
+      var block = blocks[i];
+      while (
+        block.nextSibling &&
+        block.nextSibling.tagName !== 'BLOCK'
+      ) {
+        block.appendChild(block.nextSibling);
+      }
+    }
+  }
+  function guessPlatformAndOS() {
+    if (!document.querySelector('block')) {
+      return;
+    }
+    // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
+    // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
+    var foundHash = false;
+    if (
+      window.location.hash !== '' &&
+      window.location.hash !== 'content'
+    ) {
+      // content is default
+      var hashLinks = document.querySelectorAll(
+        'a.hash-link'
+      );
+      for (
+        var i = 0;
+        i < hashLinks.length && !foundHash;
+        ++i
+      ) {
+        if (hashLinks[i].hash === window.location.hash) {
+          var parent = hashLinks[i].parentElement;
+          while (parent) {
+            if (parent.tagName === 'BLOCK') {
+              // Could be more than one target os and dev platform, but just choose some sort of order
+              // of priority here.
+              // Target Platform
+              if (parent.className.indexOf('ios') > -1) {
+                displayTab('platform', 'ios');
+                foundHash = true;
+              } else if (
+                parent.className.indexOf('android') > -1
+              ) {
+                displayTab('platform', 'android');
+                foundHash = true;
+              } else {
+                break;
+              }
+            }
+            parent = parent.parentElement;
+          }
+        }
+      }
+    }
+    // Do the default if there is no matching hash
+    if (!foundHash) {
+      var isMac = navigator.platform === 'MacIntel';
+      var isWindows = navigator.platform === 'Win32';
+      displayTab('platform', isMac ? 'ios' : 'android');
+    }
+  }
+  convertBlocks();
+  guessPlatformAndOS();
+</script>
+<style>
+  .toggler li {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    padding: 10px;
+    margin: 0px 2px 0px 2px;
+    border: 1px solid #05A5D1;
+    border-bottom-color: transparent;
+    border-radius: 3px 3px 0px 0px;
+    color: #05A5D1;
+    background-color: transparent;
+    font-size: 0.99em;
+    cursor: pointer;
+  }
+  .toggler li:first-child {
+    margin-left: 0;
+  }
+  .toggler li:last-child {
+    margin-right: 0;
+  }
+  .toggler ul {
+    width: 100%;
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    border-bottom: 1px solid #05A5D1;
+    cursor: default;
+  }
+  @media screen and (max-width: 960px) {
+    .toggler li,
+    .toggler li:first-child,
+    .toggler li:last-child {
+      display: block;
+      border-bottom-color: #05A5D1;
+      border-radius: 3px;
+      margin: 2px 0px 2px 0px;
+    }
+    .toggler ul {
+      border-bottom: 0;
+    }
+  }
+  .toggler a {
+    display: inline-block;
+    padding: 10px 5px;
+    margin: 2px;
+    border: 1px solid #05A5D1;
+    border-radius: 3px;
+    text-decoration: none !important;
+  }
+  .display-platform-ios .toggler .button-ios,
+  .display-platform-android .toggler .button-android {
+    background-color: #05A5D1;
+    color: white;
+  }
+  block { display: none; }
+  .display-platform-ios .ios,
+  .display-platform-android .android {
+    display: block;
+  }
+</style></span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/kin-ecosystem-sdk-docs/docs/getting-started.html">← Getting Started</a><a class="docs-next button" href="/kin-ecosystem-sdk-docs/docs/android-guide.html">Kin Android SDK →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#custom-spend-offer">Custom Spend Offer</a><ul class="toc-headings"><li><a href="#purchase-payment">Purchase Payment</a></li><li><a href="#adding-to-the-marketplace">Adding to the Marketplace</a></li><li><a href="#removing-from-marketplace">Removing from Marketplace</a></li></ul></li><li><a href="#custom-earn-offer">Custom Earn Offer</a><ul class="toc-headings"><li><a href="#request-a-payment">Request A Payment</a></li></ul></li><li><a href="#custom-pay-to-user-offer">Custom Pay To User Offer</a><ul class="toc-headings"><li><a href="#pay-to-user">Pay to user</a></li></ul></li><li><a href="#requesting-an-order-confirmation">Requesting an Order Confirmation</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Docs</h5><a href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a><a href="/kin-ecosystem-sdk-docs/docs/android.html">Android</a><a href="/kin-ecosystem-sdk-docs/docs/ios.html">IOS</a></div><div><h5>Reddit</h5><a href="https://www.reddit.com/r/KinFoundation/" target="_blank" rel="noreferrer noopener">r/KinFoundation</a><h5>Telegram</h5><a href="https://t.me/KinAnnouncements" target="_blank" rel="noreferrer noopener">Announcements</a><a href="https://t.me/kinfoundation" target="_blank" rel="noreferrer noopener">General</a><a href="https://t.me/kincurrency" target="_blank" rel="noreferrer noopener">Currency</a><a href="https://t.me/kintechnology" target="_blank" rel="noreferrer noopener">Technology</a></div><div><h5>More</h5><a href="https://medium.com/kinfoundation" target="_blank" rel="noreferrer noopener">Kin Blog</a><a href="https://medium.com/inside-kin" target="_blank" rel="noreferrer noopener">Inside Kin Blog</a><a href="https://twitter.com/kin_foundation" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.youtube.com/channel/UCZ0z9fRKhW-GEjQs-_Jxfyg" target="_blank" rel="noreferrer noopener">YouTube</a><a href="https://kinecosystem.org" target="_blank" rel="noreferrer noopener">Kin Ecosystem</a></div></section><section class="copyright">Copyright © 2018 Kin Ecosystem</section></footer></div></body></html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Getting Started · Kin Developer Program</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Obtaining Authentication Credentials"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Getting Started · Kin Developer Program"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kinecosystem.github.io/kin-ecosystem-sdk-docs//kin-ecosystem-sdk-docs/index.html"/><meta property="og:description" content="## Obtaining Authentication Credentials"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/kin-ecosystem-sdk-docs/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/kin-ecosystem-sdk-docs/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/kin-ecosystem-sdk-docs/"><img class="logo" src="/kin-ecosystem-sdk-docs/img/Kin_ecosystem_logo.svg" alt="Kin Developer Program"/><h2 class="headerTitleWithLogo">Kin Developer Program</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/kin-ecosystem-sdk-docs/docs/intro.html" target="_self">Guides</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guides</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/intro.html">Introduction</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/sdk-components.html">SDK Components</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt.html">Authentication and JWT</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt-service.html">JWT Service</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/common-flows.html">Common Flows</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/android-guide.html">Android</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/ios-guide.html">iOS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/faq-sdk.html">SDK FAQ</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/kinecosystem/kin-ecosystem-sdk-docs/tree/master/docs/getting-started.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Getting Started</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="obtaining-authentication-credentials"></a><a href="#obtaining-authentication-credentials" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Obtaining Authentication Credentials</h2>
+<h3><a class="anchor" aria-hidden="true" id="whitelist"></a><a href="#whitelist" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Whitelist</h3>
+<p>Receive your api key and app-id.</p>
+<blockquote>
+<p><strong>Note:</strong> whitelist registration should be used only for a quick first-time integration or sanity test, see <a href="jwt#WhitelistNote">Whitelist limitations</a>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="jwt"></a><a href="#jwt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JWT</h3>
+<ul>
+<li>Generate your JWT key pair. (see <a href="#jwt-service">JWT Service</a>)</li>
+<li>Provide Kin with your JWT public keys.</li>
+<li>Receive your JWT issuer jss/app-id that will uniquely identify your application.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="integrate-client-sdk"></a><a href="#integrate-client-sdk" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integrate Client SDK</h2>
+<div class="toggler">
+  <ul role="tablist" >
+    <li id="android" class="button-android" aria-selected="false" role="tab" tabindex="0" aria-controls="androidtab" onclick="displayTab('platform', 'android')">
+      Android
+    </li>
+    <li id="ios" class="button-ios" aria-selected="false" role="tab" tabindex="-1" aria-controls="iostab" onclick="displayTab('platform', 'ios')">
+      iOS
+    </li>   
+  </ul>
+</div>
+</br>
+<h3><a class="anchor" aria-hidden="true" id="add-client-sdk-to-your-app"></a><a href="#add-client-sdk-to-your-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Client SDK To Your App</h3>
+<p><block class="android" /></p>
+<p>Add the following lines to your project module's <code>build.gradle</code> file.</p>
+<pre><code class="hljs css language-gradle"> <span class="hljs-keyword">repositories</span> {
+     ...
+     maven {
+         url <span class="hljs-string">'https://jitpack.io'</span>
+     }
+ }
+</code></pre>
+<p>Add the following lines to the app module's <code>build.gradle</code> file.</p>
+<pre><code class="hljs css language-gradle"> <span class="hljs-keyword">dependencies</span> {
+     ...
+     implementation <span class="hljs-string">'com.github.kinecosystem:kin-devplatform-android:&lt;latest_version&gt;'</span>
+ }
+</code></pre>
+<p>Latest version can be found in <a href="https://github.com/kinecosystem/kin-devplatform-android/releases">github releases</a>.</p>
+<p><block class="ios" /></p>
+<p>The fastest way to get started with the sdk is with cocoapods (&gt;= 1.4.0).</p>
+<pre><code class="hljs"><span class="hljs-attribute">pod</span> <span class="hljs-string">'KinDevPlatform'</span>, <span class="hljs-string">'&lt;latest release&gt;'</span>
+</code></pre>
+<p>Latest version can be found in <a href="https://github.com/kinecosystem/kin-devplatform-ios/releases">github releases</a></p>
+<blockquote>
+<p>Notice for apps using swift 3.2: the pod installation will change your project's swift version target to 4.0<br>
+This is because the sdk uses swift 4.0, and cocoapods force the pod's swift version on the project. For now, you can manually change your project's swift version in the build setting. A better solution will be available soon.</p>
+</blockquote>
+<p><block class="ios android" /></p>
+<h2><a class="anchor" aria-hidden="true" id="initializing-the-sdk"></a><a href="#initializing-the-sdk" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initializing The SDK</h2>
+<h3><a class="anchor" aria-hidden="true" id="generating-registration-jwt"></a><a href="#generating-registration-jwt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating Registration JWT</h3>
+<p>The first step for Initializing the SDK is to build a <a href="jwt#RegisterPayload">registration JWT token</a> at application server side. The fastest way for building JWT tokens is to use the <a href="jwt-service">JWT Service</a>.<br>
+Once you have the JWT Service set up, perform a <a href="jwt-service#Register">Register query</a>.
+The service will respond with the generated signed JWT token Your app should be able to request this JWT generation on demand when SDK initialization is needed at the client side.</p>
+<blockquote>
+<p><strong>NOTE:</strong> It's important to generate the JWT Tokens and store the JWT private keys at your server side only.<br>
+The purpose of JWT is to establish a trusted communication between Kin server and your application server without relaying solely on the client.
+The client should not be allowed to request earn/spend without your server authorization, thus, the client should not keep the private keys and signs JWT tokens. The sample app does that only for the sake of simplification and serves as an example of client side APIs.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="initialize-client-sdk"></a><a href="#initialize-client-sdk" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initialize Client SDK</h3>
+<p><block class="android" /></p>
+<p>Call <code>Kin.start(...)</code>, passing the android context, the desired environment (playground/production) and your chosen authentication credentials (either whitelist or JWT credentials).</p>
+<h4><a class="anchor" aria-hidden="true" id="whitelist-1"></a><a href="#whitelist-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Whitelist:</h4>
+<pre><code class="hljs css language-java">whitelistData = <span class="hljs-keyword">new</span> WhitelistData(&lt;userID&gt;, &lt;appID&gt;, &lt;apiKey&gt;);
+<span class="hljs-keyword">try</span> {
+   Kin.start(getApplicationContext(), whitelistData,
+             Environment.getPlayground());
+} 
+<span class="hljs-keyword">catch</span> (ClientException | BlockchainException e) {
+   <span class="hljs-comment">// Handle exception…</span>
+}
+</code></pre>
+<p>userID - Your application’s unique unique identifier for the user<br>
+appID - Your application’s unique unique identifier as provided by Kin.<br>
+apiKey - Your secret apiKey as provided by Kin.</p>
+<h4><a class="anchor" aria-hidden="true" id="jwt-1"></a><a href="#jwt-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JWT:</h4>
+<p>Request a registration JWT from your server, once the client received this token, you can now start the sdk using this token.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+    String registrationJWT = getRegistrationJwtFromServer();
+    Kin.start(getApplicationContext(), registrationJWT, Environment.getPlayground());
+}
+<span class="hljs-keyword">catch</span> (ClientException | BlockchainException e) {
+   <span class="hljs-comment">// Handle exception…</span>
+}
+</code></pre>
+<p><block class="ios" /></p>
+<p>Call <code>Kin.shared.start(...)</code>, passing the desired environment (playground/production) and your chosen authentication credentials (either whitelist or JWT credentials).</p>
+<h4><a class="anchor" aria-hidden="true" id="whitelist-2"></a><a href="#whitelist-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Whitelist:</h4>
+<pre><code class="hljs css language-swift"><span class="hljs-type">Kin</span>.shared.start(userId: <span class="hljs-string">"myUserId"</span>, apiKey: <span class="hljs-string">"myAppKey"</span>, appId: <span class="hljs-string">"myAppId"</span>, environment: .playground)
+</code></pre>
+<p>userID - your application unique identifier for the user<br>
+appID - your application unique identifier as provided by Kin.<br>
+apiKey - your secret apiKey as provided by Kin.</p>
+<h4><a class="anchor" aria-hidden="true" id="jwt-2"></a><a href="#jwt-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JWT:</h4>
+<p>Request a registration JWT from your server. Once the client received this token, you may now start the SDK using this token</p>
+<pre><code class="hljs css language-swift"><span class="hljs-type">Kin</span>.shared.start(userId: <span class="hljs-string">"myUserId"</span>, jwt: registrationJWT, environment: .playground)
+</code></pre>
+<p><block class="ios android" /></p>
+<p>This will create the stack needed for running the SDK, All account creation and activation is handled for you by the sdk.<br>
+Because blockchain onboarding might take a few seconds, it is strongly recommended to call this function as soon as you can provide a user id.</p>
+<h3><a class="anchor" aria-hidden="true" id="launching-the-marketplace"></a><a href="#launching-the-marketplace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Launching The Marketplace</h3>
+<p>The final stage for activating a user is to launch the marketplace UI.<br>
+In the first time the SDK is used, the user must accept the Terms of Service before doing any earn/spend opportunity.</p>
+<p><block class="android" /></p>
+<p>For launching the Kin Marketplace offer wall, use <code>launchMarketplace</code> with an <code>Activity</code> object.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">try</span> {
+  Kin.launchMarketplace(activity);
+  System.out.println(<span class="hljs-string">"Public address : "</span> + Kin.getPublicAddress());
+} <span class="hljs-keyword">catch</span> (ClientException e) {
+    <span class="hljs-comment">// handle exception...</span>
+}
+</code></pre>
+<p><block class="ios"></p>
+<p>To launch the Kin Marketplace offer wall, from a viewController, simply call:</p>
+<pre><code class="hljs css language-swift"><span class="hljs-type">Kin</span>.shared.launchMarketplace(from: <span class="hljs-keyword">self</span>)
+</code></pre>
+<script>
+  function displayTab(type, value) {
+    var container = document.getElementsByTagName('block')[0].parentNode;
+    container.className = 'display-' + type + '-' + value + ' ' +
+      container.className.replace(RegExp('display-' + type + '-[a-z]+ ?'), '');
+  }
+  function convertBlocks() {
+    // Convert <div>...<span><block /></span>...</div>
+    // Into <div>...<block />...</div>
+    var blocks = document.querySelectorAll('block');
+    for (var i = 0; i < blocks.length; ++i) {
+      var block = blocks[i];
+      var span = blocks[i].parentNode;
+      var container = span.parentNode;
+      container.insertBefore(block, span);
+      container.removeChild(span);
+    }
+    // Convert <div>...<block />content<block />...</div>
+    // Into <div>...<block>content</block><block />...</div>
+    blocks = document.querySelectorAll('block');
+    for (var i = 0; i < blocks.length; ++i) {
+      var block = blocks[i];
+      while (
+        block.nextSibling &&
+        block.nextSibling.tagName !== 'BLOCK'
+      ) {
+        block.appendChild(block.nextSibling);
+      }
+    }
+  }
+  function guessPlatformAndOS() {
+    if (!document.querySelector('block')) {
+      return;
+    }
+    // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
+    // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
+    var foundHash = false;
+    if (
+      window.location.hash !== '' &&
+      window.location.hash !== 'content'
+    ) {
+      // content is default
+      var hashLinks = document.querySelectorAll(
+        'a.hash-link'
+      );
+      for (
+        var i = 0;
+        i < hashLinks.length && !foundHash;
+        ++i
+      ) {
+        if (hashLinks[i].hash === window.location.hash) {
+          var parent = hashLinks[i].parentElement;
+          while (parent) {
+            if (parent.tagName === 'BLOCK') {
+              // Could be more than one target os and dev platform, but just choose some sort of order
+              // of priority here.
+              // Target Platform
+              if (parent.className.indexOf('ios') > -1) {
+                displayTab('platform', 'ios');
+                foundHash = true;
+              } else if (
+                parent.className.indexOf('android') > -1
+              ) {
+                displayTab('platform', 'android');
+                foundHash = true;
+              } else {
+                break;
+              }
+            }
+            parent = parent.parentElement;
+          }
+        }
+      }
+    }
+    // Do the default if there is no matching hash
+    if (!foundHash) {
+      var isMac = navigator.platform === 'MacIntel';
+      var isWindows = navigator.platform === 'Win32';
+      displayTab('platform', isMac ? 'ios' : 'android');
+    }
+  }
+  convertBlocks();
+  guessPlatformAndOS();
+</script>
+<style>
+  .toggler li {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    padding: 10px;
+    margin: 0px 2px 0px 2px;
+    border: 1px solid #05A5D1;
+    border-bottom-color: transparent;
+    border-radius: 3px 3px 0px 0px;
+    color: #05A5D1;
+    background-color: transparent;
+    font-size: 0.99em;
+    cursor: pointer;
+  }
+  .toggler li:first-child {
+    margin-left: 0;
+  }
+  .toggler li:last-child {
+    margin-right: 0;
+  }
+  .toggler ul {
+    width: 100%;
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    border-bottom: 1px solid #05A5D1;
+    cursor: default;
+  }
+  @media screen and (max-width: 960px) {
+    .toggler li,
+    .toggler li:first-child,
+    .toggler li:last-child {
+      display: block;
+      border-bottom-color: #05A5D1;
+      border-radius: 3px;
+      margin: 2px 0px 2px 0px;
+    }
+    .toggler ul {
+      border-bottom: 0;
+    }
+  }
+  .toggler a {
+    display: inline-block;
+    padding: 10px 5px;
+    margin: 2px;
+    border: 1px solid #05A5D1;
+    border-radius: 3px;
+    text-decoration: none !important;
+  }
+  .display-platform-ios .toggler .button-ios,
+  .display-platform-android .toggler .button-android {
+    background-color: #05A5D1;
+    color: white;
+  }
+  block { display: none; }
+  .display-platform-ios .ios,
+  .display-platform-android .android {
+    display: block;
+  }
+</style>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/kin-ecosystem-sdk-docs/docs/jwt-service.html">← JWT Service</a><a class="docs-next button" href="/kin-ecosystem-sdk-docs/docs/common-flows.html">Common Flows →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#obtaining-authentication-credentials">Obtaining Authentication Credentials</a><ul class="toc-headings"><li><a href="#whitelist">Whitelist</a></li><li><a href="#jwt">JWT</a></li></ul></li><li><a href="#integrate-client-sdk">Integrate Client SDK</a><ul class="toc-headings"><li><a href="#add-client-sdk-to-your-app">Add Client SDK To Your App</a></li></ul></li><li><a href="#initializing-the-sdk">Initializing The SDK</a><ul class="toc-headings"><li><a href="#generating-registration-jwt">Generating Registration JWT</a></li><li><a href="#initialize-client-sdk">Initialize Client SDK</a></li><li><a href="#launching-the-marketplace">Launching The Marketplace</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Docs</h5><a href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a><a href="/kin-ecosystem-sdk-docs/docs/android.html">Android</a><a href="/kin-ecosystem-sdk-docs/docs/ios.html">IOS</a></div><div><h5>Reddit</h5><a href="https://www.reddit.com/r/KinFoundation/" target="_blank" rel="noreferrer noopener">r/KinFoundation</a><h5>Telegram</h5><a href="https://t.me/KinAnnouncements" target="_blank" rel="noreferrer noopener">Announcements</a><a href="https://t.me/kinfoundation" target="_blank" rel="noreferrer noopener">General</a><a href="https://t.me/kincurrency" target="_blank" rel="noreferrer noopener">Currency</a><a href="https://t.me/kintechnology" target="_blank" rel="noreferrer noopener">Technology</a></div><div><h5>More</h5><a href="https://medium.com/kinfoundation" target="_blank" rel="noreferrer noopener">Kin Blog</a><a href="https://medium.com/inside-kin" target="_blank" rel="noreferrer noopener">Inside Kin Blog</a><a href="https://twitter.com/kin_foundation" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.youtube.com/channel/UCZ0z9fRKhW-GEjQs-_Jxfyg" target="_blank" rel="noreferrer noopener">YouTube</a><a href="https://kinecosystem.org" target="_blank" rel="noreferrer noopener">Kin Ecosystem</a></div></section><section class="copyright">Copyright © 2018 Kin Ecosystem</section></footer></div></body></html>

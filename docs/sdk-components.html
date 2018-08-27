@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SDK Components · Kin Developer Program</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="![](/kin-ecosystem-sdk-docs/img/sdk_components.png)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SDK Components · Kin Developer Program"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kinecosystem.github.io/kin-ecosystem-sdk-docs//kin-ecosystem-sdk-docs/index.html"/><meta property="og:description" content="![](/kin-ecosystem-sdk-docs/img/sdk_components.png)"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/kin-ecosystem-sdk-docs/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/kin-ecosystem-sdk-docs/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/kin-ecosystem-sdk-docs/"><img class="logo" src="/kin-ecosystem-sdk-docs/img/Kin_ecosystem_logo.svg" alt="Kin Developer Program"/><h2 class="headerTitleWithLogo">Kin Developer Program</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/kin-ecosystem-sdk-docs/docs/intro.html" target="_self">Guides</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guides</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/intro.html">Introduction</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/sdk-components.html">SDK Components</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt.html">Authentication and JWT</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/jwt-service.html">JWT Service</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/common-flows.html">Common Flows</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/android-guide.html">Android</a></li><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/ios-guide.html">iOS</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">FAQ</h3><ul><li class="navListItem"><a class="navItem" href="/kin-ecosystem-sdk-docs/docs/faq-sdk.html">SDK FAQ</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/kinecosystem/kin-ecosystem-sdk-docs/tree/master/docs/sdk-components.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">SDK Components</h1></header><article><div><span><p><img src="/kin-ecosystem-sdk-docs/img/sdk_components.png" alt=""></p>
+<h3><a class="anchor" aria-hidden="true" id="kin-server"></a><a href="#kin-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kin Server</h3>
+<ul>
+<li>Create and activate users accounts on the Kin blockchain.</li>
+<li>Serving out of the box KIN's earn and spend offers for the SDK marketplace.</li>
+<li>Manage and store user's earn and spend order history.</li>
+<li>Manage digital service wallets.</li>
+<li>Client authorization and secure communication between Kin Server and Client App, see <a href="/kin-ecosystem-sdk-docs/docs/jwt.html">Authorization and JWT</a>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="digital-service-application-server"></a><a href="#digital-service-application-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Digital Service Application Server</h3>
+<ul>
+<li>Client authorization and secure communication between Digital Service and Client App, see <a href="/kin-ecosystem-sdk-docs/docs/jwt.html">Authorization and JWT</a>.</li>
+<li>Manage client native earn and spend offers.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="client"></a><a href="#client" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Client</h3>
+<ul>
+<li>Communicate with Kin server.</li>
+<li>Manage client wallet.</li>
+<li>Provides SDK marketplace UI for both out of the box and native offers.</li>
+<li>Sending and receiving transaction on Kin blockchain.</li>
+<li>Retrieving user balances</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="kin-blockchain"></a><a href="#kin-blockchain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kin Blockchain</h3>
+<ul>
+<li>The Kin coin decentralized ledger.</li>
+<li>Accept transactions from Kin server and Kin client sdk.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/kin-ecosystem-sdk-docs/docs/intro.html">← Introduction</a><a class="docs-next button" href="/kin-ecosystem-sdk-docs/docs/jwt.html">Authentication and JWT →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Docs</h5><a href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a><a href="/kin-ecosystem-sdk-docs/docs/android.html">Android</a><a href="/kin-ecosystem-sdk-docs/docs/ios.html">IOS</a></div><div><h5>Reddit</h5><a href="https://www.reddit.com/r/KinFoundation/" target="_blank" rel="noreferrer noopener">r/KinFoundation</a><h5>Telegram</h5><a href="https://t.me/KinAnnouncements" target="_blank" rel="noreferrer noopener">Announcements</a><a href="https://t.me/kinfoundation" target="_blank" rel="noreferrer noopener">General</a><a href="https://t.me/kincurrency" target="_blank" rel="noreferrer noopener">Currency</a><a href="https://t.me/kintechnology" target="_blank" rel="noreferrer noopener">Technology</a></div><div><h5>More</h5><a href="https://medium.com/kinfoundation" target="_blank" rel="noreferrer noopener">Kin Blog</a><a href="https://medium.com/inside-kin" target="_blank" rel="noreferrer noopener">Inside Kin Blog</a><a href="https://twitter.com/kin_foundation" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.youtube.com/channel/UCZ0z9fRKhW-GEjQs-_Jxfyg" target="_blank" rel="noreferrer noopener">YouTube</a><a href="https://kinecosystem.org" target="_blank" rel="noreferrer noopener">Kin Ecosystem</a></div></section><section class="copyright">Copyright © 2018 Kin Ecosystem</section></footer></div></body></html>

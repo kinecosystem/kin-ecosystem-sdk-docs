@@ -166,8 +166,8 @@ Result:
 The `offer_id` needs to match one of the offers which returns from the `SERVICE_URL/offers` endpoint.
 
 ### pay to user <a name="PayToUser"/>
-Returns a token which can be used to create a pay to user order:  
-`GET SERVICE_URL/paytouser/token?offer_id=offer1&sender_id=user_id1&recipient_id=user_id2`
+Returns a token which can be used to create a pay to user order, amount parameter is optional and can be used to override pre-defined offer amount:
+`GET SERVICE_URL/paytouser/token?offer_id=offer1&sender_id=user_id1&recipient_id=user_id2&amount=10`
 
 Result:
 ```json

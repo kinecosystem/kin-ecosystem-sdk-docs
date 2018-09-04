@@ -247,7 +247,7 @@ Result:
 ### earn <a name="Earn"/>
 Returns a token which can be used to create an earn order:
 
-> Note: The token will be generated from the [pre-defined](#Predefine) orders, and can be use only once per user. For creating offer dynamically see [sign](#Sign) request
+> Note: The token will be generated from the [pre-defined](#Predefine) offers, and can be use only once per user. For creating offer dynamically see [sign](#Sign) request
 
 `GET SERVICE_URL/earn/token?offer_id=offer1&user_id=aUserID`
 
@@ -261,7 +261,7 @@ Result:
 ### spend <a name="Spend"/>
 Returns a token which can be used to create a spend order:  
 
-> Note: The token will be generated from the [pre-defined](#Predefine) orders, and can be use only once per user. For creating offer dynamically see [sign](#Sign) request
+> Note: The token will be generated from the [pre-defined](#Predefine) offers, and can be use only once per user. For creating offer dynamically see [sign](#Sign) request
 
 `GET SERVICE_URL/spend/token?offer_id=offer1`
 
@@ -277,7 +277,7 @@ The `offer_id` needs to match one of the offers which returns from the `SERVICE_
 ### pay to user <a name="PayToUser"/>
 Returns a token which can be used to create a pay to user order:  
 
-> Note: The token will be generated from the [pre-defined](#Predefine) orders, and can be use only once per user. For creating offer dynamically see [sign](#Sign) request
+> Note: The token will be generated from the [pre-defined](#Predefine) offers, and can be use only once per user. For creating offer dynamically see [sign](#Sign) request
 
 `GET SERVICE_URL/paytouser/token?offer_id=offer1&sender_id=user_id1&recipient_id=user_id2`
 

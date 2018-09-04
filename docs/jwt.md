@@ -52,7 +52,7 @@ This is the header structure:
 {
     "alg": "ES256",
     "typ": "JWT",
-    "kid": string" // ID of the keypair that was used to sign the JWT. 
+    "kid": "string" // ID of the keypair that was used to sign the JWT. 
     // IDs and public keys will be provided by the signing authority. 
     // This enables using multiple private/public key pairs. 
     // (The signing authority must provide the verifier with a list of public 

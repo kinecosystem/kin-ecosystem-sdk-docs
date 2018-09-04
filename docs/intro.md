@@ -7,7 +7,7 @@ title: Introduction
 
 Kin is the world’s most consumer-ready cryptocurrency built with a blockchain solution that supports more than 1M daily transactions. Place Kin at the center of your user engagement strategy and use it to solve real customer problems.
 
-Give your users fun ways to earn and spend Kin in your app, and help us build a whole new digital world. [Here](https://developers.kinecosystem.com/playbook.pdf) is a suggested Playbook on how to build with Kin.. To see an example of how Kik integrated Kin, check out [this video](https://www.youtube.com/watch?v=hzWsLFI2Fnk).
+Give your users fun ways to earn and spend Kin in your app, and help us build a whole new digital world. [Here](https://developers.kinecosystem.com/playbook.pdf) is a suggested Playbook on how to build with Kin. To see an example of how Kik integrated Kin, check out [this video](https://www.youtube.com/watch?v=hzWsLFI2Fnk).
 
 ## Kin SDK Overview
 
@@ -16,7 +16,7 @@ The Kin SDK allows you to quickly and easily integrate with the Kin platform. Th
 
 ### Marketplace
 
-The Kin Marketplace is a UI component that you can optionally launch in your app. It displays Earn and Spend offers which may be added to by your app or by the Kin Server itself.to it by your app or by the Kin Server. When a user selects one of these offers, the Kin Marketplace notifies the app that created the offer. The app can then launch the Earn or Spend activity for the user to complete. You may choose to add your custom Earn and Spend offers to the Kin Marketplace so that there is a convenient, visible place where the user can access all offers. Some offers displayed in-app might require that the user choose to navigate to a specific page and therefore might not be so readily visible.
+The Kin Marketplace is a UI component that you can optionally launch in your app. It displays Earn and Spend offers which may be added to by your app or by the Kin Server itself. When a user selects one of these offers, the Kin Marketplace notifies the app that created the offer. The app can then launch the Earn or Spend activity for the user to complete. You may choose to add your custom Earn and Spend offers to the Kin Marketplace so that there is a convenient, visible place where the user can access all offers. Some offers displayed in-app might require that the user choose to navigate to a specific page and therefore might not be so readily visible.
 
 <img src="/kin-ecosystem-sdk-docs/img/marketplace.png" alt="marketplace" height="600px"/>
 

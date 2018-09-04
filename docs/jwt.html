@@ -61,13 +61,13 @@ The client should not be allowed to request earn/spend without your server autho
 <p>See <a href="https://jwt.io">jwt.io</a> to learn more about how to build a JWT token and to find libraries that you can use to do this.</p>
 <p>This is the header structure:</p>
 <pre><code class="hljs css language-js">{
-    "alg": "ES256",
-    "typ": "JWT",
-    "kid": string" // ID of the keypair that was used to sign the JWT. 
-    // IDs and public keys will be provided by the signing authority. 
-    // This enables using multiple private/public key pairs. 
-    // (The signing authority must provide the verifier with a list of public 
-    // keys and their IDs in advance.)
+    <span class="hljs-string">"alg"</span>: <span class="hljs-string">"ES256"</span>,
+    <span class="hljs-string">"typ"</span>: <span class="hljs-string">"JWT"</span>,
+    <span class="hljs-string">"kid"</span>: <span class="hljs-string">"string"</span> <span class="hljs-comment">// ID of the keypair that was used to sign the JWT. </span>
+    <span class="hljs-comment">// IDs and public keys will be provided by the signing authority. </span>
+    <span class="hljs-comment">// This enables using multiple private/public key pairs. </span>
+    <span class="hljs-comment">// (The signing authority must provide the verifier with a list of public </span>
+    <span class="hljs-comment">// keys and their IDs in advance.)</span>
 }
 </code></pre>
 <p>This is the payload structure:</p>

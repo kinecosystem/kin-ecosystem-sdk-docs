@@ -80,11 +80,16 @@ The <code>key-id</code> is the unique random key id included in the filename, se
 <h3><a class="anchor" aria-hidden="true" id="enter-your-app-id"></a><a href="#enter-your-app-id" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enter your app-id</h3>
 <p>App-id is the unique application identifier as provided by Kin, it serves as the <code>iss</code> - issuer field for each JWT token, for identify the origin of each request.<br>
 Edit <code>config/default.json</code> file, under <code>app_id</code> object, and change it to your app-id</p>
-<h3><a class="anchor" aria-hidden="true" id="add-your-custom-offers"></a><a href="#add-your-custom-offers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add your custom offers</h3>
+<p><a name="Predefine"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="add-your-pre-defined-custom-offers-optional"></a><a href="#add-your-pre-defined-custom-offers-optional" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add your pre-defined custom offers (Optional)</h3>
 <p>Edit <code>config/default.json</code> file, under <code>offers</code> object, add your custom offers.</p>
+<blockquote>
+<p>Note: Offer id should be unique when sending multiple offers for a single user. pre-defined offers use the same offer id and can be used only once per user. For creating multiple offers per user or define offers parameters dynamically, see <a href="#Sign">sign</a> request.</p>
+</blockquote>
 <pre><code class="hljs css language-json">{
     "id": "offer1", //Unique offer id
     "title": "first offer", //Offer title
+    "type" : "spend", //Offer type
     "description": "the 1st test offer", //Offer description
     "type": "spend", //Offer type: "spend"/"earn"/"pay_to_user"
     "amount": 1, //Kin amount
@@ -111,38 +116,127 @@ Edit <code>config/default.json</code> file, under <code>app_id</code> object, an
         {
             <span class="hljs-attr">"id"</span>: <span class="hljs-string">"offer1"</span>,
             <span class="hljs-attr">"title"</span>: <span class="hljs-string">"first offer"</span>,
+            <span class="hljs-attr">"type"</span> : <span class="hljs-string">"earn"</span>,
             <span class="hljs-attr">"amount"</span>: <span class="hljs-number">10</span>,
-            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"the 1st test offer"</span>,
-            <span class="hljs-attr">"wallet_address"</span>: <span class="hljs-string">"GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"</span>
+            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"the 1st test offer"</span>
         },
         {
             <span class="hljs-attr">"id"</span>: <span class="hljs-string">"offer2"</span>,
             <span class="hljs-attr">"title"</span>: <span class="hljs-string">"second offer"</span>,
+            <span class="hljs-attr">"type"</span> : <span class="hljs-string">"spend"</span>,
             <span class="hljs-attr">"amount"</span>: <span class="hljs-number">20</span>,
-            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"the 2nd test offer"</span>,
-            <span class="hljs-attr">"wallet_address"</span>: <span class="hljs-string">"GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"</span>
+            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"the 2nd test offer"</span>
         },
         {
             <span class="hljs-attr">"id"</span>: <span class="hljs-string">"offer3"</span>,
             <span class="hljs-attr">"title"</span>: <span class="hljs-string">"third offer"</span>,
+            <span class="hljs-attr">"type"</span> : <span class="hljs-string">"pay_to_user"</span>,
             <span class="hljs-attr">"amount"</span>: <span class="hljs-number">30</span>,
-            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"the 3rd test offer"</span>,
-            <span class="hljs-attr">"wallet_address"</span>: <span class="hljs-string">"GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"</span>
+            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"the 3rd test offer"</span>
         }
     ]
 }
 </code></pre>
+<p><a name="Sign"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="sign"></a><a href="#sign" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sign</h3>
+<p>Returns a token for a posted arbitrary payload (and subject), can be used to create a repetitive and/or dynamic offers with arbitrary values, as opposed to the <a href="#Predefine">pre-defined offers</a>. see <a href="#CustomOffers">Signing Custom Offers</a> for how to construct a custom offer.</p>
+<p><code>POST '{&quot;subject&quot;:&quot;a subject&quot;, &quot;payload&quot;:{&quot;key1&quot;:&quot;value1&quot;}}' SERVICE_URL/sign</code></p>
+<ul>
+<li><code>&quot;subject&quot;</code> - JWT <code>sub</code> field, see <a href="jwt#JWTRequests">JWT Requests</a> for the available requests subjects.</li>
+<li><code>&quot;payload&quot;</code> - Kin server fields for JWT requests, see <a href="jwt#JWTRequests">JWT Requests</a> for the available parameters for each request.</li>
+</ul>
+<p><a name="CustomOffers"></a></p>
+<h4><a class="anchor" aria-hidden="true" id="signing-custom-offers"></a><a href="#signing-custom-offers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signing Custom Offers</h4>
+<p>Creating a token for dynamic offer is done by specifying offers requests data as follows:</p>
+<blockquote>
+<p>Pay attention to creating a unique offer id for each offer, Kin server will block a repetitive offer with the same values for the same user. Offer id serves for distinguishing each offer from the previous one and preventing the client from sending a single generated JWT multiple times.</p>
+</blockquote>
+<ul>
+<li>&quot;subject&quot; - one of the available offer types: <code>&quot;spend&quot;</code>/<code>&quot;earn&quot;</code>/<code>&quot;pay_to_user&quot;</code></li>
+<li>&quot;payload&quot; - the offer request body.</li>
+</ul>
+<p><code>POST '&lt;offer json&gt;' SERVICE_URL/sign</code></p>
+<p><strong>Spend offer json</strong></p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"subject"</span>: <span class="hljs-string">"spend"</span>,
+    <span class="hljs-attr">"payload"</span>: {
+        <span class="hljs-attr">"offer"</span>: {
+            <span class="hljs-attr">"id"</span>: <span class="hljs-string">"offer unique id - generated by application server"</span>,
+            <span class="hljs-attr">"amount"</span>: <span class="hljs-string">"amount of kin for this offer"</span>
+        },
+         <span class="hljs-attr">"sender"</span>: {
+            <span class="hljs-attr">"user_id"</span>: <span class="hljs-string">"the user_id who will perform the spend"</span>,
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"order title - appears in sender order history"</span>,
+            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"order description - appears in sender order history"</span>
+        }
+    }
+}
+</code></pre>
+<p><strong>Earn offer json</strong></p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"subject"</span>: <span class="hljs-string">"earn"</span>,
+    <span class="hljs-attr">"payload"</span>: {
+        <span class="hljs-attr">"offer"</span>: {
+            <span class="hljs-attr">"id"</span>: <span class="hljs-string">"offer unique id - generated by application server"</span>,
+            <span class="hljs-attr">"amount"</span>: <span class="hljs-string">"amount of kin for this offer"</span>
+        },
+        <span class="hljs-attr">"recipient"</span>: {
+            <span class="hljs-attr">"user_id"</span>: <span class="hljs-string">"user_id who will receive the order"</span>,
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"offer title - appears in recipient order history"</span>,
+            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"offer description - appears in recipient order history"</span>
+        }
+    }
+}
+</code></pre>
+<p><strong>Pay to user offer json</strong></p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"subject"</span>: <span class="hljs-string">"pay_to_user"</span>,
+    <span class="hljs-attr">"payload"</span>: {
+        <span class="hljs-attr">"offer"</span>: {
+            <span class="hljs-attr">"id"</span>: <span class="hljs-string">"offer unique id - generated by application server"</span>,
+            <span class="hljs-attr">"amount"</span>: <span class="hljs-string">"amount of kin for this offer"</span>
+        },
+        <span class="hljs-attr">"sender"</span>: {
+            <span class="hljs-attr">"user_id"</span>: <span class="hljs-string">"the user_id who will perform the spend"</span>,
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"order title - appears in sender order history"</span>,
+            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"order description - appears in sender order history"</span>
+        },
+        <span class="hljs-attr">"recipient"</span>: {
+            <span class="hljs-attr">"user_id"</span>: <span class="hljs-string">"user_id who will receive the order"</span>,
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"offer title - appears in recipient order history"</span>,
+            <span class="hljs-attr">"description"</span>: <span class="hljs-string">"offer description - appears in recipient order history"</span>
+        }
+    }
+}
+</code></pre>
+<p>Result:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"jwt"</span>:<span class="hljs-string">"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImRlZmF1bHQifQ.eyJ0eXAiOiJKV1QiLCJrZXkxIjoidmFsdWUxIiwiaWF0IjoxNTIzODczMjEzLCJleHAiOjE1MjU0MTg2ODY5MTQsInN1YiI6ImEgc3ViamVjdCJ9.KzkD8VSHNZmo0H6Mb5a83OEiaDKUugO3R7Z2JN4GJh7YepH_gz0-sZ0YlLffvYnohwhciysJ9wtcwJ8YwbO7sedObmdZbezEYaBBowaezGzIMJeZc9erfTWu7aYP_-je-DpyVbY1lLvoFF8AufF7xPmYQQweYqFGhIp-9AHtKds"</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="validate"></a><a href="#validate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>validate</h3>
+<p>Validates an input token using the configured public key, can be use for veriyfing <a href="jwt#PaymentConfirmation">Payment Confirmation JWT</a> received from Kin Server.
+<code>GET SERVICE_URL/validate?jwt=anInputJWT</code></p>
+<p>Result:</p>
+<pre><code class="hljs css language-json">{<span class="hljs-attr">"is_valid"</span>:<span class="hljs-literal">true</span>}
+</code></pre>
 <h3><a class="anchor" aria-hidden="true" id="earn-a-name-earn"></a><a href="#earn-a-name-earn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>earn <a name="Earn"/></h3>
-<p>Returns a token which can be used to create an earn order:<br>
-<code>GET SERVICE_URL/earn/token?offer_id=offer1&amp;user_id=aUserID</code></p>
+<p>Returns a token which can be used to create an earn order:</p>
+<blockquote>
+<p>Note: The token will be generated from the <a href="#Predefine">pre-defined</a> offers, and can be use only once per user. For creating offer dynamically see <a href="#Sign">sign</a> request</p>
+</blockquote>
+<p><code>GET SERVICE_URL/earn/token?offer_id=offer1&amp;user_id=aUserID</code></p>
 <p>Result:</p>
 <pre><code class="hljs css language-json">{
     <span class="hljs-attr">"jwt"</span>: <span class="hljs-string">"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6InJzXzUxMl8wIn0.eyJpc3MiOiJ0ZXN0IiwiZXhwIjoxNTMyNjExNjI5NDg1LCJpYXQiOjE1MzI1OTAwMjk0OTIsInN1YiI6ImVhcm4iLCJvZmZlciI6eyJpZCI6Im9mZmVyNCIsImFtb3VudCI6MX0sInJlY2lwaWVudCI6eyJ1c2VyX2lkIjoieW9zIiwidGl0bGUiOiJmb3VydGggb2ZmZXIiLCJkZXNjcmlwdGlvbiI6InRoZSA0dGggdGVzdCBvZmZlciJ9fQ.GGRnkIOa2PmwDws1jmySHC9Amb12QsNKwxMeD__gGjLUi4UNKPqyVIn4T_jsuwfHQGuvTGBQzZW3AV_9O_sb6uDnwE5c2k0ClL5IOdzV48NvjFJg2kT8e_h_IHDoCEMbVu0hU_UiOryjhoKb3pp7zDsymRcwhXNS2Hhzb6BOFb0"</span>
 }
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="spend-a-name-spend"></a><a href="#spend-a-name-spend" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>spend <a name="Spend"/></h3>
-<p>Returns a token which can be used to create a spend order:<br>
-<code>GET SERVICE_URL/spend/token?offer_id=offer1</code></p>
+<p>Returns a token which can be used to create a spend order:</p>
+<blockquote>
+<p>Note: The token will be generated from the <a href="#Predefine">pre-defined</a> offers, and can be use only once per user. For creating offer dynamically see <a href="#Sign">sign</a> request</p>
+</blockquote>
+<p><code>GET SERVICE_URL/spend/token?offer_id=offer1</code></p>
 <p>Result:</p>
 <pre><code class="hljs css language-json">{
     <span class="hljs-attr">"jwt"</span>: <span class="hljs-string">"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImRlZmF1bHQifQ.eyJ0eXAiOiJKV1QiLCJpZCI6Im9mZmVyMSIsInRpdGxlIjoidGhpcmQgb2ZmZXIiLCJhbW91bnQiOjMwLCJkZXNjcmlwdGlvbiI6InRoZSAzcmQgdGVzdCBvZmZlciIsIndhbGxldF9hZGRyZXNzIjoiR0RDNlVBV1pFVFFSWERGSkhIWlMyTzdKSzJPUTNGNU1OT1pMSEpQNFREN0o2TUI1UTJOSDVZR1UiLCJpYXQiOjE1MjM4NzI4MDYsImV4cCI6MTUyNTQxODI3OTE3MCwic3ViIjoic3BlbmQifQ.d2pEsXzWMr-XXNfnKYL52C-GscRMdIqtrETdpGc2R_TOnLcScXMLFU62HshP3hxZW88vi5JY42MszVApNmCQ_XI9XgVcZcAIYx6Ef63sO-e1WG8_oPRFFLwHf1p8VylArtkvaz2JkWbHVPQuCNdcwf31JUMVSqJZHGk6ez3KaSQ"</span>
@@ -150,8 +244,11 @@ Edit <code>config/default.json</code> file, under <code>app_id</code> object, an
 </code></pre>
 <p>The <code>offer_id</code> needs to match one of the offers which returns from the <code>SERVICE_URL/offers</code> endpoint.</p>
 <h3><a class="anchor" aria-hidden="true" id="pay-to-user-a-name-paytouser"></a><a href="#pay-to-user-a-name-paytouser" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pay to user <a name="PayToUser"/></h3>
-<p>Returns a token which can be used to create a pay to user order:<br>
-<code>GET SERVICE_URL/paytouser/token?offer_id=offer1&amp;sender_id=user_id1&amp;recipient_id=user_id2</code></p>
+<p>Returns a token which can be used to create a pay to user order:</p>
+<blockquote>
+<p>Note: The token will be generated from the <a href="#Predefine">pre-defined</a> offers, and can be use only once per user. For creating offer dynamically see <a href="#Sign">sign</a> request</p>
+</blockquote>
+<p><code>GET SERVICE_URL/paytouser/token?offer_id=offer1&amp;sender_id=user_id1&amp;recipient_id=user_id2</code></p>
 <p>Result:</p>
 <pre><code class="hljs css language-json">{
     <span class="hljs-attr">"jwt"</span>: <span class="hljs-string">"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImRlZmF1bHQifQ.eyJ0eXAiOiJKV1QiLCJpZCI6Im9mZmVyMSIsInRpdGxlIjoidGhpcmQgb2ZmZXIiLCJhbW91bnQiOjMwLCJkZXNjcmlwdGlvbiI6InRoZSAzcmQgdGVzdCBvZmZlciIsIndhbGxldF9hZGRyZXNzIjoiR0RDNlVBV1pFVFFSWERGSkhIWlMyTzdKSzJPUTNGNU1OT1pMSEpQNFREN0o2TUI1UTJOSDVZR1UiLCJpYXQiOjE1MjM4NzI4MDYsImV4cCI6MTUyNTQxODI3OTE3MCwic3ViIjoic3BlbmQifQ.d2pEsXzWMr-XXNfnKYL52C-GscRMdIqtrETdpGc2R_TOnLcScXMLFU62HshP3hxZW88vi5JY42MszVApNmCQ_XI9XgVcZcAIYx6Ef63sO-e1WG8_oPRFFLwHf1p8VylArtkvaz2JkWbHVPQuCNdcwf31JUMVSqJZHGk6ez3KaSQ"</span>
@@ -166,20 +263,6 @@ Edit <code>config/default.json</code> file, under <code>app_id</code> object, an
     <span class="hljs-attr">"jwt"</span>: <span class="hljs-string">"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImRlZmF1bHQifQ.eyJ0eXAiOiJKV1QiLCJ1c2VyX2lkIjoiYVVzZXJJRCIsImlhdCI6MTUyMzg3Mjk5NSwiZXhwIjoxNTI1NDE4NDY4Mzc2LCJzdWIiOiJyZWdpc3RlciJ9.RenNzwLk7DQCi-U3vXZO4d-4pM4nA1X-RW3JHGWq3BNRLOrzePQZ7O6VgW7wV2-YBPjR9UEAU9XrKs8FT7DYDzgfQA5iFOpEHRlDoiILmwPrje601BE5LGvoNPR4HI4bIPgDiw2-XuIqqNXRVCx4oWqR_p_ex8GEA95ty0aoP4Q"</span>
 }
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="sign"></a><a href="#sign" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sign</h3>
-<p>Returns a token for a posted arbitrary payload (and subject):<br>
-<code>POST '{&quot;subject&quot;:&quot;a subject&quot;, &quot;payload&quot;:{&quot;key1&quot;:&quot;value1&quot;}}' SERVICE_URL/sign</code></p>
-<p>Result:</p>
-<pre><code class="hljs css language-json">{
-    <span class="hljs-attr">"jwt"</span>:<span class="hljs-string">"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImRlZmF1bHQifQ.eyJ0eXAiOiJKV1QiLCJrZXkxIjoidmFsdWUxIiwiaWF0IjoxNTIzODczMjEzLCJleHAiOjE1MjU0MTg2ODY5MTQsInN1YiI6ImEgc3ViamVjdCJ9.KzkD8VSHNZmo0H6Mb5a83OEiaDKUugO3R7Z2JN4GJh7YepH_gz0-sZ0YlLffvYnohwhciysJ9wtcwJ8YwbO7sedObmdZbezEYaBBowaezGzIMJeZc9erfTWu7aYP_-je-DpyVbY1lLvoFF8AufF7xPmYQQweYqFGhIp-9AHtKds"</span>
-}
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="validate"></a><a href="#validate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>validate</h3>
-<p>Validates an input token using the configured public key:<br>
-<code>GET SERVICE_URL/validate?jwt=anInputJWT</code></p>
-<p>Result:</p>
-<pre><code class="hljs css language-json">{<span class="hljs-attr">"is_valid"</span>:<span class="hljs-literal">true</span>}
-</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="configuration"></a><a href="#configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h2>
 <p>The service can be configured by changing the <code>config/default.json</code> file.</p>
 <p>The most important of which are the:</p>
@@ -190,4 +273,4 @@ Edit <code>config/default.json</code> file, under <code>app_id</code> object, an
 <li><code>private_keys</code>: application private keys which will be used for signing the tokens</li>
 <li><code>public_keys</code>: kin server public keys which will be used for validate tokens (order confirmation requests)</li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/kin-ecosystem-sdk-docs/docs/jwt.html">← Authentication and JWT</a><a class="docs-next button" href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#keys">Keys</a></li><li><a href="#install">Install</a><ul class="toc-headings"><li><a href="#clone-jwt-service-repo">Clone jwt-service repo:</a></li><li><a href="#generate-your-application-jwt-key-pairs">Generate your application JWT key pairs:</a></li><li><a href="#point-the-service-to-the-created-private-keys">Point the service to the created private keys:</a></li><li><a href="#point-the-service-to-kin-public-keys">Point the service to Kin public keys:</a></li><li><a href="#enter-your-app-id">Enter your app-id</a></li><li><a href="#add-your-custom-offers">Add your custom offers</a></li></ul></li><li><a href="#using-the-service">Using the service</a><ul class="toc-headings"><li><a href="#offers">offers</a></li><li><a href="#earn-a-name-earn">earn</a></li><li><a href="#spend-a-name-spend">spend</a></li><li><a href="#pay-to-user-a-name-paytouser">pay to user</a></li><li><a href="#register-a-name-register">register</a></li><li><a href="#sign">sign</a></li><li><a href="#validate">validate</a></li></ul></li><li><a href="#configuration">Configuration</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Docs</h5><a href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a><a href="/kin-ecosystem-sdk-docs/docs/android.html">Android</a><a href="/kin-ecosystem-sdk-docs/docs/ios.html">IOS</a></div><div><h5>Reddit</h5><a href="https://www.reddit.com/r/KinFoundation/" target="_blank" rel="noreferrer noopener">r/KinFoundation</a><h5>Telegram</h5><a href="https://t.me/KinAnnouncements" target="_blank" rel="noreferrer noopener">Announcements</a><a href="https://t.me/kinfoundation" target="_blank" rel="noreferrer noopener">General</a><a href="https://t.me/kincurrency" target="_blank" rel="noreferrer noopener">Currency</a><a href="https://t.me/kintechnology" target="_blank" rel="noreferrer noopener">Technology</a></div><div><h5>More</h5><a href="https://medium.com/kinfoundation" target="_blank" rel="noreferrer noopener">Kin Blog</a><a href="https://medium.com/inside-kin" target="_blank" rel="noreferrer noopener">Inside Kin Blog</a><a href="https://twitter.com/kin_foundation" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.youtube.com/channel/UCZ0z9fRKhW-GEjQs-_Jxfyg" target="_blank" rel="noreferrer noopener">YouTube</a><a href="https://kinecosystem.org" target="_blank" rel="noreferrer noopener">Kin Ecosystem</a></div></section><section class="copyright">Copyright © 2018 Kin Ecosystem</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/kin-ecosystem-sdk-docs/docs/jwt.html">← Authentication and JWT</a><a class="docs-next button" href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#keys">Keys</a></li><li><a href="#install">Install</a><ul class="toc-headings"><li><a href="#clone-jwt-service-repo">Clone jwt-service repo:</a></li><li><a href="#generate-your-application-jwt-key-pairs">Generate your application JWT key pairs:</a></li><li><a href="#point-the-service-to-the-created-private-keys">Point the service to the created private keys:</a></li><li><a href="#point-the-service-to-kin-public-keys">Point the service to Kin public keys:</a></li><li><a href="#enter-your-app-id">Enter your app-id</a></li><li><a href="#add-your-pre-defined-custom-offers-optional">Add your pre-defined custom offers (Optional)</a></li></ul></li><li><a href="#using-the-service">Using the service</a><ul class="toc-headings"><li><a href="#offers">offers</a></li><li><a href="#sign">sign</a></li><li><a href="#validate">validate</a></li><li><a href="#earn-a-name-earn">earn</a></li><li><a href="#spend-a-name-spend">spend</a></li><li><a href="#pay-to-user-a-name-paytouser">pay to user</a></li><li><a href="#register-a-name-register">register</a></li></ul></li><li><a href="#configuration">Configuration</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Docs</h5><a href="/kin-ecosystem-sdk-docs/docs/getting-started.html">Getting Started</a><a href="/kin-ecosystem-sdk-docs/docs/android.html">Android</a><a href="/kin-ecosystem-sdk-docs/docs/ios.html">IOS</a></div><div><h5>Reddit</h5><a href="https://www.reddit.com/r/KinFoundation/" target="_blank" rel="noreferrer noopener">r/KinFoundation</a><h5>Telegram</h5><a href="https://t.me/KinAnnouncements" target="_blank" rel="noreferrer noopener">Announcements</a><a href="https://t.me/kinfoundation" target="_blank" rel="noreferrer noopener">General</a><a href="https://t.me/kincurrency" target="_blank" rel="noreferrer noopener">Currency</a><a href="https://t.me/kintechnology" target="_blank" rel="noreferrer noopener">Technology</a></div><div><h5>More</h5><a href="https://medium.com/kinfoundation" target="_blank" rel="noreferrer noopener">Kin Blog</a><a href="https://medium.com/inside-kin" target="_blank" rel="noreferrer noopener">Inside Kin Blog</a><a href="https://twitter.com/kin_foundation" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.youtube.com/channel/UCZ0z9fRKhW-GEjQs-_Jxfyg" target="_blank" rel="noreferrer noopener">YouTube</a><a href="https://kinecosystem.org" target="_blank" rel="noreferrer noopener">Kin Ecosystem</a></div></section><section class="copyright">Copyright © 2018 Kin Ecosystem</section></footer></div></body></html>

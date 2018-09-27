@@ -146,7 +146,7 @@ Because blockchain onboarding might take a few seconds, it is strongly recommend
 ### Launching The Marketplace
 
 The final stage for activating a user is to launch the marketplace UI.  
-In the first time the SDK is used, the user must accept the Terms of Service before doing any earn/spend opportunity.
+In the first time the SDK is used, the user must go through a marketplace welcome page before doing any earn/spend opportunity.
 
 <block class="android" />
 

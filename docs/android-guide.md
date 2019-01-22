@@ -76,42 +76,34 @@ If your app presents Kin Spend and Earn offers to your users, then each user nee
 
 ### Initialize Android SDK <a name="Init"></a>
 
-Call `Kin.start(...)`, passing the android context, the desired environment (playground/production) and your chosen authentication credentials (either whitelist or JWT credentials).
-
-#### Whitelist:
-
-```java
-whitelistData = new WhitelistData(<userID>, <appID>, <apiKey>);
-try {
-   Kin.start(getApplicationContext(), whitelistData,
-             Environment.getPlayground());
-} 
-catch (ClientException | BlockchainException e) {
-   // Handle exception…
-}
-```
-
-userID - your application unique identifier for the user  
-appID - your application unique identifier as provided by Kin.  
-apiKey - your secret apiKey as provided by Kin.
-
-
-#### JWT:
-
 Request a [registration JWT](jwt#RegisterPayload) from your server, once the client received this token, you can now start the sdk using this token. (See [Authentication and JWT](#jwt) for more details about JWT Authentication )
 
 ```java
-try {
     String registrationJWT = getRegistrationJwtFromServer();
-    Kin.start(getApplicationContext(), registrationJWT, Environment.getPlayground());
-}
-catch (ClientException | BlockchainException e) {
-   // Handle exception…
-}
+    Kin.start(getApplicationContext(), jwt, Environment.getPlayground(), new KinCallback<Void>() {
+	    @Override
+	    public void onResponse(Void response) {
+	    	Log.d(TAG, "Kin.start() completed successfully.");
+	    	// You can now use the rest of Kin API, including custom offers
+	    }
+
+	    @Override
+	    public void onFailure(KinEcosystemException error) {
+	    	Log.d(TAG, "Kin.start() failed with =  " + error.getMessage());
+	    }
+	});
 ```
+`start` will initialize the SDK, login the user, creates and activates a user wallet on kin blockchain.
+`start` is asynchronous process, the first call to `start` will take several seconds as transactions on kin blockchain are
+required for setting up an account.  
+`start` can be called again (retry) in case of an error.
+
+> **NOTE:** The SDK cannot be used before `start` is completed successfully.  
+> **NOTE:** Launching the marketplace is not required anymore for performing custom offers ("user is not activated or using a pre activated token" error),
+as soon as `start` is completed successfully, custom offers can be executed.
 
 ## Account Balance
-
+ 
 A user’s balance is the number of Kin units in his or her account (can also contain a fraction). You may want to retrieve the balance in response to a user request or to check whether a user has enough funding to perform a Spend request. When you request a user’s balance, you receive a ```Balance``` object in response, which contains the balance as a decimal-point number.
 
 > If no account was found for the user, you will receive a balance of 0 for that user.

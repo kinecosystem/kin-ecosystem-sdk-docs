@@ -84,37 +84,33 @@ The service will respond with the generated signed JWT token Your app should be 
 
 <block class="android" />
 
-Call `Kin.start(...)`, passing the android context, the desired environment (playground/production) and your chosen authentication credentials (either whitelist or JWT credentials).
-
-#### Whitelist:
+Request a registration JWT from your server, once the client received this token, you can now start the sdk using this
+ `Kin.start(...)`, passing the android context, the desired environment (playground/production) and your JWT register token.
 
 ```java
-whitelistData = new WhitelistData(<userID>, <appID>, <apiKey>);
-try {
-   Kin.start(getApplicationContext(), whitelistData,
-             Environment.getPlayground());
-} 
-catch (ClientException | BlockchainException e) {
-   // Handle exception…
-}
-```
-
-userID - Your application’s unique unique identifier for the user  
-appID - Your application’s unique unique identifier as provided by Kin.  
-apiKey - Your secret apiKey as provided by Kin.
-
-#### JWT:
-
-Request a registration JWT from your server, once the client received this token, you can now start the sdk using this token.
-```java
-try {
     String registrationJWT = getRegistrationJwtFromServer();
-    Kin.start(getApplicationContext(), registrationJWT, Environment.getPlayground());
-}
-catch (ClientException | BlockchainException e) {
-   // Handle exception…
-}
+    Kin.start(getApplicationContext(), jwt, Environment.getPlayground(), new KinCallback<Void>() {
+	    @Override
+	    public void onResponse(Void response) {
+	    	Log.d(TAG, "Kin.start() completed successfully.");
+	    	// You can now use the rest of Kin API, including custom offers
+	    }
+
+	    @Override
+	    public void onFailure(KinEcosystemException error) {
+	    	Log.d(TAG, "Kin.start() failed with =  " + error.getMessage());
+	    }
+	});
 ```
+
+`start` will initialize the SDK, login the user, creates and activates a user wallet on kin blockchain.
+`start` is asynchronous process, the first call to `start` will take several seconds as transactions on kin blockchain are
+required for setting up an account.  
+`start` can be called again (retry) in case of an error.
+
+> **NOTE:** The SDK cannot be used before `start` is completed successfully.  
+> **NOTE:** Launching the marketplace is not required anymore for performing custom offers ("user is not activated or using a pre activated token" error),
+as soon as `start` is completed successfully, custom offers can be executed.
 
 <block class="ios" />
 
@@ -138,7 +134,7 @@ Request a registration JWT from your server. Once the client received this token
 Kin.shared.start(userId: "myUserId", jwt: registrationJWT, environment: .playground)
 ```
 
-<block class="ios android" />
+<block class="ios" />
 
 This will create the stack needed for running the SDK, All account creation and activation is handled for you by the sdk.  
 Because blockchain onboarding might take a few seconds, it is strongly recommended to call this function as soon as you can provide a user id.
@@ -148,7 +144,9 @@ Because blockchain onboarding might take a few seconds, it is strongly recommend
 The final stage for activating a user is to launch the marketplace UI.  
 In the first time the SDK is used, the user must go through a marketplace welcome page before doing any earn/spend opportunity.
 
-<block class="android" />
+<block class="android" /> 
+
+### Launching The Marketplace
 
 For launching the Kin Marketplace offer wall, use `launchMarketplace` with an `Activity` object.
 

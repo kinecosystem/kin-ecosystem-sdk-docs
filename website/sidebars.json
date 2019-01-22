@@ -6,11 +6,14 @@
       "jwt",
       "jwt-service",
       "getting-started",
-      "common-flows"    
+      "common-flows"
     ],
     "Docs":[
       "android-guide",
       "ios-guide"
+    ],
+    "Kin Blockchain Migration":[
+      "migration_android"
     ],
     "FAQ":[
       "faq-sdk"

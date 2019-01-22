@@ -6,7 +6,8 @@
       "jwt",
       "jwt-service",
       "getting-started",
-      "common-flows"    
+      "common-flows",
+      "migration"
     ],
     "Docs":[
       "android-guide",

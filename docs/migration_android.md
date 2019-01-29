@@ -10,6 +10,9 @@ The Kin Blockchain opens a world of new possibilities for Kin developers, and we
 
 This document will walk you through your migration process as a Kin developer. Please read it carefully.
 
+ >**IMPORTANT NOTE:** You should test the SDK with Playground environment only for now, 
+ Production environment is not yet ready.
+
 ### Terminology
 - **Old Blockchain**: The old blockchain that you're currently using.
 - **Kin Blockchain**: The new blockchain that you'll be migrating to.
@@ -46,7 +49,7 @@ From that moment on, your users will automatically migrate to the Kin Blockchain
 #### Migrating the Digital Service Accounts
 While your users migrate automatically, your blockchain accounts will be migrated manually by Kin.
 You need to create and send Kin a signed transaction for burning both DS Wallet and Shared Wallet. 
-[TBD]
+
 Before we migrate your and your users' accounts, you need to complete the following tasks:
 1. Integrate the new Dev Platform SDK into your app. 
 2. Publish your new, migration-ready app to the Play Store.

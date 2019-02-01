@@ -28,7 +28,7 @@ The account is pre-created before the migration begins with a balance of zero.
 
 2. **The Old Blockchain account is "deactivated" -**
 Deactivating an account ("burning") means the account can no longer earn or spend Kins. 
-However, the account's last known balance and transaction history are still avialable. 
+However, the account's last known balance and transaction history are still available.
 
 3. **The Kin Blockchain account is funded -**
 Once we've "burned" the old account, we can safely fund the new account with the last known account balance.

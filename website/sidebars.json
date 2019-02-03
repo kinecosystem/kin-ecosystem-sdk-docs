@@ -13,7 +13,8 @@
       "ios-guide"
     ],
     "Kin Blockchain Migration":[
-      "migration_android"
+      "migration_android",
+      "migration_ios"
     ],
     "FAQ":[
       "faq-sdk"

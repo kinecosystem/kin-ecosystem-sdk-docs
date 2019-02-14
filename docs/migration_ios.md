@@ -10,7 +10,7 @@ The Kin Blockchain opens a world of new possibilities for Kin developers, and we
 
 This document will walk you through your migration process as a Kin developer. Please read it carefully.
 
- >**IMPORTANT NOTE:** You should test the SDK with Playground environment only for now, 
+ >**Important note:** You should test the SDK with Playground environment only for now, 
  Production environment is not yet ready.
  
 ### Terminology
@@ -57,7 +57,7 @@ Before we migrate you and your users' accounts, you need to complete the followi
 4. Decide together with Kin on a migration date (preferably, at low traffic hours).
 5. Create and send Kin a signed transaction for burning both your wallet and the Shared Wallet.
 
-> Note: DO NOT send this transaction by yourself to the old blockchain! We will send it when the migration starts.
+>**Important note**: DO NOT send this transaction by yourself to the old blockchain! We will send it when the migration starts.
 
 #### Migrating Your End Users 
 Once you release a new version of your application that implements the migration-enabled Dev Platform SDK, it will take care of migrating your users automatically when you first initate the SDK (continue reading for more details).
@@ -73,7 +73,7 @@ Now, when `Kin.start()` is called, the Dev Platform SDK will query our servers a
 The chart below shows the new `Kin.start()` flow. 
 **Continue reading this document to better understand the different steps shown in the chart.**
 
-![](/kin-ecosystem-sdk-docs/img/migration_start.jpeg)
+![](/kin-ecosystem-sdk-docs/img/migration_start_ios.jpeg)
 
 ## Initiating the SDK
 The migration-enabled Dev Platform SDK adds a new property to the `Kin` class `var migrationDelegate: KinMigrationDelegate?`.
@@ -84,18 +84,20 @@ A protocol that allows you to hook into migration-related events.
 The protocol exposes the following methods:
 
 #### `kinMigrationDidStart()`
-This method is called once the Dev Platform SDK has determined that the current user should be migrated to the Kin Blockchain. It is important to note that this method will not be called after the user has been successfully migrated. If the user has already been migrated when the SDK is initiated (for instance, if the user was migrated in the previous app session), this method will not be invoked.
+This method is called once the Dev Platform SDK has determined that the current user should be migrated to the Kin Blockchain. It is important to note that this method will not be called after the user has been successfully migrated. If the user has already been migrated when the SDK is initiated (for instance, if the user was migrated in the previous app session), this method will not be called.
 
 Since the migration process can take several seconds, we highly recommend to use the `kinMigrationDidStart()` method for communicating to your users that something is happening in the background and your application has not "frozen". Feel free to communicate to your users as you see fit; a message such as "Kin upgrade in progress, please be patient" should be sufficient.
 
 #### `kinMigrationDidFinish()`
-This method is called once the user has been migrated successfully. Now would be a good time to hide any popup or other UI elements you used to communicate with your users on `kinMigrationDidStart()`. If the user has already been migrated when the SDK is initiated (for instance if the user was migrated in the previous app session), this method will not be invoked.
+This method is called once the user has been migrated successfully. Now would be a good time to hide any popup or other UI elements you used to communicate with your users on `kinMigrationDidStart()`. If the user has already been migrated when the SDK is initiated (for instance if the user was migrated in the previous app session), this method will not be called.
+
+>**Important note**: This is not an indication that the SDK was initiated successfully. You still need to wait for the `kinMigrationIsReady()` to be called.
 
 #### `kinMigrationIsReady()`
 This method is always called when the SDK is initiated successfully, regardless of `kinMigrationDidFinish()` being called.
 
 #### `kinMigration(error: Error)`
-This method will be invoked if the user migration has failed with an error.
+This method will be called if the user migration has failed with an error.
 We highly recommend using this method to log the error in your logging/analytics tools of choice.
 
 ## Important Things to Know

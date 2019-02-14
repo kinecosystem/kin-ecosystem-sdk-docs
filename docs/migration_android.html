@@ -55,7 +55,7 @@
 The Kin Blockchain opens a world of new possibilities for Kin developers, and we're very excited to onboard you.</p>
 <p>This document will walk you through your migration process as a Kin developer. Please read it carefully.</p>
 <blockquote>
-<p><strong>IMPORTANT NOTE:</strong> You should test the SDK with Playground environment only for now,
+<p><strong>Important note:</strong> You should test the SDK with Playground environment only for now,
 Production environment is not yet ready.</p>
 </blockquote>
 <h3><a class="anchor" aria-hidden="true" id="terminology"></a><a href="#terminology" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Terminology</h3>
@@ -100,7 +100,7 @@ You need to create and send Kin a signed transaction for burning both DS Wallet 
 <li>Create and send Kin a signed transaction for burning both your wallet and the Shared Wallet.</li>
 </ol>
 <blockquote>
-<p>Note: DO NOT send this transaction by yourself to the old blockchain! We will send it when the migration starts.</p>
+<p><strong>Important note</strong>: DO NOT send this transaction by yourself to the old blockchain! We will send it when the migration starts.</p>
 </blockquote>
 <h4><a class="anchor" aria-hidden="true" id="migrating-your-end-users"></a><a href="#migrating-your-end-users" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Migrating Your End Users</h4>
 <p>Once you release a new version of your application that implements the migration-enabled Dev Platform SDK, it will take care of migrating your users automatically when you first initate the SDK (continue reading for more details).</p>
@@ -113,7 +113,7 @@ Now, when <code>Kin.start()</code> is called, the Dev Platform SDK will query ou
 </blockquote>
 <p>The chart below shows the new <code>Kin.start()</code> flow.
 <strong>Continue reading this document to better understand the different steps shown in the chart.</strong></p>
-<p><img src="/kin-ecosystem-sdk-docs/img/migration_start.jpeg" alt=""></p>
+<p><img src="/kin-ecosystem-sdk-docs/img/migration_start_android.jpeg" alt=""></p>
 <h2><a class="anchor" aria-hidden="true" id="initiating-the-sdk"></a><a href="#initiating-the-sdk" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initiating the SDK</h2>
 <p>The migration-enabled Dev Platform SDK adds a new argument to the <code>Kin.start()</code> method - an optional <code>KinMigrationListener</code> interface.
 This interface allows you to hook into migration-related events (continue reading for more information).</p>

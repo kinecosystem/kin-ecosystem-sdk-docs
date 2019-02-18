@@ -10,8 +10,7 @@ The Kin Blockchain opens a world of new possibilities for Kin developers, and we
 
 This document will walk you through your migration process as a Kin developer. Please read it carefully.
 
- >**Important note:** You should test the SDK with Playground environment only for now, 
- Production environment is not yet ready.
+ >**Important note:** You should thoroughly test the migration process in the Playground environment before moving to Production.
 
 ### Terminology
 - **Old Blockchain**: The old blockchain that you're currently using.
@@ -146,7 +145,7 @@ A user launched your app while the migration flag (on our servers) is set to pre
 
 **Outcome:** The user will not be able to earn/spend Kins until `Kin.start()` is called again.
 
-If you have your own earn/spend/P2P functionality (outside of the provided Kin Marketplace) the above scenario will throw a new type of exception - `MigrationNeededException` that you will need to handle.
+If you have your own earn/spend/P2P functionality (outside of the provided Kin Marketplace), the above scenario will throw a new type of exception, `MigrationNeededException`, that you will need to handle.
 
 For earning opportunities inside the Kin Marketplace, we handle this exception for you in the form of an error dialog displayed to the user.
 
@@ -154,6 +153,9 @@ For earning opportunities inside the Kin Marketplace, we handle this exception f
 User A has already been migrated and is attempting to transfer Kin to User B, who has not been migrated yet.
 
 **Outcome:** User A's Kin transfer will succeed. User B will see the transfer in the payment history screen, but will not see their balance updated until migrating to the Kin Blockchain.
+
+#### User restores a backed-up account 
+The SDK checks migration status of the restored account. If the account has not been migrated yet, the SDK proceeds to migrate it and to update its wallet address. Until these actions are complete, the user cannot use the application.
 
 ## Testing Your Implementation
 During the implementation of the new Dev Platform SDK you can safely test how your application will react to the *migration instatiated* flag. On the `Playground` environment, you can use the following POST HTTP request to change your application flag:

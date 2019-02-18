@@ -149,13 +149,15 @@ If you have your own earn/spend/P2P functionality (outside of the provided Kin M
 
 For earning opportunities inside the Kin Marketplace, we handle this exception for you in the form of an error dialog displayed to the user.
 
-#### Migrated users attempt to transfer Kin to non-migrated users
-User A has already been migrated and is attempting to transfer Kin to User B, who has not been migrated yet.
+#### User attempts to transfer Kin from a migrated account to a non-migrated account 
+User transfers Kin from account A, which has already been migrated, to account B, which has not been migrated yet.
 
-**Outcome:** User A's Kin transfer will succeed. User B will see the transfer in the payment history screen, but will not see their balance updated until migrating to the Kin Blockchain.
+**Outcome:** For account A, the transfer will succeed. In account B, the transfer will appear in the payment history, but its balance will not be updated until migrating to the Kin Blockchain.
 
-#### User restores a backed-up account 
-The SDK checks migration status of the restored account. If the account has not been migrated yet, the SDK proceeds to migrate it and to update its wallet address. Until these actions are complete, the user cannot use the application.
+#### User restores an account 
+User has a backed-up account and attempts to restore it.
+
+**Outcome:** The SDK checks migration status of the restored account. If the account has not been migrated yet, the SDK proceeds to migrate it and to update its wallet address. Until these actions are complete, the user cannot use the application.
 
 ## Testing Your Implementation
 During the implementation of the new Dev Platform SDK you can safely test how your application will react to the *migration instatiated* flag. On the `Playground` environment, you can use the following POST HTTP request to change your application flag:

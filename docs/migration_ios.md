@@ -10,8 +10,7 @@ The Kin Blockchain opens a world of new possibilities for Kin developers, and we
 
 This document will walk you through your migration process as a Kin developer. Please read it carefully.
 
- >**Important note:** You should test the SDK with Playground environment only for now, 
- Production environment is not yet ready.
+ >**Important note:** You should thoroughly test the migration process in the Playground environment before moving to Production.
  
 ### Terminology
 - **Old Blockchain**: The old blockchain that you're currently using.

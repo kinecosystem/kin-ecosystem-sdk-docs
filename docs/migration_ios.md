@@ -80,7 +80,7 @@ This protocol allows you to hook into migration-related events, and requires stu
 
 ## The `KinMigrationDelegate` Protocol
 A protocol that allows you to hook into migration-related events.
-The protocol exposes the following new, REQUIRED methods, each of which *must be stubbed out* in the class you chose to implement the protocol in, regardless of whether you use them:
+The protocol exposes the following new, required methods, each of which *must be stubbed out* in the class you chose to implement the protocol:
 
 #### `kinMigrationDidStart()`
 This method is called once the Dev Platform SDK has determined that the current user should be migrated to the Kin Blockchain. It is important to note that this method will not be called after the user has been successfully migrated. If the user has already been migrated when the SDK is initiated (for instance, if the user was migrated in the previous app session), this method will not be called.

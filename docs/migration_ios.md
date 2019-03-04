@@ -106,34 +106,27 @@ import KinDevPlatform
 class ExampleViewController: UIViewController, KinMigrationDelegate {
     override func viewDidLoad() {
            super.viewDidLoad()
-        
+           
         //set the delegate
         Kin.shared.migrationDelegate = self
-       
-         //start SDK
-
+        //start SDK
+        
     }
 
     func kinMigrationDidStart() {
-
         // implement loading screen to let users know the migration has started
-
     }
 
     func kinMigrationDidFinish() {
-
         // stop loading screen and alert user the migration is complete
-
     }
 
     func kinMigrationIsReady() {
-            // set flag to determine that app is ready to be used
+        // set flag to determine that app is ready to be used
     }
 
     func kinMigration(error: Error) {
-
         // log error and alert the user that there was a migration issue
-
     }
 
 }

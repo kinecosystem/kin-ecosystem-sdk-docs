@@ -76,11 +76,11 @@ The chart below shows the new `Kin.start()` flow.
 
 ## Initiating the SDK
 The migration-enabled Dev Platform SDK adds a new property to the `Kin` class `var migrationDelegate: KinMigrationDelegate?`.
-This protocol allows you to hook into migration-related events (continue reading for more information).
+This protocol allows you to hook into migration-related events, and requires stubs to be implemented (continue reading for more information).
 
 ## The `KinMigrationDelegate` Protocol
 A protocol that allows you to hook into migration-related events.
-The protocol exposes the following methods:
+The protocol exposes the following new, required methods, each of which *must be stubbed out* in the class you chose to implement the protocol:
 
 #### `kinMigrationDidStart()`
 This method is called once the Dev Platform SDK has determined that the current user should be migrated to the Kin Blockchain. It is important to note that this method will not be called after the user has been successfully migrated. If the user has already been migrated when the SDK is initiated (for instance, if the user was migrated in the previous app session), this method will not be called.
@@ -98,6 +98,41 @@ This method is always called when the SDK is initiated successfully, regardless 
 #### `kinMigration(error: Error)`
 This method will be called if the user migration has failed with an error.
 We highly recommend using this method to log the error in your logging/analytics tools of choice.
+
+## Example implementation of Delegate Protocol in the ExampleViewController:
+
+import KinDevPlatform
+
+class ExampleViewController: UIViewController, KinMigrationDelegate {
+    override func viewDidLoad() {
+           super.viewDidLoad()
+           
+        //set the delegate
+        Kin.shared.migrationDelegate = self
+        //start SDK
+        
+    }
+
+    func kinMigrationDidStart() {
+        // implement loading screen to let users know the migration has started
+    }
+
+    func kinMigrationDidFinish() {
+        // stop loading screen and alert user the migration is complete
+    }
+
+    func kinMigrationIsReady() {
+        // set flag to determine that app is ready to be used
+    }
+
+    func kinMigration(error: Error) {
+        // log error and alert the user that there was a migration issue
+    }
+
+}
+
+*Important note*: All of the above functions must be implemented / stubbed out when using the KinMigrationDelegate Protocol or you will receive an error.
+
 
 ## Important Things to Know
 Migrating your users to the Kin Blockchain may pose a new temporary challenge. During the migration phase, your user base will be split between migrated users and users who have not been migrated yet (i.e., not all the users will be connected to the same blockchain). As a result, you may encounter the following situations: 

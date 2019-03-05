@@ -101,16 +101,16 @@ We highly recommend using this method to log the error in your logging/analytics
 
 ## Example implementation of Delegate Protocol in the ExampleViewController:
 
+```swift
 import KinDevPlatform
 
 class ExampleViewController: UIViewController, KinMigrationDelegate {
     override func viewDidLoad() {
-           super.viewDidLoad()
+        super.viewDidLoad()
            
         //set the delegate
         Kin.shared.migrationDelegate = self
         //start SDK
-        
     }
 
     func kinMigrationDidStart() {
@@ -128,8 +128,8 @@ class ExampleViewController: UIViewController, KinMigrationDelegate {
     func kinMigration(error: Error) {
         // log error and alert the user that there was a migration issue
     }
-
 }
+```
 
 *Important note*: All of the above functions must be implemented / stubbed out when using the KinMigrationDelegate Protocol or you will receive an error.
 

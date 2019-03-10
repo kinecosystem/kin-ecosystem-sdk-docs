@@ -99,7 +99,7 @@ This method is always called when the SDK is initiated successfully, regardless 
 This method will be called if the user migration has failed with an error.
 We highly recommend using this method to log the error in your logging/analytics tools of choice.
 
-## Example implementation of Delegate Protocol in the ExampleViewController:
+### Example implementation of Delegate Protocol in the ExampleViewController:
 
 ```swift
 import KinDevPlatform
@@ -132,7 +132,6 @@ class ExampleViewController: UIViewController, KinMigrationDelegate {
 ```
 
 *Important note*: All of the above functions must be implemented / stubbed out when using the KinMigrationDelegate Protocol or you will receive an error.
-
 
 ## Important Things to Know
 Migrating your users to the Kin Blockchain may pose a new temporary challenge. During the migration phase, your user base will be split between migrated users and users who have not been migrated yet (i.e., not all the users will be connected to the same blockchain). As a result, you may encounter the following situations: 
